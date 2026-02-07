@@ -11,6 +11,7 @@ import type { PaymentAdapter } from './types'
 import { StripeAdapter } from './providers/stripe'
 import { PolarAdapter } from './providers/polar'
 import { LemonSqueezyAdapter } from './providers/lemonsqueezy'
+import { DodoPaymentsAdapter } from './providers/dodopayments'
 
 // Singleton instance of the active adapter
 let paymentAdapter: PaymentAdapter | null = null
@@ -41,6 +42,9 @@ export function getPaymentAdapter(): PaymentAdapter {
       break
     case 'lemonsqueezy':
       paymentAdapter = new LemonSqueezyAdapter()
+      break
+    case 'dodopayments':
+      paymentAdapter = new DodoPaymentsAdapter()
       break
     default:
       throw new Error(`Unknown payment provider: ${provider}`)

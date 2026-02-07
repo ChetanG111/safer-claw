@@ -29,13 +29,21 @@ export async function POST(req: Request) {
       case 'lemonsqueezy':
         signature = headerList.get('x-signature') || ''
         break
+      case 'dodopayments':
+        signature = headerList.get('webhook-signature') || 'dodo' // Dummy value as validation uses headers
+        break
     }
 
     if (!signature) {
       return NextResponse.json({ error: 'Missing signature' }, { status: 400 })
     }
 
-    isValid = await adapter.validateWebhook(rawBody, signature)
+    const headersObject: Record<string, string> = {}
+    headerList.forEach((value, key) => {
+      headersObject[key] = value
+    })
+
+    isValid = await adapter.validateWebhook(rawBody, signature, headersObject)
 
     if (!isValid) {
       return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
@@ -75,7 +83,9 @@ export async function POST(req: Request) {
         data:
           provider === 'lemonsqueezy'
             ? parsedBody
-            : parsedBody.data?.object || parsedBody.data || parsedBody,
+            : provider === 'dodopayments'
+              ? parsedBody // Dodo passes data inside event object structure depending on event
+              : parsedBody.data?.object || parsedBody.data || parsedBody,
         rawEvent: parsedBody,
       }
     } catch (e) {
