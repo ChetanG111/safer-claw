@@ -22,7 +22,7 @@ export default function Navbar() {
               <img src='/image.png' alt='KyronHQ Logo' className='h-6 w-6 object-contain' />
               <span
                 className='text-base font-semibold text-foreground'
-                style={{ fontFamily: 'var(--font-bricolage-grotesque)' }}
+                style={{ fontFamily: 'var(--font-heading)' }}
               >
                 KyronHQ
               </span>

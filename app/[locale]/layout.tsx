@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Bricolage_Grotesque } from 'next/font/google'
+// import { Geist, Geist_Mono, Bricolage_Grotesque } from 'next/font/google' // Moved to config/fonts.ts
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 
@@ -12,21 +12,6 @@ type Props = {
   params: Promise<{ locale: string }>
   children: React.ReactNode
 }
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
-
-const bricolageGrotesque = Bricolage_Grotesque({
-  variable: '--font-bricolage-grotesque',
-  subsets: ['latin'],
-})
 
 export const metadata: Metadata = {
   ...generateMetadata({
@@ -42,6 +27,9 @@ export const metadata: Metadata = {
   },
 }
 
+import { fontSans, fontMono, fontHeading } from '@/config/fonts'
+import { ThemeProvider } from '@/components/branding/theme-provider'
+
 export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params
   const messages = await getMessages()
@@ -49,14 +37,16 @@ export default async function RootLayout({ children, params }: Props) {
   return (
     <html lang={locale}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${bricolageGrotesque.variable} font-sans antialiased`}
+        className={`${fontSans.variable} ${fontMono.variable} ${fontHeading.variable} font-sans antialiased`}
       >
-        <NextIntlClientProvider messages={messages}>
-          <QueryProvider>
-            <ToastProvider>{children}</ToastProvider>
-            <div className="h-screen w-full fixed top-0 left-0 -z-10  bg-[url('/grain.jpg')] opacity-5" />
-          </QueryProvider>
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider messages={messages}>
+            <QueryProvider>
+              <ToastProvider>{children}</ToastProvider>
+              <div className="h-screen w-full fixed top-0 left-0 -z-10  bg-[url('/grain.jpg')] opacity-5" />
+            </QueryProvider>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

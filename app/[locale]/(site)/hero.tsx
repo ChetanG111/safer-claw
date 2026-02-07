@@ -47,9 +47,9 @@ export default function Hero() {
           </p>
           <div className='mx-auto mt-10 flex items-center justify-center gap-4'>
             <Button className='font-semibold h-12! px-8 text-base text-white' asChild>
-              <Link href='/#pricing'>
+              <Link href='/#pricing' className='flex items-center gap-2'>
                 Get Started
-                <ArrowUpRight className='h-8 w-8 ml-2' />
+                <ArrowUpRight className='h-8 w-8 ml-0' />
               </Link>
             </Button>
             <Button variant='outline' className='font-semibold h-12! px-8 text-base'>
@@ -63,7 +63,7 @@ export default function Hero() {
           <div className='mt-24 w-full'>
             <h2
               className='text-center text-sm font-medium text-muted-foreground mb-8'
-              style={{ fontFamily: 'var(--font-geist-mono)' }}
+              style={{ fontFamily: 'var(--font-mono)' }}
             >
               BUILT WITH THE BEST TOOLS
             </h2>
