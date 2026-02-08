@@ -12,6 +12,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
+import { FeedbackWidget } from '@/components/feedback/feedback-widget'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
     let session = await auth.api.getSession({
@@ -84,6 +85,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
                 </header>
                 <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
                     {children}
+                    <FeedbackWidget />
                 </div>
             </SidebarInset>
         </SidebarProvider>

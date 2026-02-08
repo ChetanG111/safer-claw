@@ -166,9 +166,30 @@ export const payment = pgTable(
 
 
 
+// Operational Essentials
+export const feedback = pgTable('feedback', {
+  id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+  userId: text('user_id').references(() => user.id, { onDelete: 'set null' }),
+  message: text('message').notNull(),
+  type: text('type').default('general').notNull(), // 'bug', 'feature', 'general'
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
+
+export const notification = pgTable('notification', {
+  id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+  userId: text('user_id').references(() => user.id, { onDelete: 'cascade' }).notNull(),
+  title: text('title').notNull(),
+  message: text('message').notNull(),
+  type: text('type').default('info').notNull(), // 'info', 'success', 'warning', 'error'
+  read: boolean('read').default(false).notNull(),
+  link: text('link'),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
+
 export const userRelations = relations(user, ({ many }) => ({
   sessions: many(session),
   accounts: many(account),
+  notifications: many(notification),
 }))
 
 export const sessionRelations = relations(session, ({ one }) => ({
@@ -219,5 +240,19 @@ export const paymentRelations = relations(payment, ({ one }) => ({
   subscription: one(subscription, {
     fields: [payment.subscriptionId],
     references: [subscription.id],
+  }),
+}))
+
+export const feedbackRelations = relations(feedback, ({ one }) => ({
+  user: one(user, {
+    fields: [feedback.userId],
+    references: [user.id],
+  }),
+}))
+
+export const notificationRelations = relations(notification, ({ one }) => ({
+  user: one(user, {
+    fields: [notification.userId],
+    references: [user.id],
   }),
 }))

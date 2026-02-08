@@ -1,6 +1,8 @@
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth/auth'
+import { AppHeader } from '@/components/app-header'
+import { FeedbackWidget } from '@/components/feedback/feedback-widget'
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
   const session = await auth.api.getSession({
@@ -32,5 +34,13 @@ export default async function MainLayout({ children }: { children: React.ReactNo
     }
   }
 
-  return <>{children}</>
+  return (
+    <div className="relative flex min-h-screen flex-col">
+      <AppHeader />
+      <main className="flex-1">
+        {children}
+      </main>
+      <FeedbackWidget />
+    </div>
+  )
 }
