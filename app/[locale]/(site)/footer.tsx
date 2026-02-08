@@ -7,9 +7,9 @@ export default function Footer() {
   return (
     <footer className='border-t border-[#E4E4E7] bg-[#F4F4F5] py-12'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
-        <div className='grid grid-cols-2 gap-8 md:grid-cols-4'>
+        <div className='grid grid-cols-2 gap-8 max-w-2xl mx-auto'>
           {/* Column 1: Links */}
-          <div>
+          <div className="text-center md:text-left">
             <h3
               className='mb-4 text-sm font-semibold uppercase'
               style={{ fontFamily: 'var(--font-geist-mono)' }}
@@ -17,14 +17,14 @@ export default function Footer() {
               Links
             </h3>
             <ul className='space-y-3'>
-              <li>
+              {/* <li>
                 <Link
                   href='/#pricing'
                   className='text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
                 >
                   Pricing
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   href='/docs'
@@ -61,7 +61,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Legal */}
-          <div>
+          <div className="text-center md:text-left">
             <h3
               className='mb-4 text-sm font-semibold uppercase'
               style={{ fontFamily: 'var(--font-geist-mono)' }}
@@ -96,8 +96,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Featured On */}
-          <div>
+          {/* Column 3: Featured On - Hidden */}
+          {/* <div className="hidden">
             <h3
               className='mb-4 text-sm font-semibold uppercase'
               style={{ fontFamily: 'var(--font-geist-mono)' }}
@@ -150,10 +150,10 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
-          {/* Column 4: Community */}
-          <div>
+          {/* Column 4: Community - Hidden */}
+          {/* <div className="hidden">
             <h3
               className='mb-4 text-sm font-semibold uppercase'
               style={{ fontFamily: 'var(--font-geist-mono)' }}
@@ -163,7 +163,7 @@ export default function Footer() {
             <ul className='space-y-3'>
               <li>
                 <Link
-                  href='https://github.com/kyronhq'
+                  href='https://github.com/safer-claw'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
@@ -174,7 +174,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href='https://discord.gg/kyronhq'
+                  href='https://discord.gg/safer-claw'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
@@ -185,7 +185,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href='https://x.com/kyronhq'
+                  href='https://x.com/safer-claw'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
@@ -194,28 +194,28 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom Section */}
         <div className='mt-12 pt-8 border-t border-[#E4E4E7]'>
           <div className='flex flex-col items-center justify-center text-center gap-6'>
             <div className='flex items-center justify-center gap-2'>
-              <img src='/image.png' alt='KyronHQ Logo' className='h-6 w-6 object-contain' />
+              <img src='/image.png' alt='Safer-Claw Logo' className='h-6 w-6 object-contain' />
               <span
                 className='text-base font-semibold text-foreground'
                 style={{ fontFamily: 'var(--font-bricolage-grotesque)' }}
               >
-                KyronHQ
+                Safer-Claw
               </span>
             </div>
-            <p className='text-sm text-muted-foreground'>Turn ideas into products, fast</p>
+            <p className='text-sm text-muted-foreground'>Your private, safe AI operator.</p>
             <div className='flex flex-col items-center gap-4 w-full'>
               <p className='text-sm text-muted-foreground'>
                 Copyright © {new Date().getFullYear()} -{' '}
-                <Link href='https://kyronhq.dev'>KyronHQ</Link>
+                <Link href='https://safer-claw.com'>Safer-Claw</Link>
               </p>
-              <LanguageSwitcher />
+              {/* <LanguageSwitcher /> */}
             </div>
           </div>
         </div>

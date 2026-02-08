@@ -1,8 +1,8 @@
-# ⚡ KyronHQ - Modern SaaS Starter
+# ⚡ Safer-Claw - Modern SaaS Starter
 
 Hi there! 👋
 
-KyronHQ is a modern SaaS boilerplate designed to simplify and optimize your shipping process. It’s built using modern web technologies like Next.js, Bun, Stripe, Drizzle ORM, Postgres and Tailwindcss.
+Safer-Claw is a modern SaaS boilerplate designed to simplify and optimize your shipping process. It’s built using modern web technologies like Next.js, Bun, Stripe, Drizzle ORM, Postgres and Tailwindcss.
 
 ## Features
 
@@ -17,7 +17,7 @@ KyronHQ is a modern SaaS boilerplate designed to simplify and optimize your ship
 
 ## Docs
 
-For full documentation, visit: [KyronHQ Docs](https://kyronhq.dev/docs)
+For full documentation, visit: [Safer-Claw Docs](https://safer-claw.com/docs)
 
 ## Code of Conduct
 
@@ -29,7 +29,7 @@ For people who want to contribute, please refer to [CONTRIBUTING.md](CONTRIBUTIN
 
 ## Internationalization (i18n) Navigation
 
-KyronHQ includes internationalization support using `next-intl` with automatic locale routing. The template supports English (`en`), French (`fr`), and Spanish (`es`) out of the box.
+Safer-Claw includes internationalization support using `next-intl` with automatic locale routing. The template supports English (`en`), French (`fr`), and Spanish (`es`) out of the box.
 
 ### Navigation Components and Hooks
 
@@ -151,7 +151,7 @@ The default locale (`en`) uses the `as-needed` prefix strategy, meaning it doesn
 
 ## Removing Premium Purchase Feature
 
-This template includes a premium purchase feature that allows users to buy the Premium version of KyronHQ. This feature is **completely isolated** from the template's payment system and can be easily removed if you don't need it.
+This template includes a premium purchase feature that allows users to buy the Premium version of Safer-Claw. This feature is **completely isolated** from the template's payment system and can be easily removed if you don't need it.
 
 ### What is the Premium Purchase Feature?
 
@@ -200,4 +200,4 @@ After removal, the template's payment functionality (for your customers) will co
 
 ---
 
-Maintained by [KyronHQ](https://kyronhq.dev)
+Maintained by [Safer-Claw](https://safer-claw.com)

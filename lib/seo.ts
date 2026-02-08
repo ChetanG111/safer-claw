@@ -10,12 +10,12 @@ const brandConfig = getBrandConfig()
 export const siteConfig = {
   name: brandConfig.name,
   description:
-    'KyronHQ is a modern SaaS boilerplate to simplify and optimize your shipping process with modern web technologies.',
+    'Safer-Claw is a modern SaaS boilerplate to simplify and optimize your shipping process with modern web technologies.',
   url: getBaseUrl(),
-  twitterHandle: '@kyronhq',
-  creator: 'KyronHQ',
+  twitterHandle: '@saferclaw',
+  creator: 'Safer-Claw',
   keywords: [
-    'KyronHQ',
+    'Safer-Claw',
     'SaaS boilerplate',
     'Next.js template',
     'Shipping solution',
@@ -194,7 +194,7 @@ export const getOrganizationSchema = () => {
     description: siteConfig.description,
     url: siteConfig.url,
     logo: getAbsoluteUrl('/logo.png'),
-    sameAs: ['https://github.com/kyronhq', 'https://x.com/kyronhq'],
+    sameAs: ['https://github.com/safer-claw', 'https://x.com/safer-claw'],
   }
 }
 

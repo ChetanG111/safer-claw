@@ -3,45 +3,38 @@
 export default function Features() {
   const features = [
     {
-      title: 'Authentication',
+      title: 'One-Click Launch',
       description:
-        'Built-in auth with Better Auth. Social logins, email verification, and session management ready to go.',
-      logo: '/stack-icons/better-auth.svg',
+        'Deploy OpenClaw instantly. No complex setup, no servers to manage—just click and your agent is ready to work.',
     },
     {
-      title: 'Payments',
+      title: 'Private & Secure',
       description:
-        'Stripe and Polar integrations. Subscriptions, one-time payments, and webhooks configured.',
-      logos: ['/stack-icons/stripe.svg', '/stack-icons/polar.svg'],
+        'Your agent runs in an isolated environment. Your data and workflows remain completely private.',
     },
     {
-      title: 'Database',
+      title: 'Chat Integration',
       description:
-        'Drizzle ORM with PostgreSQL. Migrations, relations, and type-safe queries out of the box.',
-      logos: ['/stack-icons/drizzle-orm.svg', '/stack-icons/prisma.svg'],
+        'Connect directly to Telegram or WhatsApp. Talk to your agent where you already work.',
     },
     {
-      title: 'UI Components',
+      title: 'Workflow Automation',
       description:
-        'Beautiful, accessible components built with Base UI. Dark mode, animations, and responsive design.',
-      logos: ['/stack-icons/tailwindcss.svg', '/stack-icons/base-ui.svg'],
+        'Run complex workflows and automate repetitive tasks. It acts like a digital employee.',
+    },
+    {
+      title: 'Zero Maintenance',
+      description:
+        'We handle all the infrastructure, updates, and security patches. You focus on the results.',
+    },
+    {
+      title: 'Controlled Access',
+      description:
+        'Secure permissions and access control. You decide exactly what your agent can and cannot do.',
     },
   ]
 
-  const stack = [
-    {
-      title: 'Analytics',
-      description:
-        'Analytics with PostHog. Track user behavior, conversions, and product insights out of the box.',
-      logo: '/stack-icons/posthog.svg',
-    },
-    {
-      title: 'Emails',
-      description:
-        'Emails with Resend. Transactional emails, templates, and delivery tracking configured.',
-      logo: '/stack-icons/resend.svg',
-    },
-  ]
+  const stack = []
 
   return (
     <section id="features" className='py-12 md:py-24 bg-[#F4F4F5]'>
@@ -50,14 +43,14 @@ export default function Features() {
           className='text-center text-sm font-medium text-muted-foreground mb-8'
           style={{ fontFamily: 'var(--font-geist-mono)' }}
         >
-          FEATURES
+          CAPABILITIES
         </h2>
         <div className='text-center mb-16'>
           <h2 className='text-4xl font-semibold tracking-tight mb-4'>
-            Everything you need to ship fast
+            Your Digital Employee, Ready to Work
           </h2>
           <p className='text-lg text-muted-foreground'>
-            Production-ready features that save you weeks of setup time
+            Powerful features designed for operators, solo founders, and small teams.
           </p>
         </div>
 

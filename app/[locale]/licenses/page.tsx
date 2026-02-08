@@ -6,7 +6,7 @@ import { GridLayout } from '../(site)/grid-layout'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Licenses',
-  description: 'License information for KyronHQ platform',
+  description: 'License information for Safer-Claw platform',
   canonical: '/licenses',
 })
 
@@ -23,9 +23,9 @@ export default async function LicensesPage({ params }: { params: Promise<{ local
 
           <div className='prose prose-sm max-w-none space-y-8 text-muted-foreground'>
             <section>
-              <h2 className='mb-4 text-xl font-semibold text-foreground'>1. kyronhq codebase</h2>
+              <h2 className='mb-4 text-xl font-semibold text-foreground'>1. safer-claw codebase</h2>
               <p>
-                the kyronhq boilerplate and related source code are licensed for commercial and
+                the safer-claw boilerplate and related source code are licensed for commercial and
                 personal projects with a valid purchase or access key. redistribution or resale
                 without permission is prohibited.
               </p>
@@ -36,7 +36,7 @@ export default async function LicensesPage({ params }: { params: Promise<{ local
                 2. open-source components
               </h2>
               <p>
-                kyronhq includes open-source libraries under their respective licenses (MIT,
+                safer-claw includes open-source libraries under their respective licenses (MIT,
                 Apache 2.0, etc.). you must comply with their terms when using or modifying those
                 components.
               </p>
@@ -45,7 +45,7 @@ export default async function LicensesPage({ params }: { params: Promise<{ local
             <section>
               <h2 className='mb-4 text-xl font-semibold text-foreground'>3. attribution</h2>
               <p>
-                you're not required to publicly credit kyronhq, but attribution is appreciated when
+                you're not required to publicly credit safer-claw, but attribution is appreciated when
                 showcasing products built using it.
               </p>
             </section>

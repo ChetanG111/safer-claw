@@ -8,7 +8,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: brand.name,
     short_name: brand.name,
     description:
-      'KyronHQ is a modern SaaS boilerplate to simplify and optimize your shipping process.',
+      'Safer-Claw is a modern SaaS boilerplate to simplify and optimize your shipping process.',
     start_url: '/',
     scope: '/',
     display: 'standalone',
@@ -37,7 +37,7 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         name: 'Open dashboard',
         short_name: 'Dashboard',
-        description: 'Go to your KyronHQ dashboard',
+        description: 'Go to your Safer-Claw dashboard',
         url: '/dashboard',
       },
     ],

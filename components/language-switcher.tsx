@@ -3,6 +3,13 @@
 import { useLocale } from 'next-intl'
 import { usePathname, useRouter } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 const localeNames: Record<string, string> = {
   en: 'English',
@@ -21,19 +28,21 @@ export function LanguageSwitcher() {
 
   return (
     <div className='flex items-center gap-2'>
-      <span className='text-sm font-medium text-muted-foreground'>Language:</span>
-      <select
-        value={locale}
-        onChange={(e) => handleLocaleChange(e.target.value)}
-        className='rounded-md border border-[#E4E4E7] bg-white px-3 py-1.5 text-sm font-medium text-foreground transition-colors duration-200 ease-in-out hover:border-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2'
-        aria-label='Select language'
-      >
-        {routing.locales.map((loc) => (
-          <option key={loc} value={loc}>
-            {localeNames[loc] || loc}
-          </option>
-        ))}
-      </select>
+      <span className='text-sm font-medium text-muted-foreground'>
+        Language:
+      </span>
+      <Select value={locale} onValueChange={handleLocaleChange}>
+        <SelectTrigger className='w-[140px] h-8'>
+          <SelectValue placeholder='Select language' />
+        </SelectTrigger>
+        <SelectContent>
+          {routing.locales.map((loc) => (
+            <SelectItem key={loc} value={loc}>
+              {localeNames[loc] || loc}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   )
 }

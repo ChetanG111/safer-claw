@@ -11,47 +11,32 @@ import Link from 'next/link'
 export default function FAQ() {
   const faqs = [
     {
-      question: "What's included in the free version?",
+      question: "What is Safer-Claw?",
       answer:
-        "Everything you need to build: a full Next.js boilerplate with auth, payments, UI, SEO, and transactional emails. It's free forever under the MIT license.",
+        "Safer-Claw is a lightweight SaaS that lets you deploy your own private OpenClaw agent and connect it directly to Telegram or WhatsApp in one click.",
     },
     {
-      question: "What's in the pro version?",
+      question: "Is it secure?",
       answer:
-        'Pro adds one-click deploys, a CLI tool, advanced auth (roles & invites), automated emails, analytics hooks, lifetime updates, and priority support — built for founders who want to launch fast.',
+        "Yes. Security and control are our core promises. You get a private environment where you control the agent's permissions and data access.",
     },
     {
-      question: "Do I lose access to the free version if I don't upgrade?",
+      question: "Do I need coding skills?",
       answer:
-        'Nope. The free version stays open source and always available. Pro just saves you time and setup pain.',
+        "No. Safer-Claw is built for non-technical users. You can set up your agent and workflows without writing a single line of code.",
     },
     {
-      question: 'Is it really a one-time payment?',
-      answer: 'Yep. $90 lifetime access. No subscriptions, no renewal fees, ever.',
+      question: "What platforms does it support?",
+      answer: "We currently support direct integration with Telegram and WhatsApp.",
     },
     {
-      question: 'Can I use it for commercial products?',
-      answer: 'Yes — both free and pro can be used to build and sell your own projects.',
+      question: "Can it automate tasks?",
+      answer: "Absolutely. Your agent can run workflows, automate repetitive tasks, and essentially act as a digital employee within your chat tools.",
     },
     {
-      question: 'What if I find a bug or issue?',
+      question: "How do I get access?",
       answer:
-        'Open an issue on GitHub or drop it in the Discord — we fix bugs fast, and pro users get priority patches + updates.',
-    },
-    {
-      question: 'Can I upgrade later?',
-      answer:
-        "Absolutely. You can start free, and when you're ready to go pro, your setup stays compatible.",
-    },
-    {
-      question: 'How often do you ship updates?',
-      answer:
-        'Bug fixes and small updates drop regularly; pro users get early access to new templates and features.',
-    },
-    {
-      question: 'What support does pro include?',
-      answer:
-        "Private Discord, priority replies, and lifetime updates. You'll never be stuck figuring things out alone.",
+        "We are currently in a closed beta. Join our waitlist to be notified when we open up more spots.",
     },
   ]
 

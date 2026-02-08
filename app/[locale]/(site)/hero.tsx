@@ -1,6 +1,7 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
+import { client } from '@/lib/auth/auth-client'
 
 import { Button } from '@/components/ui/button'
 import { ArrowUpRight } from 'lucide-react'
@@ -15,147 +16,97 @@ import {
 
 const tooltipHandle = TooltipCreateHandle<React.ComponentType>()
 
-// Tooltip content components
-const BetterAuthContent = () => <span>Better Auth</span>
-const TailwindCSSContent = () => <span>Tailwind CSS</span>
-const TypeScriptContent = () => <span>TypeScript</span>
-const TanStackContent = () => <span>TanStack</span>
-const VercelContent = () => <span>Vercel AI SDK</span>
-const BunContent = () => <span>Bun</span>
-const BaseUIContent = () => <span>Base UI</span>
-
 export default function Hero() {
   return (
     <main
       id='hero'
-      className='flex min-h-screen flex-col bg-[#F4F4F5] items-center justify-start pt-40 pb-24'
+      className='flex min-h-screen flex-col bg-[#F4F4F5] items-center justify-center py-24'
     >
       <div className='mx-auto w-full max-w-6xl px-4 sm:px-6'>
         <div className='mx-auto max-w-4xl text-center'>
           <h1 className='mx-auto max-w-3xl text-balance text-center font-semibold text-4xl leading-tight tracking-tighter sm:text-5xl md:max-w-4xl md:text-6xl lg:leading-[1.1]'>
-            A production-ready{' '}
-            <img
-              src='/nextjs_logo.svg'
-              alt='Next.js'
-              className='inline-block h-[0.9em] w-[0.9em] align-middle mx-1'
-            />{' '}
-            Next.js boilerplate built to make $$$
+            Your private,{' '}
+            <span className='relative inline-block px-2'>
+              <svg
+                className='absolute inset-0 w-[110%] h-[120%] -left-[5%] -top-[10%] -rotate-2 -z-10 text-orange-400 opacity-90'
+                viewBox='0 0 272 66'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+                preserveAspectRatio='none'
+              >
+                <path
+                  d='M5.42461 45.3409C5.42461 45.3409 68.6186 -5.67909 261.218 10.3341C267.892 10.8879 270.62 18.0463 266.079 26.5684C236.467 82.1287 90.2526 73.1764 45.5684 63.8569C25.4678 59.6645 -11.5323 57.0784 5.42461 45.3409Z'
+                  fill='currentColor'
+                />
+              </svg>
+              <span className='relative z-10'>safe</span>
+            </span>
+            , controllable AI operator inside your business inbox
           </h1>
           <p className='mx-auto mt-6 max-w-xl text-balance text-center text-muted-foreground md:max-w-2xl md:text-lg'>
-            Go from idea to income in record time. A modern boilerplate that saves you weeks of
-            setup so you can spend time building features that actually make money.{' '}
+            A controlled, secure AI assistant that can run workflows, automate repetitive tasks, and act like a digital employee inside your existing chat tools.
           </p>
           <div className='mx-auto mt-10 flex items-center justify-center gap-4'>
-            <Button className='font-semibold h-12! px-8 text-base text-white' asChild>
-              <Link href='/#pricing' className='flex items-center gap-2'>
-                Get Started
-                <ArrowUpRight className='h-8 w-8 ml-0' />
-              </Link>
+            <Button
+              className='font-semibold h-12! px-8 text-base text-white'
+              onClick={async () => {
+                await client.signIn.social({
+                  provider: 'google',
+                  callbackURL: '/dashboard'
+                })
+              }}
+            >
+              Join Waitlist
+              <ArrowUpRight className='h-8 w-8 ml-0' />
             </Button>
-            <Button variant='outline' className='font-semibold h-12! px-8 text-base'>
-              Try demo
-            </Button>
+
           </div>
         </div>
 
         {/* Built With Section */}
-        <TooltipProvider>
+        {/* Built With Section */}
+        {/* <TooltipProvider>
           <div className='mt-24 w-full'>
             <h2
               className='text-center text-sm font-medium text-muted-foreground mb-8'
               style={{ fontFamily: 'var(--font-mono)' }}
             >
-              BUILT WITH THE BEST TOOLS
+              DEPLOY OPENCLAW TO YOUR FAVORITE CHAT APPS
             </h2>
-            <div className='flex items-center justify-center gap-1 sm:gap-5 md:gap-6 flex-wrap'>
-              {/* Vercel AI SDK */}
+            <div className='flex items-center justify-center gap-6 sm:gap-10 md:gap-12 flex-wrap'>
               <TooltipTrigger
                 handle={tooltipHandle}
-                payload={VercelContent}
-                className='flex items-center justify-center h-12 w-12 cursor-pointer'
+                payload={() => <span>OpenClaw</span>}
+                className='flex items-center justify-center h-16 w-16 cursor-pointer'
               >
                 <img
-                  src='/stack-icons/vercel.svg'
-                  alt='Vercel AI SDK'
-                  className='h-12 w-12 opacity-70 transition-opacity duration-200 hover:opacity-100 brightness-0'
+                  src='/stack-icons/openclaw.svg'
+                  alt='OpenClaw'
+                  className='h-16 w-16 transition-transform duration-200 hover:scale-110'
                 />
               </TooltipTrigger>
 
-              {/* Tailwind CSS */}
               <TooltipTrigger
                 handle={tooltipHandle}
-                payload={TailwindCSSContent}
-                className='flex items-center justify-center h-12 w-12 cursor-pointer'
+                payload={() => <span>Telegram</span>}
+                className='flex items-center justify-center h-16 w-16 cursor-pointer'
               >
                 <img
-                  src='/stack-icons/tailwindcss.svg'
-                  alt='Tailwind CSS'
-                  className='h-12 w-12 opacity-70 transition-opacity duration-200 hover:opacity-100'
+                  src='/stack-icons/telegram.svg'
+                  alt='Telegram'
+                  className='h-16 w-16 transition-transform duration-200 hover:scale-110'
                 />
               </TooltipTrigger>
 
-              {/* TypeScript */}
               <TooltipTrigger
                 handle={tooltipHandle}
-                payload={TypeScriptContent}
-                className='flex items-center justify-center h-12 w-12 cursor-pointer'
+                payload={() => <span>WhatsApp</span>}
+                className='flex items-center justify-center h-16 w-16 cursor-pointer'
               >
                 <img
-                  src='/stack-icons/typescript.svg'
-                  alt='TypeScript'
-                  className='h-12 w-12 opacity-70 transition-opacity duration-200 hover:opacity-100'
-                />
-              </TooltipTrigger>
-
-              {/* Better Auth */}
-              <TooltipTrigger
-                handle={tooltipHandle}
-                payload={BetterAuthContent}
-                className='flex items-center justify-center h-12 w-12 cursor-pointer'
-              >
-                <img
-                  src='/stack-icons/better-auth.svg'
-                  alt='Better Auth'
-                  className='h-12 w-12 opacity-70 transition-opacity duration-200 hover:opacity-100'
-                />
-              </TooltipTrigger>
-
-              {/* TanStack */}
-              <TooltipTrigger
-                handle={tooltipHandle}
-                payload={TanStackContent}
-                className='flex items-center justify-center h-12 w-12 cursor-pointer'
-              >
-                <img
-                  src='/stack-icons/tanstack.svg'
-                  alt='TanStack'
-                  className='h-12 w-12 opacity-70 transition-opacity duration-200 hover:opacity-100'
-                />
-              </TooltipTrigger>
-
-              {/* Base UI */}
-              <TooltipTrigger
-                handle={tooltipHandle}
-                payload={BaseUIContent}
-                className='flex items-center justify-center h-12 w-12 cursor-pointer'
-              >
-                <img
-                  src='/stack-icons/base-ui.svg'
-                  alt='Base UI'
-                  className='h-12 w-12 opacity-70 transition-opacity duration-200 hover:opacity-100'
-                />
-              </TooltipTrigger>
-
-              {/* Bun */}
-              <TooltipTrigger
-                handle={tooltipHandle}
-                payload={BunContent}
-                className='flex items-center justify-center h-12 w-12 cursor-pointer'
-              >
-                <img
-                  src='/stack-icons/bun.svg'
-                  alt='Bun'
-                  className='h-12 w-12 opacity-70 transition-opacity duration-200 hover:opacity-100'
+                  src='/stack-icons/whatsapp.svg'
+                  alt='WhatsApp'
+                  className='h-16 w-16 transition-transform duration-200 hover:scale-110'
                 />
               </TooltipTrigger>
             </div>
@@ -166,7 +117,7 @@ export default function Hero() {
               <TooltipPopup>{Payload !== undefined && <Payload />}</TooltipPopup>
             )}
           </Tooltip>
-        </TooltipProvider>
+        </TooltipProvider> */}
       </div>
     </main>
   )

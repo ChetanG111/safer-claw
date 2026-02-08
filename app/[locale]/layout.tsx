@@ -15,9 +15,9 @@ type Props = {
 
 export const metadata: Metadata = {
   ...generateMetadata({
-    title: 'KyronHQ - Turn Ideas Into Products, Fast',
+    title: 'Safer-Claw - Turn Ideas Into Products, Fast',
     description:
-      'Ship your startup in days, not weeks. A production-ready Next.js boilerplate with auth, payments, and everything you need to launch fast. Free forever, open source.',
+      'Safer-Claw - Turn ideas into products, fast. A production-ready Next.js boilerplate with auth, payments, and everything you need to launch fast. Free forever, open source.',
     isRootLayout: true,
   }),
   icons: {

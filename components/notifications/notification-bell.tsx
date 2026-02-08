@@ -17,7 +17,7 @@ export function NotificationBell() {
         {
             id: '1',
             title: 'Welcome!',
-            message: 'Thanks for trying out the SaaS Starter.',
+            message: 'Thanks for trying out Safer-Claw.',
             read: false,
             createdAt: new Date().toISOString()
         }

@@ -21,7 +21,7 @@ export default async function DocsPage({ params }: { params: Promise<{ locale: s
         <div className="container mx-auto max-w-4xl py-24">
             <div className="mb-12 text-center">
                 <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">Documentation</h1>
-                <p className="mt-4 text-lg text-muted-foreground">Everything you need to know about KyronHQ.</p>
+                <p className="mt-4 text-lg text-muted-foreground">Everything you need to know about Safer-Claw.</p>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
                 {docs.map((doc) => (

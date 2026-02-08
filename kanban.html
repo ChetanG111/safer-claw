@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Kanban</title>
+    <style>
+        :root {
+            --background: oklch(1 0 0);
+            --foreground: oklch(0.145 0 0);
+            --card: oklch(1 0 0);
+            --card-foreground: oklch(0.145 0 0);
+            --primary: oklch(0.205 0 0);
+            --primary-foreground: oklch(0.985 0 0);
+            --muted: oklch(0.97 0 0);
+            --border: oklch(0.922 0 0);
+            --radius: 0.625rem;
+            --font-sans: system-ui, -apple-system, sans-serif;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background: oklch(0.145 0 0);
+                --foreground: oklch(0.985 0 0);
+                --card: oklch(0.205 0 0);
+                --card-foreground: oklch(0.985 0 0);
+                --primary: oklch(0.922 0 0);
+                --primary-foreground: oklch(0.205 0 0);
+                --muted: oklch(0.269 0 0);
+                --border: oklch(1 0 0 / 10%);
+            }
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: var(--font-sans);
+            margin: 0;
+            padding: 2rem;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .controls {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--foreground);
+            font-size: 1rem;
+            width: 300px;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .column {
+            background: var(--muted);
+            border-radius: var(--radius);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .column-header {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-list {
+            flex: 1;
+            overflow-y: auto;
+            min-height: 100px;
+        }
+
+        .task-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: calc(var(--radius) - 2px);
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            cursor: grab;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 0.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .task-card:active {
+            cursor: grabbing;
+        }
+
+        .task-text {
+            word-break: break-word;
+        }
+
+        .delete-btn {
+            background: transparent;
+            color: var(--foreground);
+            padding: 0;
+            opacity: 0.5;
+            font-size: 0.875rem;
+            width: auto;
+        }
+
+        .delete-btn:hover {
+            opacity: 1;
+            background: transparent;
+        }
+
+        .json-section {
+            margin-top: 2rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+
+        .json-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 0.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--muted);
+            color: var(--foreground);
+            font-family: monospace;
+            resize: vertical;
+        }
+
+        /* Drag over effect */
+        .column.drag-over {
+            outline: 2px dashed var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Kanban Board</h1>
+
+    <div class="controls">
+        <input type="text" id="newTaskInput" placeholder="Enter a new task...">
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <div class="board">
+        <div class="column" id="todo" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+            <div class="column-header">To Do <span id="count-todo">0</span></div>
+            <div class="task-list" id="list-todo"></div>
+        </div>
+        <div class="column" id="inprogress" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+            <div class="column-header">In Progress <span id="count-inprogress">0</span></div>
+            <div class="task-list" id="list-inprogress"></div>
+        </div>
+        <div class="column" id="done" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+            <div class="column-header">Done <span id="count-done">0</span></div>
+            <div class="task-list" id="list-done"></div>
+        </div>
+    </div>
+
+    <div class="json-section">
+        <div class="json-controls">
+            <strong>Data (JSON)</strong>
+            <div>
+                <button onclick="copyJson()" style="background: transparent; border: 1px solid var(--border); color: var(--foreground);">Copy</button>
+                <button onclick="loadFromJson()" style="background: transparent; border: 1px solid var(--border); color: var(--foreground);">Load from Text</button>
+            </div>
+        </div>
+        <textarea id="jsonOutput"></textarea>
+    </div>
+
+    <script>
+        let tasks = [];
+        
+        // Initial load
+        const savedData = localStorage.getItem('kanbanData');
+        if (savedData) {
+            try {
+                tasks = JSON.parse(savedData);
+            } catch (e) {
+                console.error("Failed to parse saved data", e);
+                tasks = [];
+            }
+        }
+        
+        renderBoard();
+
+        function generateId() {
+            return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        }
+
+        function addTask() {
+            const input = document.getElementById('newTaskInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const newTask = {
+                id: generateId(),
+                text: text,
+                status: 'todo', // todo, inprogress, done
+                createdAt: new Date().toISOString()
+            };
+
+            tasks.push(newTask);
+            input.value = '';
+            renderBoard();
+        }
+
+        function deleteTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            renderBoard();
+        }
+
+        function renderBoard() {
+            // Clear lists
+            document.getElementById('list-todo').innerHTML = '';
+            document.getElementById('list-inprogress').innerHTML = '';
+            document.getElementById('list-done').innerHTML = '';
+
+            let counts = { todo: 0, inprogress: 0, done: 0 };
+
+            tasks.forEach(task => {
+                const listId = 'list-' + task.status;
+                const list = document.getElementById(listId);
+                if (list) {
+                    const card = document.createElement('div');
+                    card.className = 'task-card';
+                    card.draggable = true;
+                    card.ondragstart = (e) => drag(e, task.id);
+                    
+                    card.innerHTML = `
+                        <span class="task-text">${escapeHtml(task.text)}</span>
+                        <button class="delete-btn" onclick="deleteTask('${task.id}')">✕</button>
+                    `;
+                    list.appendChild(card);
+                    counts[task.status]++;
+                }
+            });
+
+            document.getElementById('count-todo').textContent = counts.todo;
+            document.getElementById('count-inprogress').textContent = counts.inprogress;
+            document.getElementById('count-done').textContent = counts.done;
+
+            const jsonStr = JSON.stringify(tasks, null, 2);
+            document.getElementById('jsonOutput').value = jsonStr;
+            localStorage.setItem('kanbanData', jsonStr);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function copyJson() {
+            const textarea = document.getElementById('jsonOutput');
+            textarea.select();
+            document.execCommand('copy');
+            alert('JSON copied to clipboard');
+        }
+
+        function loadFromJson() {
+            const textarea = document.getElementById('jsonOutput');
+            try {
+                const data = JSON.parse(textarea.value);
+                if (Array.isArray(data)) {
+                    tasks = data;
+                    renderBoard();
+                } else {
+                    alert('Invalid JSON: Must be an array of tasks.');
+                }
+            } catch (e) {
+                alert('Invalid JSON syntax');
+            }
+        }
+
+        // Drag and Drop
+        function drag(ev, id) {
+            ev.dataTransfer.setData("text/plain", id);
+            ev.dataTransfer.effectAllowed = "move";
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+            const column = ev.target.closest('.column');
+            if (column) {
+                column.classList.add('drag-over');
+            }
+        }
+
+        function dragLeave(ev) {
+            const column = ev.target.closest('.column');
+            if (column) {
+                column.classList.remove('drag-over');
+            }
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const column = ev.target.closest('.column');
+            if (column) {
+                column.classList.remove('drag-over');
+                const newStatus = column.id; // todo, inprogress, done
+                const id = ev.dataTransfer.getData("text/plain");
+                
+                const task = tasks.find(t => t.id === id);
+                if (task && task.status !== newStatus) {
+                    task.status = newStatus;
+                    renderBoard();
+                }
+            }
+        }
+    </script>
+</body>
+</html>

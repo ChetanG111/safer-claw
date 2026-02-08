@@ -24,7 +24,7 @@ export function WelcomeEmail({ userName }: WelcomeEmailProps) {
       </Text>
 
       <Link href={`${baseUrl}/w`} style={{ textDecoration: 'none' }}>
-        <Text style={baseStyles.button}>Get Started</Text>
+        <Text style={baseStyles.button}>Launch</Text>
       </Link>
 
       <Text style={baseStyles.paragraph}>

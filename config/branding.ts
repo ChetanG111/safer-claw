@@ -45,11 +45,11 @@ export interface BrandConfig {
  * Customize these values to change the look and feel of your app.
  */
 const defaultConfig: BrandConfig = {
-  name: 'KyronHQ',
+  name: 'Safer-Claw',
   logoUrl: undefined,
   faviconUrl: '/favicon/favicon.ico',
   customCssUrl: undefined,
-  supportEmail: 'hi@kyronhq.dev',
+  supportEmail: 'hi@safer-claw.com',
   documentationUrl: undefined,
   termsUrl: undefined,
   privacyUrl: undefined,

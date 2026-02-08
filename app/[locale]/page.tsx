@@ -17,10 +17,10 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       <Hero />
       <SectionDivider />
       <Features />
+      {/* <SectionDivider />
+      <Pricing /> */}
       <SectionDivider />
-      <Pricing />
-      <SectionDivider />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <FAQ />
       <CTA />
       <Footer />

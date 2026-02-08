@@ -8,7 +8,7 @@ import Image from "next/image";
 export default function Testimonials() {
   const testimonials = [
     {
-      quote: "¡Awesome project! Create products or startups faster. ¡This open-source template has everything you need!\n\n$ git clone kyronhq",
+      quote: "¡Awesome project! Create products or startups faster. ¡This open-source template has everything you need!\n\n$ git clone safer-claw",
       name: "Miguel Ángel Durán",
       title: "@midudev",
       avatar: "/testimonial-image1.jpg",
@@ -17,7 +17,7 @@ export default function Testimonials() {
       verified: true,
     },
     {
-      quote: "KyronHQ is a free alternative to ShipFast, designed to simplify and optimize your shipping process.",
+      quote: "Safer-Claw is a free alternative to ShipFast, designed to simplify and optimize your shipping process.",
       name: "developer.joy",
       title: "@developer.joy",
       avatar: "/testimonial-image2.png",
@@ -65,7 +65,7 @@ export default function Testimonials() {
             Trusted by developers
           </h2>
           <p className="text-lg text-muted-foreground">
-            See what builders are saying about KyronHQ
+            See what builders are saying about Safer-Claw
           </p>
         </div>
 

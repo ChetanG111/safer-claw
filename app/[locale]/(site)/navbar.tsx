@@ -1,7 +1,7 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
-import { X, Menu } from 'lucide-react'
+import { X, Menu, ArrowUpRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -19,12 +19,12 @@ export default function Navbar() {
         <div className='mx-auto max-w-7xl flex h-14 items-center justify-between gap-8 px-4 sm:px-6'>
           <div className='flex items-center gap-3'>
             <Link href='/' className='flex items-center gap-2'>
-              <img src='/image.png' alt='KyronHQ Logo' className='h-6 w-6 object-contain' />
+              <img src='/image.png' alt='Safer-Claw Logo' className='h-6 w-6 object-contain' />
               <span
                 className='text-base font-semibold text-foreground'
                 style={{ fontFamily: 'var(--font-heading)' }}
               >
-                KyronHQ
+                Safer-Claw
               </span>
             </Link>
           </div>
@@ -39,18 +39,18 @@ export default function Navbar() {
               >
                 Features
               </Link>
-              <Link
+              {/* <Link
                 href='/#pricing'
                 className='text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
               >
                 Pricing
-              </Link>
-              <Link
+              </Link> */}
+              {/* <Link
                 href='/#wall-of-love'
                 className='text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
               >
                 Wall of love
-              </Link>
+              </Link> */}
               <Link
                 href='/#faq'
                 className='text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
@@ -59,16 +59,15 @@ export default function Navbar() {
               </Link>
             </div>
 
-
-
-
-
             <Button
               className='hidden md:flex font-semibold text-white'
-              asChild
-            >
-              <Link href='/#pricing'>Get Started</Link>
-            </Button>
+              render={
+                <Link href='/#cta' className='flex items-center gap-2'>
+                  Join Waitlist
+                  <ArrowUpRight className='size-4' />
+                </Link>
+              }
+            />
 
             <button
               type='button'
@@ -92,20 +91,20 @@ export default function Navbar() {
               >
                 Features
               </Link>
-              <Link
+              {/* <Link
                 href='#pricing'
                 className='block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-200 ease-in-out hover:bg-accent hover:text-accent-foreground'
                 onClick={toggleMenu}
               >
                 Pricing
-              </Link>
-              <Link
+              </Link> */}
+              {/* <Link
                 href='#wall-of-love'
                 className='block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-200 ease-in-out hover:bg-accent hover:text-accent-foreground'
                 onClick={toggleMenu}
               >
                 Wall of love
-              </Link>
+              </Link> */}
               <Link
                 href='#faq'
                 className='block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-200 ease-in-out hover:bg-accent hover:text-accent-foreground'
@@ -116,12 +115,13 @@ export default function Navbar() {
 
               <Button
                 className='w-full font-semibold text-white'
-                asChild
-              >
-                <Link href='/#pricing' onClick={toggleMenu}>
-                  Get Started
-                </Link>
-              </Button>
+                render={
+                  <Link href='/#cta' onClick={toggleMenu} className='flex items-center gap-2 justify-center'>
+                    Join Waitlist
+                    <ArrowUpRight className='size-4' />
+                  </Link>
+                }
+              />
 
 
             </div>
