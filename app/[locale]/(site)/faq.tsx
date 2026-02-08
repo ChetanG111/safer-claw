@@ -56,7 +56,7 @@ export default function FAQ() {
   ]
 
   return (
-    <section id='faq' className='py-24 border-t border-b border-[#E4E4E7] bg-[#F4F4F5]'>
+    <section id='faq' className='py-12 md:py-24 border-t border-b border-[#E4E4E7] bg-[#F4F4F5]'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
         <h2
           className='text-center text-sm font-medium text-muted-foreground mb-8'
@@ -64,26 +64,28 @@ export default function FAQ() {
         >
           FAQ
         </h2>
-        <div className='grid md:grid-cols-2 gap-12 md:gap-16'>
-          {/* Left Section */}
-          <div>
-            <h2 className='text-4xl font-semibold tracking-tight mb-4'>
+        <div className='flex flex-col items-center gap-8 max-w-2xl mx-auto'>
+          {/* Header Section */}
+          <div className='text-center'>
+            <h2 className='text-3xl font-semibold tracking-tight mb-4'>
               Frequently Asked Questions
             </h2>
-            <p className='text-lg text-muted-foreground'>
-              Have another question?{' '}
+            <p className='text-base text-muted-foreground'>
+              Have another question? Contact us on{' '}
               <Link
-                href='mailto:support@kyronhq.dev'
-                className='underline underline-offset-4 hover:text-foreground transition-colors'
+                href='https://x.com/kyronhq'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-foreground underline underline-offset-4 hover:text-primary transition-colors'
               >
-                Contact us by email
+                Twitter
               </Link>
               .
             </p>
           </div>
 
-          {/* Right Section */}
-          <div>
+          {/* FAQ Items */}
+          <div className='w-full'>
             <Accordion className='space-y-0'>
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} className='border-b border-[#E4E4E7] last:border-b-0'>

@@ -55,7 +55,7 @@ export default function Testimonials() {
   ];
 
   return (
-    <section id="wall-of-love" className="py-24 bg-[#F4F4F5]">
+    <section id="wall-of-love" className="py-12 md:py-24 bg-[#F4F4F5]">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <h2 className="text-center text-sm font-medium text-muted-foreground mb-8" style={{ fontFamily: 'var(--font-geist-mono)' }}>
           TESTIMONIALS
@@ -70,16 +70,15 @@ export default function Testimonials() {
         </div>
 
         <div className="border border-[#E4E4E7] rounded-none overflow-hidden bg-transparent">
-          <div className="grid grid-cols-2 md:grid-cols-3 auto-rows-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-auto">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className={`p-4 bg-transparent flex flex-col relative ${index % 3 !== 2 ? 'border-r border-[#E4E4E7]' : ''
-                  } ${index < 3 ? 'border-b border-[#E4E4E7]' : ''
-                  }`}
+                className={`p-4 md:p-6 bg-transparent flex flex-col relative border-b last:border-b-0 border-[#E4E4E7] md:border-b-0 ${index % 3 !== 2 ? 'md:border-r md:border-[#E4E4E7]' : ''
+                  } ${index < 3 ? 'md:border-b md:border-[#E4E4E7]' : ''}`}
               >
                 {/* Quote */}
-                <p className="text-sm text-muted-foreground mb-4 whitespace-pre-line">
+                <p className="text-xs md:text-sm text-muted-foreground mb-4 whitespace-pre-line">
                   "{testimonial.quote}"
                 </p>
 
@@ -92,10 +91,10 @@ export default function Testimonials() {
                         alt={testimonial.name}
                         width={40}
                         height={40}
-                        className="h-10 w-10 rounded-full object-cover"
+                        className="h-8 w-8 md:h-10 md:w-10 rounded-full object-cover"
                       />
                     ) : (
-                      <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center text-sm font-semibold text-foreground">
+                      <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-muted flex items-center justify-center text-sm font-semibold text-foreground">
                         {testimonial.avatar}
                       </div>
                     )}

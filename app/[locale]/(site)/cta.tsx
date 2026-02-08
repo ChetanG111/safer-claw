@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 
 export default function CTA() {
   return (
-    <section className='py-24 px-4 sm:px-6 bg-[#F4F4F5]'>
+    <section className='py-12 md:py-24 px-4 sm:px-6 bg-[#F4F4F5]'>
       <div className='mx-auto max-w-4xl'>
         {/* Section label */}
         <h2
@@ -18,10 +18,10 @@ export default function CTA() {
 
         {/* Main heading */}
         <div className='text-center mb-12'>
-          <h2 className='text-4xl font-semibold tracking-tight mb-4'>
+          <h2 className='text-3xl font-semibold tracking-tight mb-4'>
             Your next product could be live by tonight.
           </h2>
-          <p className='text-lg text-muted-foreground'>
+          <p className='text-base text-muted-foreground'>
             Focus on growth while the stack takes care of the heavy lifting
           </p>
         </div>

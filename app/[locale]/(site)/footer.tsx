@@ -199,8 +199,8 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className='mt-12 pt-8 border-t border-[#E4E4E7]'>
-          <div className='flex flex-col gap-4'>
-            <div className='flex items-center gap-2'>
+          <div className='flex flex-col items-center justify-center text-center gap-6'>
+            <div className='flex items-center justify-center gap-2'>
               <img src='/image.png' alt='KyronHQ Logo' className='h-6 w-6 object-contain' />
               <span
                 className='text-base font-semibold text-foreground'
@@ -210,7 +210,7 @@ export default function Footer() {
               </span>
             </div>
             <p className='text-sm text-muted-foreground'>Turn ideas into products, fast</p>
-            <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
+            <div className='flex flex-col items-center gap-4 w-full'>
               <p className='text-sm text-muted-foreground'>
                 Copyright © {new Date().getFullYear()} -{' '}
                 <Link href='https://kyronhq.dev'>KyronHQ</Link>

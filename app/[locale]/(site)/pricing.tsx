@@ -37,16 +37,15 @@ export default function Pricing() {
   ]
 
   return (
-    <section id='pricing' className='py-24 bg-[#F4F4F5]'>
+    <section id='pricing' className='py-12 md:py-24 bg-[#F4F4F5]'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
-        <div className='mx-auto max-w-4xl'>
-          <h2
-            className='text-center text-sm font-medium text-muted-foreground mb-8'
-            style={{ fontFamily: 'var(--font-geist-mono)' }}
-          >
-            {t('PRICING')}
-          </h2>
-          <div className='text-center mb-16'>
+        <div className='mx-auto max-w-3xl'>
+                    <h2
+                      className='text-center text-sm font-medium text-muted-foreground mb-8'   
+                      style={{ fontFamily: 'var(--font-geist-mono)' }}
+                    >
+                      {t('PRICING')}
+                    </h2>          <div className='text-center mb-16'>
             <h2 className='text-4xl font-semibold tracking-tight mb-4'>
               Built for builders who play to win
             </h2>
@@ -55,9 +54,9 @@ export default function Pricing() {
             </p>
           </div>
 
-          <div className='grid md:grid-cols-2 border border-[#E4E4E7] rounded-none overflow-hidden bg-transparent'>
+          <div className='grid md:grid-cols-2 gap-8'>
             {/* Community */}
-            <div className='flex flex-col p-8 border-r border-[#E4E4E7]'>
+            <div className='flex flex-col p-6 border border-[#E4E4E7] rounded-2xl bg-card'>
               <div className='mb-6'>
                 <h3 className='text-2xl font-semibold mb-4'>Community</h3>
                 <div className='mb-4'>
@@ -103,7 +102,7 @@ export default function Pricing() {
             </div>
 
             {/* Premium */}
-            <div className='flex flex-col p-8 relative'>
+            <div className='flex flex-col p-6 relative border border-primary rounded-2xl bg-card shadow-lg shadow-primary/5'>
               <div className='mb-6'>
                 <div className='flex items-start justify-between mb-4'>
                   <h3 className='text-2xl font-semibold'>Premium</h3>

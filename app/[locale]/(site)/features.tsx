@@ -41,44 +41,10 @@ export default function Features() {
         'Emails with Resend. Transactional emails, templates, and delivery tracking configured.',
       logo: '/stack-icons/resend.svg',
     },
-    {
-      title: 'TypeScript',
-      description:
-        'TypeScript typesafe. Full type safety across your entire stack with zero runtime overhead.',
-      logo: '/stack-icons/typescript.svg',
-    },
-    {
-      title: 'Rate Limiting',
-      description:
-        'Rate limiting with Upstash. Protect your API endpoints and prevent abuse automatically.',
-      logo: '/stack-icons/upstash.svg',
-    },
-    {
-      title: 'Vercel AI SDK',
-      description:
-        'Build AI-powered applications with Vercel AI SDK. Integrate with OpenAI, Anthropic, and more.',
-      logo: '/stack-icons/vercel.svg',
-    },
-    {
-      title: 'Internationalization',
-      description:
-        'Multi-language support with Lingui. Translate your app and reach global audiences.',
-    },
-    {
-      title: 'AI Tools',
-      description:
-        'Integrating in AI tools like Cursor, Windsurf, Claude Code, and GitHub Copilot for enhanced development.',
-      logos: ['/stack-icons/windsurf.svg', '/stack-icons/cursor.svg', '/stack-icons/claude.svg', '/stack-icons/copilot.svg'],
-    },
-    {
-      title: 'And More',
-      description:
-        'Plus many more production-ready features and integrations to help you ship faster.',
-    },
   ]
 
   return (
-    <section id="features" className='py-24 bg-[#F4F4F5]'>
+    <section id="features" className='py-12 md:py-24 bg-[#F4F4F5]'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
         <h2
           className='text-center text-sm font-medium text-muted-foreground mb-8'
@@ -96,18 +62,16 @@ export default function Features() {
         </div>
 
         <div className='border border-[#E4E4E7] rounded-none overflow-hidden bg-transparent'>
-          <div className='grid grid-cols-4 grid-rows-3 h-full'>
+          <div className='grid grid-cols-1 md:grid-cols-3 auto-rows-fr h-full'>
             {[...features, ...stack].map((item, index) => (
-                <div
-                  key={index}
-                  className={`p-6 bg-transparent flex flex-col ${
-                  index % 4 !== 3 ? 'border-r border-[#E4E4E7]' : ''
-                } ${
-                  index < 8 ? 'border-b border-[#E4E4E7]' : ''
-                }`}
+              <div
+                key={index}
+                className={`p-6 bg-transparent flex flex-col items-center text-center md:items-start md:text-left border-b last:border-b-0 border-[#E4E4E7] md:border-b-0 ${index % 3 !== 2 ? 'md:border-r md:border-[#E4E4E7]' : ''
+                  } ${index < 3 ? 'md:border-b md:border-[#E4E4E7]' : ''
+                  }`}
               >
                 {item.logo && !item.logos && (
-                  <div className='mb-3 flex items-center gap-2'>
+                  <div className='mb-3 flex items-center justify-center md:justify-start gap-2'>
                     <img
                       src={item.logo}
                       alt={item.title}
@@ -116,23 +80,22 @@ export default function Features() {
                   </div>
                 )}
                 {item.logos && (
-                  <div className='mb-3 flex items-center gap-2 flex-wrap'>
+                  <div className='mb-3 flex items-center justify-center md:justify-start gap-2 flex-wrap'>
                     {item.logos.map((logo, logoIndex) => (
                       <img
                         key={logoIndex}
                         src={logo}
                         alt={item.title}
-                        className={`h-10 w-10 object-contain ${
-                          logo.includes('prisma') ? 'brightness-0' : ''
-                        }`}
+                        className={`h-10 w-10 object-contain ${logo.includes('prisma') ? 'brightness-0' : ''
+                          }`}
                       />
                     ))}
                   </div>
                 )}
                 <h3 className='text-lg font-semibold mb-2'>{item.title}</h3>
                 <p className='text-sm text-muted-foreground'>{item.description}</p>
-                </div>
-              ))}
+              </div>
+            ))}
           </div>
         </div>
       </div>
