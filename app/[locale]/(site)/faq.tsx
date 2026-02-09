@@ -13,12 +13,12 @@ export default function FAQ() {
     {
       question: "What is Safer-Claw?",
       answer:
-        "Safer-Claw is a lightweight SaaS that lets you deploy your own private OpenClaw agent and connect it directly to Telegram or WhatsApp in one click.",
+        "Safer-Claw is a lightweight SaaS that lets you deploy your own safe OpenClaw agent and connect it directly to Telegram or WhatsApp in one click.",
     },
     {
       question: "Is it secure?",
       answer:
-        "Yes. Security and control are our core promises. You get a private environment where you control the agent's permissions and data access.",
+        "Yes. Security and control are our core promises. You get a secure environment where you control the agent's permissions and data access.",
     },
     {
       question: "Do I need coding skills?",

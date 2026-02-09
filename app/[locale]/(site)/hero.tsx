@@ -1,10 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import { Link } from '@/i18n/navigation'
 import { client } from '@/lib/auth/auth-client'
 
 import { Button } from '@/components/ui/button'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Loader2 } from 'lucide-react'
 import {
   Tooltip,
   TooltipCreateHandle,
@@ -17,6 +18,8 @@ import {
 const tooltipHandle = TooltipCreateHandle<React.ComponentType>()
 
 export default function Hero() {
+  const [loading, setLoading] = useState(false)
+
   return (
     <main
       id='hero'
@@ -25,21 +28,21 @@ export default function Hero() {
       <div className='mx-auto w-full max-w-6xl px-4 sm:px-6'>
         <div className='mx-auto max-w-4xl text-center'>
           <h1 className='mx-auto max-w-3xl text-balance text-center font-semibold text-4xl leading-tight tracking-tighter sm:text-5xl md:max-w-4xl md:text-6xl lg:leading-[1.1]'>
-            Your private,{' '}
-            <span className='relative inline-block px-2'>
-              <svg
-                className='absolute inset-0 w-[110%] h-[120%] -left-[5%] -top-[10%] -rotate-2 -z-10 text-orange-400 opacity-90'
-                viewBox='0 0 272 66'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-                preserveAspectRatio='none'
-              >
-                <path
-                  d='M5.42461 45.3409C5.42461 45.3409 68.6186 -5.67909 261.218 10.3341C267.892 10.8879 270.62 18.0463 266.079 26.5684C236.467 82.1287 90.2526 73.1764 45.5684 63.8569C25.4678 59.6645 -11.5323 57.0784 5.42461 45.3409Z'
-                  fill='currentColor'
-                />
-              </svg>
+            Your{' '}
+            <span className='relative inline-block px-1'>
               <span className='relative z-10'>safe</span>
+              <div className='absolute inset-0 -inset-x-3 -inset-y-1 -z-10'>
+                <svg
+                  className='w-full h-full text-emerald-500 opacity-90 -rotate-1'
+                  viewBox='0 0 100 40'
+                  preserveAspectRatio='none'
+                >
+                  <path
+                    d='M2 10 Q 50 5, 98 10 L 97 30 Q 50 35, 3 30 Z'
+                    fill='currentColor'
+                  />
+                </svg>
+              </div>
             </span>
             , controllable AI operator inside your business inbox
           </h1>
@@ -48,16 +51,31 @@ export default function Hero() {
           </p>
           <div className='mx-auto mt-10 flex items-center justify-center gap-4'>
             <Button
+              disabled={loading}
               className='font-semibold h-12! px-8 text-base text-white'
               onClick={async () => {
-                await client.signIn.social({
-                  provider: 'google',
-                  callbackURL: '/dashboard'
-                })
+                setLoading(true)
+                try {
+                  await client.signIn.social({
+                    provider: 'google',
+                    callbackURL: '/dashboard'
+                  })
+                } catch (error) {
+                  setLoading(false)
+                }
               }}
             >
-              Join Waitlist
-              <ArrowUpRight className='h-8 w-8 ml-0' />
+              {loading ? (
+                <>
+                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                  Deploying...
+                </>
+              ) : (
+                <>
+                  Deploy
+                  <ArrowUpRight className='h-8 w-8 ml-0' />
+                </>
+              )}
             </Button>
 
           </div>

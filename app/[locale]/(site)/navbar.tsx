@@ -1,16 +1,30 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
-import { X, Menu, ArrowUpRight } from 'lucide-react'
+import { X, Menu, ArrowUpRight, Loader2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { client } from '@/lib/auth/auth-client'
 
 import { Button } from '@/components/ui/button'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
+  }
+
+  const handleDeploy = async () => {
+    setLoading(true)
+    try {
+      await client.signIn.social({
+        provider: 'google',
+        callbackURL: '/dashboard'
+      })
+    } catch (error) {
+      setLoading(false)
+    }
   }
 
   return (
@@ -60,14 +74,22 @@ export default function Navbar() {
             </div>
 
             <Button
+              disabled={loading}
               className='hidden md:flex font-semibold text-white'
-              render={
-                <Link href='/#cta' className='flex items-center gap-2'>
-                  Join Waitlist
+              onClick={handleDeploy}
+            >
+              {loading ? (
+                <>
+                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                  Deploying...
+                </>
+              ) : (
+                <>
+                  Deploy
                   <ArrowUpRight className='size-4' />
-                </Link>
-              }
-            />
+                </>
+              )}
+            </Button>
 
             <button
               type='button'
@@ -114,14 +136,25 @@ export default function Navbar() {
               </Link>
 
               <Button
+                disabled={loading}
                 className='w-full font-semibold text-white'
-                render={
-                  <Link href='/#cta' onClick={toggleMenu} className='flex items-center gap-2 justify-center'>
-                    Join Waitlist
-                    <ArrowUpRight className='size-4' />
-                  </Link>
-                }
-              />
+                onClick={() => {
+                  toggleMenu()
+                  handleDeploy()
+                }}
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                    Deploying...
+                  </>
+                ) : (
+                  <>
+                    Deploy
+                    <ArrowUpRight className='size-4 justify-center' />
+                  </>
+                )}
+              </Button>
 
 
             </div>
