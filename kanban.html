@@ -262,7 +262,7 @@
             document.getElementById('list-inprogress').innerHTML = '';
             document.getElementById('list-done').innerHTML = '';
 
-            let counts = { todo: 0, inprogress: 0, done: 0 };
+            const counts = { todo: 0, inprogress: 0, done: 0 };
 
             tasks.forEach(task => {
                 const listId = 'list-' + task.status;

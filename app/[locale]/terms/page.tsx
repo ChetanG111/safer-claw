@@ -23,8 +23,8 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
 
           <div className='prose prose-sm max-w-none space-y-8 text-muted-foreground'>
             <p>
-              welcome to safer-claw. by accessing or using our platform, you agree to these terms. if
-              you don't agree, please don't use safer-claw.
+              welcome to safer-claw. by accessing or using our platform, you agree to these terms.
+              if you don't agree, please don't use safer-claw.
             </p>
 
             <section>
@@ -40,7 +40,10 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
               <p>
                 you're responsible for keeping your account secure. if you suspect unauthorized
                 access, contact us immediately at{' '}
-                <a href="mailto:support@safer-claw.com" className="font-medium text-foreground underline underline-offset-4">
+                <a
+                  href='mailto:support@safer-claw.com'
+                  className='font-medium text-foreground underline underline-offset-4'
+                >
                   support@safer-claw.com
                 </a>
                 .
@@ -86,6 +89,6 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
         </div>
       </main>
       <Footer />
-    </GridLayout >
+    </GridLayout>
   )
 }

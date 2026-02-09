@@ -29,11 +29,9 @@ export default async function MainLayout({ children }: { children: React.ReactNo
   }
 
   return (
-    <div className="relative flex min-h-screen flex-col">
+    <div className='relative flex min-h-screen flex-col'>
       <AppHeader user={user} />
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className='flex-1'>{children}</main>
       <FeedbackWidget />
     </div>
   )

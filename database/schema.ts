@@ -164,11 +164,11 @@ export const payment = pgTable(
   ]
 )
 
-
-
 // Operational Essentials
 export const feedback = pgTable('feedback', {
-  id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
   userId: text('user_id').references(() => user.id, { onDelete: 'set null' }),
   message: text('message').notNull(),
   type: text('type').default('general').notNull(), // 'bug', 'feature', 'general'
@@ -176,8 +176,12 @@ export const feedback = pgTable('feedback', {
 })
 
 export const notification = pgTable('notification', {
-  id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
-  userId: text('user_id').references(() => user.id, { onDelete: 'cascade' }).notNull(),
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: text('user_id')
+    .references(() => user.id, { onDelete: 'cascade' })
+    .notNull(),
   title: text('title').notNull(),
   message: text('message').notNull(),
   type: text('type').default('info').notNull(), // 'info', 'success', 'warning', 'error'

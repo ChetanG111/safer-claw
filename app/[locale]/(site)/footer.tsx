@@ -9,7 +9,7 @@ export default function Footer() {
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
         <div className='grid grid-cols-2 gap-8 max-w-2xl mx-auto'>
           {/* Column 1: Links */}
-          <div className="text-center md:text-left">
+          <div className='text-center md:text-left'>
             <h3
               className='mb-4 text-sm font-semibold uppercase'
               style={{ fontFamily: 'var(--font-geist-mono)' }}
@@ -61,7 +61,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Legal */}
-          <div className="text-center md:text-left">
+          <div className='text-center md:text-left'>
             <h3
               className='mb-4 text-sm font-semibold uppercase'
               style={{ fontFamily: 'var(--font-geist-mono)' }}

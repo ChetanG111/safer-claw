@@ -183,7 +183,11 @@ export interface PaymentAdapter {
   /**
    * Validate webhook signature (if applicable)
    */
-  validateWebhook(rawBody: string, signature: string, headers?: Record<string, string>): Promise<boolean>
+  validateWebhook(
+    rawBody: string,
+    signature: string,
+    headers?: Record<string, string>
+  ): Promise<boolean>
 }
 
 /**

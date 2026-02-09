@@ -137,9 +137,9 @@ export const generateMetadata = (options: SEOOptions = {}): Metadata => {
   // For child pages, just use string title (template will be applied automatically)
   const titleMetadata = options.isRootLayout
     ? {
-      absolute: options.title || siteConfig.name,
-      template: `%s · ${siteConfig.name}`,
-    }
+        absolute: options.title || siteConfig.name,
+        template: `%s · ${siteConfig.name}`,
+      }
     : options.title || siteConfig.name
 
   return {

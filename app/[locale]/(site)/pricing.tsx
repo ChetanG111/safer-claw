@@ -8,7 +8,6 @@ import { Flame, ArrowUpRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
-
 export default function Pricing() {
   const t = useTranslations()
 
@@ -45,7 +44,8 @@ export default function Pricing() {
             style={{ fontFamily: 'var(--font-geist-mono)' }}
           >
             {t('PRICING')}
-          </h2>          <div className='text-center mb-16'>
+          </h2>{' '}
+          <div className='text-center mb-16'>
             <h2 className='text-4xl font-semibold tracking-tight mb-4'>
               Built for builders who play to win
             </h2>
@@ -53,7 +53,6 @@ export default function Pricing() {
               Launch faster, sell sooner, and grow without fighting setup pain
             </p>
           </div>
-
           <div className='grid md:grid-cols-2 gap-8'>
             {/* Community */}
             <div className='flex flex-col p-6 border border-[#E4E4E7] rounded-2xl bg-card'>

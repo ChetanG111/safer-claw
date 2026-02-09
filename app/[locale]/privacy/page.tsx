@@ -62,16 +62,17 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
 
             <section>
               <h2 className='mb-4 text-xl font-semibold text-foreground'>5. data security</h2>
-              <p>
-                we take reasonable steps to secure your info but can't guarantee 100% security.
-              </p>
+              <p>we take reasonable steps to secure your info but can't guarantee 100% security.</p>
             </section>
 
             <section>
               <h2 className='mb-4 text-xl font-semibold text-foreground'>6. your rights</h2>
               <p>
                 you can request deletion or correction of your data anytime at{' '}
-                <a href="mailto:support@safer-claw.com" className="font-medium text-foreground underline underline-offset-4">
+                <a
+                  href='mailto:support@safer-claw.com'
+                  className='font-medium text-foreground underline underline-offset-4'
+                >
                   support@safer-claw.com
                 </a>
                 .
@@ -81,6 +82,6 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
         </div>
       </main>
       <Footer />
-    </GridLayout >
+    </GridLayout>
   )
 }

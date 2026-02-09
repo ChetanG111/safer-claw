@@ -64,9 +64,7 @@ export default function Navbar() {
 
             {user ? (
               <div className='hidden items-center gap-3 md:flex'>
-                <span className='text-sm font-medium text-muted-foreground'>
-                  {user.name}
-                </span>
+                <span className='text-sm font-medium text-muted-foreground'>{user.name}</span>
                 <Avatar className='h-8 w-8'>
                   <AvatarImage src={user.image || ''} alt={user.name} />
                   <AvatarFallback>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
@@ -128,7 +126,11 @@ export default function Navbar() {
                 <Button
                   className='w-full font-semibold text-white'
                   render={
-                    <Link href='/#cta' onClick={toggleMenu} className='flex items-center gap-2 justify-center'>
+                    <Link
+                      href='/#cta'
+                      onClick={toggleMenu}
+                      className='flex items-center gap-2 justify-center'
+                    >
                       Join Waitlist
                       <ArrowUpRight className='size-4' />
                     </Link>

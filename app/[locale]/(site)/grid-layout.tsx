@@ -8,7 +8,6 @@ interface GridLayoutProps {
 export const GridLayout = ({ children, className = '' }: GridLayoutProps) => {
   return (
     <>
-
       {/* Content Wrapper */}
       <div className={`relative ${className}`}>{children}</div>
     </>

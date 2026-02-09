@@ -5,7 +5,6 @@ import { ArrowUpRight, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { client } from '@/lib/auth/auth-client'
 
-
 export default function CTA() {
   const [loading, setLoading] = useState(false)
 
@@ -40,7 +39,7 @@ export default function CTA() {
               try {
                 await client.signIn.social({
                   provider: 'google',
-                  callbackURL: '/dashboard'
+                  callbackURL: '/dashboard',
                 })
               } catch (error) {
                 setLoading(false)
@@ -59,7 +58,6 @@ export default function CTA() {
               </>
             )}
           </Button>
-
         </div>
       </div>
     </section>

@@ -11,32 +11,33 @@ import Link from 'next/link'
 export default function FAQ() {
   const faqs = [
     {
-      question: "What is Safer-Claw?",
+      question: 'What is Safer-Claw?',
       answer:
-        "Safer-Claw is a lightweight SaaS that lets you deploy your own safe OpenClaw agent and connect it directly to Telegram or WhatsApp in one click.",
+        'Safer-Claw is a lightweight SaaS that lets you deploy your own safe OpenClaw agent and connect it directly to Telegram or WhatsApp in one click.',
     },
     {
-      question: "Is it secure?",
+      question: 'Is it secure?',
       answer:
         "Yes. Security and control are our core promises. You get a secure environment where you control the agent's permissions and data access.",
     },
     {
-      question: "Do I need coding skills?",
+      question: 'Do I need coding skills?',
       answer:
-        "No. Safer-Claw is built for non-technical users. You can set up your agent and workflows without writing a single line of code.",
+        'No. Safer-Claw is built for non-technical users. You can set up your agent and workflows without writing a single line of code.',
     },
     {
-      question: "What platforms does it support?",
-      answer: "We currently support direct integration with Telegram and WhatsApp.",
+      question: 'What platforms does it support?',
+      answer: 'We currently support direct integration with Telegram and WhatsApp.',
     },
     {
-      question: "Can it automate tasks?",
-      answer: "Absolutely. Your agent can run workflows, automate repetitive tasks, and essentially act as a digital employee within your chat tools.",
-    },
-    {
-      question: "How do I get access?",
+      question: 'Can it automate tasks?',
       answer:
-        "We are currently in a closed beta. Join our waitlist to be notified when we open up more spots.",
+        'Absolutely. Your agent can run workflows, automate repetitive tasks, and essentially act as a digital employee within your chat tools.',
+    },
+    {
+      question: 'How do I get access?',
+      answer:
+        'We are currently in a closed beta. Join our waitlist to be notified when we open up more spots.',
     },
   ]
 

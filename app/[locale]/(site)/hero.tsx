@@ -14,7 +14,6 @@ import {
   TooltipPopup,
 } from '@/components/ui/tooltip'
 
-
 const tooltipHandle = TooltipCreateHandle<React.ComponentType>()
 
 export default function Hero() {
@@ -37,17 +36,15 @@ export default function Hero() {
                   viewBox='0 0 100 40'
                   preserveAspectRatio='none'
                 >
-                  <path
-                    d='M2 10 Q 50 5, 98 10 L 97 30 Q 50 35, 3 30 Z'
-                    fill='currentColor'
-                  />
+                  <path d='M2 10 Q 50 5, 98 10 L 97 30 Q 50 35, 3 30 Z' fill='currentColor' />
                 </svg>
               </div>
             </span>
             , controllable AI operator inside your business inbox
           </h1>
           <p className='mx-auto mt-6 max-w-xl text-balance text-center text-muted-foreground md:max-w-2xl md:text-lg'>
-            A controlled, secure AI assistant that can run workflows, automate repetitive tasks, and act like a digital employee inside your existing chat tools.
+            A controlled, secure AI assistant that can run workflows, automate repetitive tasks, and
+            act like a digital employee inside your existing chat tools.
           </p>
           <div className='mx-auto mt-10 flex items-center justify-center gap-4'>
             <Button
@@ -58,7 +55,7 @@ export default function Hero() {
                 try {
                   await client.signIn.social({
                     provider: 'google',
-                    callbackURL: '/dashboard'
+                    callbackURL: '/dashboard',
                   })
                 } catch (error) {
                   setLoading(false)
@@ -77,7 +74,6 @@ export default function Hero() {
                 </>
               )}
             </Button>
-
           </div>
         </div>
 

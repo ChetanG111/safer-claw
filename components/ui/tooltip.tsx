@@ -3,7 +3,7 @@
 import { Tooltip as TooltipPrimitive } from '@base-ui/react/tooltip'
 
 import { cn } from '@/lib/utils'
-import * as React from 'react'
+import type * as React from 'react'
 
 const TooltipCreateHandle = TooltipPrimitive.createHandle
 
@@ -19,11 +19,7 @@ function TooltipTrigger({
   const render = asChild ? (children as React.ReactElement) : undefined
 
   return (
-    <TooltipPrimitive.Trigger
-      data-slot='tooltip-trigger'
-      render={render}
-      {...props}
-    >
+    <TooltipPrimitive.Trigger data-slot='tooltip-trigger' render={render} {...props}>
       {!asChild ? children : null}
     </TooltipPrimitive.Trigger>
   )

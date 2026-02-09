@@ -45,8 +45,8 @@ export default async function LicensesPage({ params }: { params: Promise<{ local
             <section>
               <h2 className='mb-4 text-xl font-semibold text-foreground'>3. attribution</h2>
               <p>
-                you're not required to publicly credit safer-claw, but attribution is appreciated when
-                showcasing products built using it.
+                you're not required to publicly credit safer-claw, but attribution is appreciated
+                when showcasing products built using it.
               </p>
             </section>
 

@@ -28,9 +28,7 @@ export function LanguageSwitcher() {
 
   return (
     <div className='flex items-center gap-2'>
-      <span className='text-sm font-medium text-muted-foreground'>
-        Language:
-      </span>
+      <span className='text-sm font-medium text-muted-foreground'>Language:</span>
       <Select value={locale} onValueChange={handleLocaleChange}>
         <SelectTrigger className='w-[140px] h-8'>
           <SelectValue placeholder='Select language' />

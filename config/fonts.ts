@@ -1,4 +1,3 @@
-
 import { Inter, Roboto_Mono, Geist, Geist_Mono, Bricolage_Grotesque } from 'next/font/google'
 
 /**
@@ -11,35 +10,35 @@ import { Inter, Roboto_Mono, Geist, Geist_Mono, Bricolage_Grotesque } from 'next
 
 // 1. Geist Sans (Default)
 const geistSans = Geist({
-    variable: '--font-sans',
-    subsets: ['latin'],
+  variable: '--font-sans',
+  subsets: ['latin'],
 })
 
 // 2. Inter
 const inter = Inter({
-    variable: '--font-sans',
-    subsets: ['latin'],
+  variable: '--font-sans',
+  subsets: ['latin'],
 })
 
 // --- Mono Fonts ---
 
 // 1. Geist Mono (Default)
 const geistMono = Geist_Mono({
-    variable: '--font-mono',
-    subsets: ['latin'],
+  variable: '--font-mono',
+  subsets: ['latin'],
 })
 
 // 2. Roboto Mono
 const robotoMono = Roboto_Mono({
-    variable: '--font-mono',
-    subsets: ['latin'],
+  variable: '--font-mono',
+  subsets: ['latin'],
 })
 
 // --- Heading/Display Fonts ---
 
 const bricolageGrotesque = Bricolage_Grotesque({
-    variable: '--font-heading',
-    subsets: ['latin'],
+  variable: '--font-heading',
+  subsets: ['latin'],
 })
 
 // EXPORT THE ACTIVE FONTS

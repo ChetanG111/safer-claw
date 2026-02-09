@@ -37,7 +37,7 @@ export default function Features() {
   const stack = []
 
   return (
-    <section id="features" className='py-12 md:py-24 bg-[#F4F4F5]'>
+    <section id='features' className='py-12 md:py-24 bg-[#F4F4F5]'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
         <h2
           className='text-center text-sm font-medium text-muted-foreground mb-8'
@@ -59,17 +59,13 @@ export default function Features() {
             {[...features, ...stack].map((item, index) => (
               <div
                 key={index}
-                className={`p-6 bg-transparent flex flex-col items-center text-center md:items-start md:text-left border-b last:border-b-0 border-[#E4E4E7] md:border-b-0 ${index % 3 !== 2 ? 'md:border-r md:border-[#E4E4E7]' : ''
-                  } ${index < 3 ? 'md:border-b md:border-[#E4E4E7]' : ''
-                  }`}
+                className={`p-6 bg-transparent flex flex-col items-center text-center md:items-start md:text-left border-b last:border-b-0 border-[#E4E4E7] md:border-b-0 ${
+                  index % 3 !== 2 ? 'md:border-r md:border-[#E4E4E7]' : ''
+                } ${index < 3 ? 'md:border-b md:border-[#E4E4E7]' : ''}`}
               >
                 {item.logo && !item.logos && (
                   <div className='mb-3 flex items-center justify-center md:justify-start gap-2'>
-                    <img
-                      src={item.logo}
-                      alt={item.title}
-                      className='h-10 w-10 object-contain'
-                    />
+                    <img src={item.logo} alt={item.title} className='h-10 w-10 object-contain' />
                   </div>
                 )}
                 {item.logos && (
@@ -79,8 +75,9 @@ export default function Features() {
                         key={logoIndex}
                         src={logo}
                         alt={item.title}
-                        className={`h-10 w-10 object-contain ${logo.includes('prisma') ? 'brightness-0' : ''
-                          }`}
+                        className={`h-10 w-10 object-contain ${
+                          logo.includes('prisma') ? 'brightness-0' : ''
+                        }`}
                       />
                     ))}
                   </div>
