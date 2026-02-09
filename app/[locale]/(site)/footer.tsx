@@ -209,7 +209,7 @@ export default function Footer() {
                 Safer-Claw
               </span>
             </div>
-            <p className='text-sm text-muted-foreground'>Your private, safe AI operator.</p>
+            <p className='text-sm text-muted-foreground'>Your safe AI operator.</p>
             <div className='flex flex-col items-center gap-4 w-full'>
               <p className='text-sm text-muted-foreground'>
                 Copyright © {new Date().getFullYear()} -{' '}

@@ -8,9 +8,9 @@ export default function Features() {
         'Deploy OpenClaw instantly. No complex setup, no servers to manage—just click and your agent is ready to work.',
     },
     {
-      title: 'Private & Secure',
+      title: 'Safe & Secure',
       description:
-        'Your agent runs in an isolated environment. Your data and workflows remain completely private.',
+        'Your agent runs in an isolated environment. Your data and workflows remain completely safe.',
     },
     {
       title: 'Chat Integration',
