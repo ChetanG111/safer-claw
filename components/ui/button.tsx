@@ -48,12 +48,14 @@ const buttonVariants = cva(
 interface ButtonProps extends useRender.ComponentProps<'button'> {
   variant?: VariantProps<typeof buttonVariants>['variant']
   size?: VariantProps<typeof buttonVariants>['size']
+  asChild?: boolean
 }
 
-function Button({ className, variant, size, render, ...props }: ButtonProps) {
-  const typeValue: React.ButtonHTMLAttributes<HTMLButtonElement>['type'] = render
-    ? undefined
-    : 'button'
+function Button({ className, variant, size, render, asChild, ...props }: ButtonProps) {
+  const typeValue: React.ButtonHTMLAttributes<HTMLButtonElement>['type'] =
+    render || asChild ? undefined : 'button'
+
+  const finalRender = asChild ? (props.children as React.ReactElement) : render
 
   const defaultProps = {
     className: cn(buttonVariants({ className, size, variant })),
@@ -61,10 +63,17 @@ function Button({ className, variant, size, render, ...props }: ButtonProps) {
     type: typeValue,
   }
 
+  // If using asChild, using proper prop merging but likely need to avoid passing children twice if it matters,
+  // but mergeProps handles standard props.
+  // We need to ensure children are not passed if they are the render target to avoid recursion issues if the library doesn't handle it.
+  // However, removing children from props is safer.
+  const { children, ...restProps } = props
+  const finalProps = asChild ? restProps : props
+
   return useRender({
     defaultTagName: 'button',
-    props: mergeProps<'button'>(defaultProps, props),
-    render,
+    props: mergeProps<'button'>(defaultProps, finalProps),
+    render: finalRender,
   })
 }
 

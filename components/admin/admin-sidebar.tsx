@@ -36,7 +36,7 @@ export function AdminSidebar({ user }: { user: any }) {
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <SidebarMenuButton size="lg" render={<Link href="/admin" />}>
+                        <SidebarMenuButton size="lg" render={<Link href="/" />}>
                             <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                                 <ShieldCheckIcon className="size-4" />
                             </div>

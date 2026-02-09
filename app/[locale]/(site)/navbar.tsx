@@ -2,12 +2,16 @@
 
 import { Link } from '@/i18n/navigation'
 import { X, Menu, ArrowUpRight } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
+import { useSession } from '@/lib/auth/auth-client'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { data: session } = useSession()
+  const user = session?.user
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -39,35 +43,46 @@ export default function Navbar() {
               >
                 Features
               </Link>
-              {/* <Link
-                href='/#pricing'
-                className='text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
-              >
-                Pricing
-              </Link> */}
-              {/* <Link
-                href='/#wall-of-love'
-                className='text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
-              >
-                Wall of love
-              </Link> */}
               <Link
                 href='/#faq'
                 className='text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
               >
                 FAQ
               </Link>
+
+              {user && (
+                <Link
+                  href='/dashboard'
+                  className='text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
+                >
+                  Dashboard
+                </Link>
+              )}
             </div>
 
-            <Button
-              className='hidden md:flex font-semibold text-white'
-              render={
-                <Link href='/#cta' className='flex items-center gap-2'>
-                  Join Waitlist
-                  <ArrowUpRight className='size-4' />
-                </Link>
-              }
-            />
+            {user && <div className='hidden h-6 w-px bg-[#E4E4E7] md:block' />}
+
+            {user ? (
+              <div className='hidden items-center gap-3 md:flex'>
+                <span className='text-sm font-medium text-muted-foreground'>
+                  {user.name}
+                </span>
+                <Avatar className='h-8 w-8'>
+                  <AvatarImage src={user.image || ''} alt={user.name} />
+                  <AvatarFallback>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
+                </Avatar>
+              </div>
+            ) : (
+              <Button
+                className='hidden md:flex font-semibold text-white'
+                render={
+                  <Link href='/#cta' className='flex items-center gap-2'>
+                    Join Waitlist
+                    <ArrowUpRight className='size-4' />
+                  </Link>
+                }
+              />
+            )}
 
             <button
               type='button'
@@ -91,20 +106,6 @@ export default function Navbar() {
               >
                 Features
               </Link>
-              {/* <Link
-                href='#pricing'
-                className='block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-200 ease-in-out hover:bg-accent hover:text-accent-foreground'
-                onClick={toggleMenu}
-              >
-                Pricing
-              </Link> */}
-              {/* <Link
-                href='#wall-of-love'
-                className='block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-200 ease-in-out hover:bg-accent hover:text-accent-foreground'
-                onClick={toggleMenu}
-              >
-                Wall of love
-              </Link> */}
               <Link
                 href='#faq'
                 className='block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-200 ease-in-out hover:bg-accent hover:text-accent-foreground'
@@ -113,17 +114,27 @@ export default function Navbar() {
                 FAQ
               </Link>
 
-              <Button
-                className='w-full font-semibold text-white'
-                render={
-                  <Link href='/#cta' onClick={toggleMenu} className='flex items-center gap-2 justify-center'>
-                    Join Waitlist
-                    <ArrowUpRight className='size-4' />
-                  </Link>
-                }
-              />
+              {user && (
+                <Link
+                  href='/dashboard'
+                  className='block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-200 ease-in-out hover:bg-accent hover:text-accent-foreground'
+                  onClick={toggleMenu}
+                >
+                  Dashboard
+                </Link>
+              )}
 
-
+              {!user && (
+                <Button
+                  className='w-full font-semibold text-white'
+                  render={
+                    <Link href='/#cta' onClick={toggleMenu} className='flex items-center gap-2 justify-center'>
+                      Join Waitlist
+                      <ArrowUpRight className='size-4' />
+                    </Link>
+                  }
+                />
+              )}
             </div>
           </div>
         )}

@@ -30,6 +30,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
                     email: 'admin@local.dev',
                     emailVerified: true,
                     role: 'admin',
+                    image: 'https://avatar.vercel.sh/admin',
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -54,8 +55,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         redirect('/')
     }
 
-    // Serialize user for client component to avoid non-serializable props warning
-    // We only pass strings/simplifiable types
+    // Serialize user for client component
     const localizedUser = {
         name: session.user.name,
         email: session.user.email,
@@ -66,8 +66,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <SidebarProvider>
             <AdminSidebar user={localizedUser} />
             <SidebarInset>
-                <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b px-4">
-                    <div className="flex items-center gap-2 px-4">
+                <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center justify-between border-b border-[#E4E4E7] bg-[#F4F4F5] px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+                    <div className="flex items-center gap-2">
                         <SidebarTrigger className="-ml-1" />
                         <Separator orientation="vertical" className="mr-2 h-4" />
                         <Breadcrumb>
@@ -82,8 +82,23 @@ export default async function AdminLayout({ children }: { children: React.ReactN
                             </BreadcrumbList>
                         </Breadcrumb>
                     </div>
+
+                    <div className="flex items-center gap-4">
+                        <div className="hidden items-center gap-3 sm:flex">
+                            <span className="text-sm font-medium text-muted-foreground">
+                                {localizedUser.name}
+                            </span>
+                            <div className="h-8 w-8 overflow-hidden rounded-full font-medium text-xs bg-muted flex items-center justify-center">
+                                {localizedUser.image ? (
+                                    <img src={localizedUser.image} alt={localizedUser.name} className="h-full w-full object-cover" />
+                                ) : (
+                                    localizedUser.name.charAt(0).toUpperCase()
+                                )}
+                            </div>
+                        </div>
+                    </div>
                 </header>
-                <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+                <div className="flex flex-1 flex-col gap-4 p-4 pt-4">
                     {children}
                     <FeedbackWidget />
                 </div>
