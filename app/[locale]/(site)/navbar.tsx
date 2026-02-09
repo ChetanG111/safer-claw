@@ -44,6 +44,12 @@ export default function Navbar() {
                 Features
               </Link>
               <Link
+                href='/#pricing'
+                className='text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
+              >
+                Pricing
+              </Link>
+              <Link
                 href='/#faq'
                 className='text-sm font-medium text-muted-foreground transition-colors duration-200 ease-in-out hover:text-foreground'
               >
@@ -103,6 +109,13 @@ export default function Navbar() {
                 onClick={toggleMenu}
               >
                 Features
+              </Link>
+              <Link
+                href='#pricing'
+                className='block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-200 ease-in-out hover:bg-accent hover:text-accent-foreground'
+                onClick={toggleMenu}
+              >
+                Pricing
               </Link>
               <Link
                 href='#faq'

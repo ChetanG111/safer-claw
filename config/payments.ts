@@ -134,7 +134,7 @@ export const paymentConfig = {
           {
             productId: process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO_MONTHLY || '',
             interval: 'month' as const,
-            amount: 2990, // $29.90
+            amount: 1900, // $19.00
             currency: 'usd',
             seatBased: true,
             trialPeriodDays: 14,
@@ -143,7 +143,7 @@ export const paymentConfig = {
           {
             productId: process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO_YEARLY || '',
             interval: 'year' as const,
-            amount: 29900, // $299
+            amount: 19000, // $190
             currency: 'usd',
             seatBased: true,
             trialPeriodDays: 14,
@@ -154,7 +154,7 @@ export const paymentConfig = {
           {
             productId: process.env.NEXT_PUBLIC_POLAR_PRODUCT_PRO_MONTHLY || '',
             interval: 'month' as const,
-            amount: 2990,
+            amount: 1900,
             currency: 'usd',
             seatBased: true,
             trialPeriodDays: 14,
@@ -165,7 +165,7 @@ export const paymentConfig = {
           {
             productId: process.env.NEXT_PUBLIC_LEMONSQUEEZY_PRODUCT_PRO_MONTHLY || '',
             interval: 'month' as const,
-            amount: 2990,
+            amount: 1900,
             currency: 'usd',
             seatBased: true,
             trialPeriodDays: 14,
@@ -176,7 +176,7 @@ export const paymentConfig = {
           {
             productId: process.env.NEXT_PUBLIC_DODO_PAYMENTS_PRODUCT_PRO_MONTHLY || '',
             interval: 'month' as const,
-            amount: 2990,
+            amount: 1900,
             currency: 'usd',
             seatBased: true,
             trialPeriodDays: 14,

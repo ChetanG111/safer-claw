@@ -1,30 +1,25 @@
 'use client'
 
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { CheckmarkCircle01Icon } from '@hugeicons/core-free-icons'
-import { Flame, ArrowUpRight } from 'lucide-react'
+import { Flame, ArrowUpRight, Loader2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { useSession } from '@/lib/auth/auth-client'
 
 export default function Pricing() {
   const t = useTranslations()
-
-  const communityFeatures = [
-    { text: 'Full Next.js boilerplate', included: true },
-    { text: 'Auth, payments & UI prewired', included: true },
-    { text: 'Built-in SEO', included: true },
-    { text: 'Resend transaction emails', included: true },
-    { text: 'Payments via Stripe / Lemon Squeezy / Polar', included: true },
-    { text: 'Internationalization (i18n) with TypeScript', included: true },
-    { text: 'Up to 100+ hours saved', included: true },
-    { text: 'MIT open-source license', included: true },
-    { text: 'Community Releases & fixes', included: true },
-  ]
+  const router = useRouter()
+  const { data: session } = useSession()
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null)
 
   const premiumFeatures = [
-    { text: 'Everything in free', included: true },
+    { text: 'Full Next.js boilerplate', included: true },
+    { text: 'Auth, payments & UI prewired', included: true },
     { text: 'One-click deploys', included: true },
     { text: 'Role-based access & invite system', included: true },
     { text: 'Advanced SEO & Blog', included: true },
@@ -34,6 +29,39 @@ export default function Pricing() {
     { text: 'Lifetime updates', included: true },
     { text: 'Priority support', included: true },
   ]
+
+  const handleCheckout = async (plan: 'pro') => {
+    if (!session) {
+      router.push(`/register?redirect=/pricing&plan=${plan}`)
+      return
+    }
+
+    setLoadingPlan(plan)
+    try {
+      const response = await fetch('/api/payments/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          plan,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        throw new Error(data.error || 'Failed to create checkout session')
+      }
+    } catch (error) {
+      console.error('Checkout error:', error)
+      alert('Failed to start checkout. Please try again.')
+    } finally {
+      setLoadingPlan(null)
+    }
+  }
 
   return (
     <section id='pricing' className='py-12 md:py-24 bg-[#F4F4F5]'>
@@ -53,48 +81,9 @@ export default function Pricing() {
               Launch faster, sell sooner, and grow without fighting setup pain
             </p>
           </div>
-          <div className='grid md:grid-cols-2 gap-8'>
-            {/* Community */}
-            <div className='flex flex-col p-6 border border-[#E4E4E7] rounded-2xl bg-card'>
-              <div className='mb-6'>
-                <h3 className='text-2xl font-semibold mb-4'>Community</h3>
-                <div className='mb-4'>
-                  <span className='text-4xl font-semibold font-mono'>$0</span>
-                </div>
-                <p className='text-sm text-muted-foreground mb-4'>
-                  For learners, early builders & indie devs who love to experiment.
-                </p>
-                <p
-                  className='text-xs font-medium text-foreground uppercase'
-                  style={{ fontFamily: 'var(--font-geist-mono)' }}
-                >
-                  INCLUDING
-                </p>
-              </div>
-              <ul className='space-y-3 mb-8 flex-1'>
-                {communityFeatures.map((feature, index) => (
-                  <li key={index} className='flex items-center gap-2 text-sm'>
-                    <HugeiconsIcon
-                      icon={CheckmarkCircle01Icon}
-                      className='h-4 w-4 text-muted-foreground shrink-0'
-                    />
-                    <span className='text-muted-foreground'>{feature.text}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className='flex flex-col gap-2'>
-                <Button className='w-full h-12! text-sm font-medium' size='lg'>
-                  Launch
-                  <ArrowUpRight className='ml-2 h-4 w-4' />
-                </Button>
-                <p className='text-sm text-center text-muted-foreground'>
-                  Open source. Free forever
-                </p>
-              </div>
-            </div>
-
+          <div className='flex justify-center'>
             {/* Premium */}
-            <div className='flex flex-col p-6 relative border border-primary rounded-2xl bg-card shadow-lg shadow-primary/5'>
+            <div className='flex flex-col p-6 max-w-sm w-full relative border border-primary rounded-2xl bg-card shadow-lg shadow-primary/5'>
               <div className='mb-6'>
                 <div className='flex items-start justify-between mb-4'>
                   <h3 className='text-2xl font-semibold'>Premium</h3>
@@ -106,9 +95,9 @@ export default function Pricing() {
                 <div className='mb-4'>
                   <div className='flex items-baseline gap-2'>
                     <span className='text-sm text-muted-foreground line-through font-mono'>
-                      $150
+                      $29
                     </span>
-                    <span className='text-4xl font-semibold font-mono'>$90</span>
+                    <span className='text-4xl font-semibold font-mono'>$19</span> {/* TODO: Use paymentConfig.plans.pro.prices to derive this dynamically */}
                   </div>
                 </div>
                 <p className='text-sm text-muted-foreground mb-4'>
@@ -133,9 +122,18 @@ export default function Pricing() {
                 ))}
               </ul>
               <div className='flex flex-col gap-2'>
-                <Button className='w-full h-12! text-sm font-medium' size='lg'>
-                  Launch
-                  <ArrowUpRight className='ml-2 h-4 w-4' />
+                <Button
+                  className='w-full h-12! text-sm font-medium'
+                  size='lg'
+                  disabled={loadingPlan === 'pro'}
+                  onClick={() => handleCheckout('pro')} // Consider using a constant or type from paymentConfig
+                >
+                  {loadingPlan === 'pro' ? (
+                    <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                  ) : (
+                    'Launch'
+                  )}
+                  {!loadingPlan && <ArrowUpRight className='ml-2 h-4 w-4' />}
                 </Button>
                 <p className='text-sm text-center text-muted-foreground'>
                   Start your project today.

@@ -61,6 +61,7 @@ export const env = createEnv({
     // Dodo Payments
     DODO_PAYMENTS_API_KEY: z.string().optional(),
     DODO_PAYMENTS_WEBHOOK_KEY: z.string().optional(),
+    DODO_PAYMENTS_ENVIRONMENT: z.enum(['live_mode', 'test_mode']).optional(),
 
     // Optional: OAuth
     GOOGLE_CLIENT_ID: z.string().optional(),
@@ -156,6 +157,7 @@ export const env = createEnv({
     LEMONSQUEEZY_WEBHOOK_SECRET: process.env.LEMONSQUEEZY_WEBHOOK_SECRET,
     DODO_PAYMENTS_API_KEY: process.env.DODO_PAYMENTS_API_KEY,
     DODO_PAYMENTS_WEBHOOK_KEY: process.env.DODO_PAYMENTS_WEBHOOK_KEY,
+    DODO_PAYMENTS_ENVIRONMENT: process.env.DODO_PAYMENTS_ENVIRONMENT as any,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_LEMONSQUEEZY_PRODUCT_STARTER_MONTHLY:
       process.env.NEXT_PUBLIC_LEMONSQUEEZY_PRODUCT_STARTER_MONTHLY,

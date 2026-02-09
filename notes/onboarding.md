@@ -1,0 +1,3 @@
+user clicks deploy -> takes to login screen w/ different options -> user logs in -> user is redirected to dashboard -> shows agent config screen -> user selects a config -> user is redirected to payment screen -> user completes payment -> user is redirected to dashboard -> user's agent is now ready and all the basic info shows up on the dashboard.
+
+once the user has an agent up and running all the CTA shows up as go to dashboard

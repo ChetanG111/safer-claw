@@ -30,7 +30,7 @@ export async function POST(req: Request) {
         signature = headerList.get('x-signature') || ''
         break
       case 'dodopayments':
-        signature = headerList.get('webhook-signature') || 'dodo' // Dummy value as validation uses headers
+        signature = headerList.get('webhook-signature') || ''
         break
     }
 
@@ -83,9 +83,7 @@ export async function POST(req: Request) {
         data:
           provider === 'lemonsqueezy'
             ? parsedBody
-            : provider === 'dodopayments'
-              ? parsedBody // Dodo passes data inside event object structure depending on event
-              : parsedBody.data?.object || parsedBody.data || parsedBody,
+            : parsedBody.data?.object || parsedBody.data || parsedBody,
         rawEvent: parsedBody,
       }
     } catch (e) {

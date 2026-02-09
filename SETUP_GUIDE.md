@@ -72,5 +72,19 @@ To access the admin dashboard (`/admin`), you must manually promote your user ac
     ```
 3.  **Verify**: Log out and log back in, then visit `/admin`.
 
-## 7. Deployment
+## 7. Dodo Payments Setup
+To enable payments via Dodo Payments:
+
+1.  **Configure `.env`**:
+    *   Set `PAYMENT_PROVIDER=dodopayments`.
+    *   Add your `DODO_PAYMENTS_API_KEY` from the Dodo dashboard.
+    *   Add your `DODO_PAYMENTS_WEBHOOK_KEY`.
+2.  **Product Configuration**:
+    *   Add your Dodo Product ID to `NEXT_PUBLIC_DODO_PAYMENTS_PRODUCT_PRO_MONTHLY`.
+    *   The `Pricing` section on the landing page is already prewired to use this configuration.
+3.  **Webhooks**:
+    *   Configure your webhook URL in Dodo Payments as: `https://yourdomain.com/api/webhooks/payments`.
+    *   Ensure the webhook events include `subscription.active`, `subscription.updated`, `payment.succeeded`, etc.
+
+## 8. Deployment
 This template is optimized for [Vercel](https://vercel.com) or [Cloudflare Pages](https://pages.cloudflare.com). simply push your code to GitHub and connect your repository. Ensure your environment variables are set in the deployment dashboard.

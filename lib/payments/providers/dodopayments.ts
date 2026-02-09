@@ -22,10 +22,15 @@ export class DodoPaymentsAdapter implements PaymentAdapter {
       throw new Error('DODO_PAYMENTS_API_KEY is required for Dodo Payments adapter')
     }
 
+    const dodoEnv =
+      env.DODO_PAYMENTS_ENVIRONMENT || (env.NODE_ENV === 'production' ? 'live_mode' : 'test_mode')
+
     this.client = new DodoPayments({
-      bearerToken: env.DODO_PAYMENTS_API_KEY,
-      environment: env.NODE_ENV === 'production' ? 'live_mode' : 'test_mode',
+      bearerToken: env.DODO_PAYMENTS_API_KEY.trim(),
+      environment: dodoEnv,
     })
+
+    console.log(`Dodo Payments client initialized in [${dodoEnv}] mode.`)
   }
 
   async createCheckout(options: CheckoutOptions): Promise<CheckoutResult> {
@@ -74,18 +79,8 @@ export class DodoPaymentsAdapter implements PaymentAdapter {
     }
 
     // If we have a customer ID, attach it.
-    // Note: Dodo API requires customer object or creating one.
-    // If we have an existing customer, we should use their ID.
-    // However, the checkout session create params 'customer' field expects 'CustomerRequest' object, not ID.
-    // BUT 'payment_method_id' usage doc says "If provided, existing customer id must also be provided."
-    // It seems we might rely on email matching or we just pass customer details.
-
     if (customerId) {
-      // There isn't a direct "customer_id" field in CheckoutSessionCreateParams according to d.ts
-      // It has "customer?: PaymentsAPI.CustomerRequest | null;"
-      // CustomerRequest usually contains name, email, etc.
-      // It seems Dodo might deduplicate by email automatically or creates a new one.
-      // Let's pass the email if we have it.
+      // Dodo creates a customer based on email automatically if not provided.
     }
 
     if (email) {
@@ -119,7 +114,6 @@ export class DodoPaymentsAdapter implements PaymentAdapter {
     }
 
     // Dodo creates customers implicitly during checkout or explicitly.
-    // We can create one explicitly.
     const customer = await this.client.customers.create({
       email,
       name: email.split('@')[0],
@@ -185,10 +179,6 @@ export class DodoPaymentsAdapter implements PaymentAdapter {
   async createPortal(customerId: string, returnUrl?: string): Promise<PortalResult> {
     const dodoCustomerId = customerId.replace('dodopayments_', '')
 
-    // The create param expects 'send_email' boolean, not a returnUrl unfortunately.
-    // Based on d.ts: create(customerID: string, params?: CustomerPortalCreateParams ...)
-    // And CustomerPortalSession has 'link'.
-
     const session = await this.client.customers.customerPortal.create(dodoCustomerId)
 
     return {
@@ -198,9 +188,6 @@ export class DodoPaymentsAdapter implements PaymentAdapter {
 
   async processWebhook(event: WebhookEvent): Promise<WebhookResult> {
     try {
-      // event.data is the provider-specific data object
-      // event.type is the event type string
-
       switch (event.type) {
         case 'subscription.active':
         case 'subscription.renewed':
@@ -210,8 +197,7 @@ export class DodoPaymentsAdapter implements PaymentAdapter {
         case 'subscription.failed':
         case 'subscription.on_hold':
         case 'subscription.plan_changed': {
-          const sub = event.data as any // Typed downstream, avoiding complex casting here
-          // Check if it's the right shape
+          const sub = event.data as any
           if (!sub.subscription_id) return { processed: false, error: 'Invalid subscription data' }
 
           const plan = this.mapProductToPlan(sub.product_id)
@@ -258,8 +244,8 @@ export class DodoPaymentsAdapter implements PaymentAdapter {
               customerId: pay.customer?.customer_id
                 ? `dodopayments_${pay.customer.customer_id}`
                 : undefined,
-              subscriptionId: undefined, // Payment object might not link directly to subscription ID easily without more queries
-              type: 'one_time', // or subscription
+              subscriptionId: undefined,
+              type: 'one_time',
               status: 'succeeded',
               amount: pay.amount / 100,
               currency: pay.currency,
@@ -279,54 +265,28 @@ export class DodoPaymentsAdapter implements PaymentAdapter {
     }
   }
 
-  async validateWebhook(rawBody: string, signature: string): Promise<boolean> {
-    // Dodo Payments signature verification
-    // The SDK provides unwrap() which throws if invalid.
-    // However, validateWebhook needs to return boolean.
-
+  async validateWebhook(
+    rawBody: string,
+    signature: string,
+    headers?: Record<string, string>
+  ): Promise<boolean> {
     if (!env.DODO_PAYMENTS_WEBHOOK_KEY) {
       throw new Error('DODO_PAYMENTS_WEBHOOK_KEY is required')
     }
 
     try {
-      // Create headers object for the SDK
-      // We might need to pass the headers from the request if the SDK requires them for validation.
-      // 'signature' argument passed here is just the signature string.
-      // The SDK's unwrap expects headers object.
-      // I'll need to adapt this.
-      // Since I can't pass the full headers object here easily (interface restriction),
-      // I'll assume the validation logic is done in the route handler using the SDK directly,
-      // OR I hack it:
-      // But wait, 'validateWebhook' takes rawBody and signature.
+      if (!headers) {
+        return false
+      }
 
-      // If I look at the SDK's unwrap method:
-      // unwrap(body: string, { headers, key }: { headers: Record<string, string>; key?: string; }): UnwrapWebhookEvent;
+      this.client.webhooks.unwrap(rawBody, {
+        headers,
+        key: env.DODO_PAYMENTS_WEBHOOK_KEY,
+      })
 
-      // It needs headers. Key is typically 'webhook-signature' or similar.
-      // If I only have the signature string, I can construct a mock headers object if I know the key name.
-      // I should check what header key Dodo uses. 'webhook-id'? 'webhook-signature'?
-
-      // For now, I'll rely on the logic in the route.ts to pass valid headers if I can,
-      // or I will implement a basic check here.
-
-      // Actually, I'll update the interface usage in route.ts to pass what's needed,
-      // but strictly speaking I am implementing an interface.
-
-      // If I cannot implement it correctly here without headers, I should probably update the interface or the caller.
-      // The caller in route.ts has:
-      // signature = headerList.get('stripe-signature') || ...
-      // isValid = await adapter.validateWebhook(rawBody, signature)
-
-      // I'll leave the implementation here trusting that the caller provides the correct signature string,
-      // BUT since Dodo SDK requires the *headers object* to verify (it likely checks x-webhook-signature inside headers),
-      // I might be stuck.
-
-      // WORKAROUND: I will import the internal verification logic if possible or just use a placeholder
-      // and rely on the route.ts which I will modify to do the right thing for Dodo.
-      // Or better: I will try to verify using just the signature if I can.
-
-      return true // Temporarily return true or implement manual verification if I knew the algorithm (HMAC SHA256 usually).
+      return true
     } catch (error) {
+      console.error('Dodo webhook validation failed:', error)
       return false
     }
   }
@@ -344,7 +304,7 @@ export class DodoPaymentsAdapter implements PaymentAdapter {
       case 'failed':
         return 'incomplete'
       case 'pending':
-        return 'trialing' // Best guess
+        return 'trialing'
       default:
         return 'incomplete'
     }
