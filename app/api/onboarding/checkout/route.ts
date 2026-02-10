@@ -23,8 +23,8 @@ export async function POST(req: NextRequest) {
       .insert(agent)
       .values({
         userId: session.user.id,
-        type: agentType,
-        name: agentName,
+        type: (agentType as string).substring(0, 50),
+        name: (agentName as string).substring(0, 100),
         status: 'configuring',
       })
       .returning()
