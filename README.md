@@ -15,9 +15,9 @@ Safer-Claw is a modern SaaS boilerplate designed to simplify and optimize your s
 - Drizzle ORM and Postgres for database operations
 - Internationalization (i18n) with next-intl supporting English, French, and Spanish
 
-## Docs
+## Updates
 
-For full documentation, visit: [Safer-Claw Docs](https://safer-claw.com/docs)
+Stay up to date with the latest features and changes on our [Blog](/blog).
 
 ## Code of Conduct
 

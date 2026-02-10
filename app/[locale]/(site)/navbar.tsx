@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { useSession } from '@/lib/auth/auth-client'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
-export default function Navbar() {
+export default function Navbar({ showLinks = true }: { showLinks?: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { data: session } = useSession()
   const user = session?.user
@@ -34,24 +34,34 @@ export default function Navbar() {
 
           <div className='hidden flex-1 md:flex justify-center'>
             <div className='flex items-center gap-8'>
-              <Link
-                href='/#features'
-                className='text-sm font-semibold text-slate-500 transition-colors hover:text-brand-navy'
-              >
-                Features
-              </Link>
-              <Link
-                href='/#pricing'
-                className='text-sm font-semibold text-slate-500 transition-colors hover:text-brand-navy'
-              >
-                Pricing
-              </Link>
-              <Link
-                href='/#faq'
-                className='text-sm font-semibold text-slate-500 transition-colors hover:text-brand-navy'
-              >
-                FAQ
-              </Link>
+              {showLinks && (
+                <>
+                  <Link
+                    href='/#features'
+                    className='text-sm font-semibold text-slate-500 transition-colors hover:text-brand-navy'
+                  >
+                    Features
+                  </Link>
+                  <Link
+                    href='/#pricing'
+                    className='text-sm font-semibold text-slate-500 transition-colors hover:text-brand-navy'
+                  >
+                    Pricing
+                  </Link>
+                  <Link
+                    href='/#faq'
+                    className='text-sm font-semibold text-slate-500 transition-colors hover:text-brand-navy'
+                  >
+                    FAQ
+                  </Link>
+                  <Link
+                    href='/blog'
+                    className='text-sm font-semibold text-slate-500 transition-colors hover:text-brand-navy'
+                  >
+                    Blog
+                  </Link>
+                </>
+              )}
               {user && (
                 <Link
                   href='/dashboard'
@@ -101,27 +111,38 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className='border-t border-slate-100 bg-white/95 backdrop-blur-lg md:hidden'>
             <div className='mx-auto max-w-6xl space-y-2 px-4 pb-6 pt-4'>
-              <Link
-                href='#features'
-                className='block rounded-xl px-4 py-3 text-base font-semibold text-slate-600 hover:bg-slate-50 hover:text-brand-navy transition-all'
-                onClick={toggleMenu}
-              >
-                Features
-              </Link>
-              <Link
-                href='#pricing'
-                className='block rounded-xl px-4 py-3 text-base font-semibold text-slate-600 hover:bg-slate-50 hover:text-brand-navy transition-all'
-                onClick={toggleMenu}
-              >
-                Pricing
-              </Link>
-              <Link
-                href='#faq'
-                className='block rounded-xl px-4 py-3 text-base font-semibold text-slate-600 hover:bg-slate-50 hover:text-brand-navy transition-all'
-                onClick={toggleMenu}
-              >
-                FAQ
-              </Link>
+              {showLinks && (
+                <>
+                  <Link
+                    href='#features'
+                    className='block rounded-xl px-4 py-3 text-base font-semibold text-slate-600 hover:bg-slate-50 hover:text-brand-navy transition-all'
+                    onClick={toggleMenu}
+                  >
+                    Features
+                  </Link>
+                  <Link
+                    href='#pricing'
+                    className='block rounded-xl px-4 py-3 text-base font-semibold text-slate-600 hover:bg-slate-50 hover:text-brand-navy transition-all'
+                    onClick={toggleMenu}
+                  >
+                    Pricing
+                  </Link>
+                  <Link
+                    href='#faq'
+                    className='block rounded-xl px-4 py-3 text-base font-semibold text-slate-600 hover:bg-slate-50 hover:text-brand-navy transition-all'
+                    onClick={toggleMenu}
+                  >
+                    FAQ
+                  </Link>
+                  <Link
+                    href='/blog'
+                    className='block rounded-xl px-4 py-3 text-base font-semibold text-slate-600 hover:bg-slate-50 hover:text-brand-navy transition-all'
+                    onClick={toggleMenu}
+                  >
+                    Blog
+                  </Link>
+                </>
+              )}
 
               {user && (
                 <Link

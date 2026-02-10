@@ -1,9 +1,29 @@
-import Link from 'next/link'
+'use client'
+
+import { Link } from '@/i18n/navigation'
 import { FaGithub, FaXTwitter } from 'react-icons/fa6'
+import { useEffect, useState } from 'react'
 
 export default function Footer() {
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsVisible(true)
+      } else {
+        setIsVisible(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  if (!isVisible) return null
+
   return (
-    <footer className='border-t border-slate-100 bg-transparent py-24'>
+    <footer className='border-t border-slate-100 bg-transparent py-24 animate-in fade-in duration-700'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-12 max-w-2xl mx-auto mb-20'>
           {/* Column 1: Links */}
@@ -14,10 +34,10 @@ export default function Footer() {
             <ul className='space-y-4'>
               <li>
                 <Link
-                  href='/docs'
+                  href='/blog'
                   className='text-sm font-semibold text-slate-500 transition-colors hover:text-brand-navy'
                 >
-                  Documentation
+                  Blog
                 </Link>
               </li>
               <li>
