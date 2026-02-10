@@ -1,15 +1,18 @@
+'use client'
+
 import Link from 'next/link'
 import { CreditCard, Settings, User, ArrowUpRight } from 'lucide-react'
+import { BounceSequence } from '@/components/animation/bounce-sequence'
 
 export default function DashboardPage() {
   return (
     <div className='container mx-auto py-12 px-4 max-w-5xl'>
-      <div className='mb-12'>
+      <BounceSequence className='mb-12'>
         <h1 className='text-4xl font-bold tracking-tight text-brand-navy mb-3'>Dashboard</h1>
         <p className='text-lg text-slate-500'>Welcome back! Here's an overview of your AI operators.</p>
-      </div>
+      </BounceSequence>
 
-      <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
+      <BounceSequence className='grid gap-6 md:grid-cols-2 lg:grid-cols-3' staggerDelay={0.15} initialDelay={0.2}>
         {/* Billing Card */}
         <Link
           href='/dashboard/billing'
@@ -52,7 +55,7 @@ export default function DashboardPage() {
           <p className='text-sm text-slate-500 leading-relaxed'>Configure your application preferences.</p>
           <span className='absolute top-4 right-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono bg-slate-50 px-2 py-1 rounded-full'>Coming Soon</span>
         </div>
-      </div>
+      </BounceSequence>
     </div>
   )
 }

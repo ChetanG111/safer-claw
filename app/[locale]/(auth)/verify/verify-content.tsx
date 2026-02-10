@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp'
 import { cn } from '@/lib/utils'
 import { useVerification } from './use-verification'
+import { BounceSequence } from '@/components/animation/bounce-sequence'
 
 interface VerifyContentProps {
   isProduction: boolean
@@ -48,7 +49,7 @@ function VerificationForm({ isProduction }: { isProduction: boolean }) {
   }
 
   return (
-    <>
+    <BounceSequence staggerDelay={0.1}>
       <div className='space-y-1 text-center'>
         <h1 className='font-medium text-[32px] text-black tracking-tight'>
           {isVerified ? 'Email Verified!' : 'Verify Your Email'}
@@ -61,7 +62,7 @@ function VerificationForm({ isProduction }: { isProduction: boolean }) {
       </div>
 
       {!isVerified && (
-        <div className='mt-8 space-y-8'>
+        <BounceSequence className='mt-8 space-y-8' initialDelay={0.2} staggerDelay={0.1}>
           <div className='space-y-6'>
             <p className='text-center text-muted-foreground text-sm'>
               Enter the 6-digit code to verify your account.
@@ -184,9 +185,9 @@ function VerificationForm({ isProduction }: { isProduction: boolean }) {
               Back to signup
             </button>
           </div>
-        </div>
+        </BounceSequence>
       )}
-    </>
+    </BounceSequence>
   )
 }
 

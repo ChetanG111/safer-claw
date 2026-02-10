@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { SetNewPasswordForm } from '../reset-password/reset-password-form'
+import { BounceSequence } from '@/components/animation/bounce-sequence'
 
 function ResetPasswordContent() {
   const router = useRouter()
@@ -70,7 +71,7 @@ function ResetPasswordContent() {
   }
 
   return (
-    <>
+    <BounceSequence staggerDelay={0.1}>
       <div className='space-y-1 text-center'>
         <h1 className={`font-medium text-[32px] text-black tracking-tight`}>Reset your password</h1>
         <p className={`font-[380] text-[16px] text-muted-foreground`}>
@@ -93,7 +94,7 @@ function ResetPasswordContent() {
           Back to login
         </Link>
       </div>
-    </>
+    </BounceSequence>
   )
 }
 

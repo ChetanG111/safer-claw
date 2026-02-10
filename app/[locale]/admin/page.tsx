@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { UsersIcon, DollarSign, ActivityIcon, CreditCardIcon, ArrowUpRight } from 'lucide-react'
+import { BounceSequence } from '@/components/animation/bounce-sequence'
 
 export default function AdminDashboardPage() {
   const stats = [
@@ -39,7 +40,7 @@ export default function AdminDashboardPage() {
 
   return (
     <div className='flex flex-1 flex-col gap-6 p-2'>
-      <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-4'>
+      <BounceSequence className='grid gap-6 md:grid-cols-2 lg:grid-cols-4'>
         {stats.map((stat) => (
           <Card key={stat.title} className='border-slate-200 bg-white/50 backdrop-blur-sm shadow-sm transition-all hover:shadow-md'>
             <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
@@ -57,8 +58,9 @@ export default function AdminDashboardPage() {
             </CardContent>
           </Card>
         ))}
-      </div>
-      <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-7'>
+      </BounceSequence>
+
+      <BounceSequence className='grid gap-6 md:grid-cols-2 lg:grid-cols-7' initialDelay={0.2} staggerDelay={0.1}>
         <Card className='col-span-4 border-slate-200 bg-white/50 backdrop-blur-sm shadow-sm'>
           <CardHeader className='flex flex-row items-start justify-between'>
             <div>
@@ -103,7 +105,7 @@ export default function AdminDashboardPage() {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </BounceSequence>
     </div>
   )
 }

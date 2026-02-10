@@ -15,6 +15,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { desc } from 'drizzle-orm'
+import { BounceSequence } from '@/components/animation/bounce-sequence'
 
 export default async function AdminUsersPage() {
   const session = await auth.api.getSession({
@@ -29,7 +30,7 @@ export default async function AdminUsersPage() {
   const users = await db.select().from(user).orderBy(desc(user.createdAt)).limit(50)
 
   return (
-    <div className='flex flex-1 flex-col gap-4'>
+    <BounceSequence className='flex flex-1 flex-col gap-4'>
       <div className='flex items-center justify-between'>
         <h1 className='text-2xl font-bold tracking-tight'>Users</h1>
       </div>
@@ -73,6 +74,6 @@ export default async function AdminUsersPage() {
           </TableBody>
         </Table>
       </div>
-    </div>
+    </BounceSequence>
   )
 }

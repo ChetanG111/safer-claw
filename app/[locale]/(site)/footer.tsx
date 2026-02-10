@@ -2,28 +2,17 @@
 
 import { Link } from '@/i18n/navigation'
 import { FaGithub, FaXTwitter } from 'react-icons/fa6'
-import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 
 export default function Footer() {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsVisible(true)
-      } else {
-        setIsVisible(false)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  if (!isVisible) return null
-
   return (
-    <footer className='border-t border-slate-100 bg-transparent py-24 animate-in fade-in duration-700'>
+    <motion.footer
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className='border-t border-slate-100 bg-transparent py-24'
+    >
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-12 max-w-2xl mx-auto mb-20'>
           {/* Column 1: Links */}
@@ -126,6 +115,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   )
 }

@@ -1,8 +1,11 @@
+'use client'
+
 import { Link } from '@/i18n/navigation'
 import { NotificationBell } from '@/components/notifications/notification-bell'
 import { Settings } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { motion } from 'framer-motion'
 
 interface User {
   name: string
@@ -16,7 +19,12 @@ interface AppHeaderProps {
 
 export function AppHeader({ user }: AppHeaderProps) {
   return (
-    <nav className='sticky top-0 z-50 w-full border-b border-slate-200/50 bg-white/70 backdrop-blur-xl'>
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+      className='sticky top-0 z-50 w-full border-b border-slate-200/50 bg-white/70 backdrop-blur-xl'
+    >
       <div className='mx-auto flex h-16 max-w-7xl items-center justify-between gap-8 px-4 sm:px-6'>
         <div className='flex items-center gap-3'>
           <Link href='/' className='flex items-center gap-2 group'>
@@ -56,6 +64,6 @@ export function AppHeader({ user }: AppHeaderProps) {
           )}
         </div>
       </div>
-    </nav>
+    </motion.nav>
   )
 }

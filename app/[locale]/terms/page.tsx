@@ -3,6 +3,7 @@ import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
 import Navbar from '../(site)/navbar'
 import Footer from '../(site)/footer'
 import { GridLayout } from '../(site)/grid-layout'
+import { BounceSequence } from '@/components/animation/bounce-sequence'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Terms of Service',
@@ -16,8 +17,8 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
   return (
     <GridLayout>
       <Navbar />
-      <main className='min-h-screen pt-20 bg-white'>
-        <div className='mx-auto max-w-4xl px-4 py-16 sm:px-6'>
+      <main className='min-h-screen pt-20'>
+        <BounceSequence className='mx-auto max-w-4xl px-4 py-16 sm:px-6'>
           <h1 className='mb-4 text-4xl md:text-5xl font-bold tracking-tight text-brand-navy'>Terms of Service</h1>
           <p className='mb-12 text-sm font-semibold text-slate-400 font-mono text-uppercase tracking-widest'>LAST UPDATED: 17 JAN 2026</p>
 
@@ -86,7 +87,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
               </p>
             </section>
           </div>
-        </div>
+        </BounceSequence>
       </main>
       <Footer />
     </GridLayout>

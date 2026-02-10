@@ -46,6 +46,8 @@ const validatePassword = (passwordValue: string): string[] => {
   return errors
 }
 
+import { BounceSequence } from '@/components/animation/bounce-sequence'
+
 export default function RegisterForm({
   githubAvailable,
   googleAvailable,
@@ -192,170 +194,172 @@ export default function RegisterForm({
 
   return (
     <>
-      <div className='space-y-1 text-center'>
-        <h1 className='font-medium text-[32px] text-black tracking-tight'>Create an account</h1>
-        <p className='font-[380] text-[16px] text-muted-foreground'>Enter your details</p>
-      </div>
+      <BounceSequence staggerDelay={0.1}>
+        <div className='space-y-1 text-center'>
+          <h1 className='font-medium text-[32px] text-black tracking-tight'>Create an account</h1>
+          <p className='font-[380] text-[16px] text-muted-foreground'>Enter your details</p>
+        </div>
 
-      <form onSubmit={handleSubmit} className='mt-8 space-y-8'>
-        <div className='space-y-6'>
-          <div className='space-y-2'>
-            <div className='flex items-center justify-between'>
-              <Label htmlFor='name'>Full name</Label>
-            </div>
-            <Input
-              id='name'
-              name='name'
-              placeholder='Enter your name'
-              autoCapitalize='words'
-              autoComplete='name'
-              value={name}
-              onChange={handleNameChange}
-              size='lg'
-              className={cn(
-                'transition-colors focus:border-gray-400 focus:ring-2 focus:ring-gray-100',
-                showNameValidationError &&
+        <form onSubmit={handleSubmit} className='mt-8 space-y-8'>
+          <div className='space-y-6'>
+            <div className='space-y-2'>
+              <div className='flex items-center justify-between'>
+                <Label htmlFor='name'>Full name</Label>
+              </div>
+              <Input
+                id='name'
+                name='name'
+                placeholder='Enter your name'
+                autoCapitalize='words'
+                autoComplete='name'
+                value={name}
+                onChange={handleNameChange}
+                size='lg'
+                className={cn(
+                  'transition-colors focus:border-gray-400 focus:ring-2 focus:ring-gray-100',
+                  showNameValidationError &&
                   nameErrors.length > 0 &&
                   'border-red-500 focus:border-red-500 focus:ring-red-100 focus-visible:ring-red-500'
-              )}
-            />
-            {showNameValidationError && nameErrors.length > 0 && (
-              <div className='mt-1 space-y-1 text-xs text-red-400'>
-                {nameErrors.map((error, index) => (
-                  <p key={index}>{error}</p>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div className='space-y-2'>
-            <div className='flex items-center justify-between'>
-              <Label htmlFor='email'>Email</Label>
-            </div>
-            <Input
-              id='email'
-              name='email'
-              placeholder='Enter your email'
-              required
-              autoCapitalize='none'
-              autoComplete='email'
-              autoCorrect='off'
-              value={email}
-              onChange={handleEmailChange}
-              size='lg'
-              className={cn(
-                'transition-colors focus:border-gray-400 focus:ring-2 focus:ring-gray-100',
-                showEmailValidationError &&
-                  emailErrors.length > 0 &&
-                  'border-red-500 focus:border-red-500 focus:ring-red-100 focus-visible:ring-red-500'
-              )}
-            />
-            {showEmailValidationError && emailErrors.length > 0 && (
-              <div className='mt-1 space-y-1 text-xs text-red-400'>
-                {emailErrors.map((error, index) => (
-                  <p key={index}>{error}</p>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div className='space-y-2'>
-            <div className='flex items-center justify-between'>
-              <Label htmlFor='password'>Password</Label>
-            </div>
-            <div className='relative'>
-              <Input
-                id='password'
-                name='password'
-                required
-                type={showPassword ? 'text' : 'password'}
-                autoCapitalize='none'
-                autoComplete='new-password'
-                autoCorrect='off'
-                placeholder='Enter your password'
-                value={password}
-                size='lg'
-                onChange={handlePasswordChange}
-                className={cn(
-                  'pr-10 transition-colors focus:border-gray-400 focus:ring-2 focus:ring-gray-100',
-                  showValidationError &&
-                    passwordErrors.length > 0 &&
-                    'border-red-500 focus:border-red-500 focus:ring-red-100 focus-visible:ring-red-500'
                 )}
               />
-              <button
-                type='button'
-                onClick={() => setShowPassword(!showPassword)}
-                className='-translate-y-1/2 absolute top-1/2 right-3 text-gray-500 transition hover:text-gray-700'
-                aria-label={showPassword ? 'Hide password' : 'Show password'}
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
-            </div>
-            {showValidationError && passwordErrors.length > 0 && (
-              <div className='mt-1 space-y-1 text-xs text-red-400'>
-                {passwordErrors.map((error, index) => (
-                  <p key={index}>{error}</p>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <Button
-          type='submit'
-          size='lg'
-          onMouseEnter={() => setIsButtonHovered(true)}
-          onMouseLeave={() => setIsButtonHovered(false)}
-          className='group inline-flex w-full items-center justify-center gap-2 rounded-[10px] py-[6px] pr-[10px] pl-[12px] text-[15px] text-white shadow-[inset_0_2px_4px_0_#9B77FF] transition-all'
-          disabled={isLoading}
-        >
-          <span className='flex items-center gap-1'>
-            {isLoading ? 'Creating account...' : 'Create account'}
-            <span className='inline-flex transition-transform duration-200 group-hover:translate-x-0.5'>
-              {isButtonHovered ? (
-                <ArrowRight className='h-4 w-4' aria-hidden='true' />
-              ) : (
-                <ChevronRight className='h-4 w-4' aria-hidden='true' />
+              {showNameValidationError && nameErrors.length > 0 && (
+                <div className='mt-1 space-y-1 text-xs text-red-400'>
+                  {nameErrors.map((error, index) => (
+                    <p key={index}>{error}</p>
+                  ))}
+                </div>
               )}
+            </div>
+
+            <div className='space-y-2'>
+              <div className='flex items-center justify-between'>
+                <Label htmlFor='email'>Email</Label>
+              </div>
+              <Input
+                id='email'
+                name='email'
+                placeholder='Enter your email'
+                required
+                autoCapitalize='none'
+                autoComplete='email'
+                autoCorrect='off'
+                value={email}
+                onChange={handleEmailChange}
+                size='lg'
+                className={cn(
+                  'transition-colors focus:border-gray-400 focus:ring-2 focus:ring-gray-100',
+                  showEmailValidationError &&
+                  emailErrors.length > 0 &&
+                  'border-red-500 focus:border-red-500 focus:ring-red-100 focus-visible:ring-red-500'
+                )}
+              />
+              {showEmailValidationError && emailErrors.length > 0 && (
+                <div className='mt-1 space-y-1 text-xs text-red-400'>
+                  {emailErrors.map((error, index) => (
+                    <p key={index}>{error}</p>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className='space-y-2'>
+              <div className='flex items-center justify-between'>
+                <Label htmlFor='password'>Password</Label>
+              </div>
+              <div className='relative'>
+                <Input
+                  id='password'
+                  name='password'
+                  required
+                  type={showPassword ? 'text' : 'password'}
+                  autoCapitalize='none'
+                  autoComplete='new-password'
+                  autoCorrect='off'
+                  placeholder='Enter your password'
+                  value={password}
+                  size='lg'
+                  onChange={handlePasswordChange}
+                  className={cn(
+                    'pr-10 transition-colors focus:border-gray-400 focus:ring-2 focus:ring-gray-100',
+                    showValidationError &&
+                    passwordErrors.length > 0 &&
+                    'border-red-500 focus:border-red-500 focus:ring-red-100 focus-visible:ring-red-500'
+                  )}
+                />
+                <button
+                  type='button'
+                  onClick={() => setShowPassword(!showPassword)}
+                  className='-translate-y-1/2 absolute top-1/2 right-3 text-gray-500 transition hover:text-gray-700'
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+              {showValidationError && passwordErrors.length > 0 && (
+                <div className='mt-1 space-y-1 text-xs text-red-400'>
+                  {passwordErrors.map((error, index) => (
+                    <p key={index}>{error}</p>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <Button
+            type='submit'
+            size='lg'
+            onMouseEnter={() => setIsButtonHovered(true)}
+            onMouseLeave={() => setIsButtonHovered(false)}
+            className='group inline-flex w-full items-center justify-center gap-2 rounded-[10px] py-[6px] pr-[10px] pl-[12px] text-[15px] text-white shadow-[inset_0_2px_4px_0_#9B77FF] transition-all'
+            disabled={isLoading}
+          >
+            <span className='flex items-center gap-1'>
+              {isLoading ? 'Creating account...' : 'Create account'}
+              <span className='inline-flex transition-transform duration-200 group-hover:translate-x-0.5'>
+                {isButtonHovered ? (
+                  <ArrowRight className='h-4 w-4' aria-hidden='true' />
+                ) : (
+                  <ChevronRight className='h-4 w-4' aria-hidden='true' />
+                )}
+              </span>
             </span>
-          </span>
-        </Button>
-      </form>
+          </Button>
+        </form>
 
-      {showDivider && (
-        <div className='relative my-6 font-light'>
-          <div className='absolute inset-0 flex items-center'>
-            <div className='w-full border-t border-gray-200' />
+        {showDivider && (
+          <div className='relative my-6 font-light'>
+            <div className='absolute inset-0 flex items-center'>
+              <div className='w-full border-t border-gray-200' />
+            </div>
+            <div className='relative flex justify-center text-sm'>
+              <span className='bg-white px-4 font-[340] text-muted-foreground'>Or continue with</span>
+            </div>
           </div>
-          <div className='relative flex justify-center text-sm'>
-            <span className='bg-white px-4 font-[340] text-muted-foreground'>Or continue with</span>
+        )}
+
+        {hasSocial && (
+          <div>
+            <SocialLoginButtons
+              googleAvailable={googleAvailable}
+              githubAvailable={githubAvailable}
+              facebookAvailable={facebookAvailable}
+              microsoftAvailable={microsoftAvailable}
+              isProduction={isProduction}
+              callbackURL={callbackUrl}
+            />
           </div>
-        </div>
-      )}
+        )}
 
-      {hasSocial && (
-        <div>
-          <SocialLoginButtons
-            googleAvailable={googleAvailable}
-            githubAvailable={githubAvailable}
-            facebookAvailable={facebookAvailable}
-            microsoftAvailable={microsoftAvailable}
-            isProduction={isProduction}
-            callbackURL={callbackUrl}
-          />
+        <div className='pt-6 text-center text-[14px] font-light'>
+          <span className='font-normal'>Already have an account? </span>
+          <Link
+            href={`/login?callbackUrl=${callbackUrl}`}
+            className='font-medium text-(--brand-accent-hex) underline-offset-4 transition hover:text-(--brand-accent-hover-hex) hover:underline'
+          >
+            Sign in
+          </Link>
         </div>
-      )}
-
-      <div className='pt-6 text-center text-[14px] font-light'>
-        <span className='font-normal'>Already have an account? </span>
-        <Link
-          href={`/login?callbackUrl=${callbackUrl}`}
-          className='font-medium text-(--brand-accent-hex) underline-offset-4 transition hover:text-(--brand-accent-hover-hex) hover:underline'
-        >
-          Sign in
-        </Link>
-      </div>
+      </BounceSequence>
 
       <div className='absolute inset-x-0 bottom-0 px-8 pb-8 text-center text-[13px] font-[340] leading-relaxed text-muted-foreground sm:px-8 md:px-[44px]'>
         By creating an account, you agree to our{' '}
