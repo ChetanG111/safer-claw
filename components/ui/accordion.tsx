@@ -5,8 +5,9 @@ import { Plus, Minus } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
-function Accordion(props: AccordionPrimitive.Root.Props) {
-  return <AccordionPrimitive.Root data-slot='accordion' {...props} />
+function Accordion({ className, ...props }: AccordionPrimitive.Root.Props & { collapsible?: boolean }) {
+  const { collapsible, ...rest } = props
+  return <AccordionPrimitive.Root data-slot='accordion' className={className} {...rest} />
 }
 
 function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
@@ -23,6 +24,7 @@ function AccordionTrigger({ className, children, ...props }: AccordionPrimitive.
   return (
     <AccordionPrimitive.Header className='flex'>
       <AccordionPrimitive.Trigger
+        suppressHydrationWarning
         className={cn(
           'group accordion-trigger flex flex-1 cursor-pointer items-start justify-between gap-4 rounded-md py-4 text-left font-medium text-sm outline-none transition-all focus-visible:ring-[3px] focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-64',
           className

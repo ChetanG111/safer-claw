@@ -20,6 +20,18 @@ const nextConfig: NextConfig = {
   // Enable standalone output for Docker optimization
   // This reduces the Docker image size by including only necessary files
   // output: 'standalone',
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+    ],
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

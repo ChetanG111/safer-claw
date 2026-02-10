@@ -8,8 +8,13 @@ import { Button } from '@/components/ui/button'
 import { ArrowUpRight, Loader2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-export default function Hero() {
+import { useRouter } from 'next/navigation'
+import { User } from 'better-auth'
+
+export default function Hero({ user, isOnboarded = false }: { user: User | null, isOnboarded?: boolean }) {
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -95,10 +100,11 @@ export default function Hero() {
               onClick={async () => {
                 setLoading(true)
                 try {
-                  await client.signIn.social({
-                    provider: 'google',
-                    callbackURL: '/dashboard',
-                  })
+                  if (user) {
+                    router.push('/dashboard')
+                  } else {
+                    router.push('/login')
+                  }
                 } catch (error) {
                   setLoading(false)
                 }
@@ -111,14 +117,14 @@ export default function Hero() {
                 </>
               ) : (
                 <>
-                  Deploy Now
+                  {user && isOnboarded ? 'Go to Dashboard' : 'Deploy Now'}
                   <ArrowUpRight className='h-6 w-6 ml-2' />
                 </>
               )}
             </Button>
           </motion.div>
         </div>
-      </motion.div>
-    </main>
+      </motion.div >
+    </main >
   )
 }

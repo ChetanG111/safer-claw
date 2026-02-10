@@ -4,11 +4,13 @@ import { useState } from 'react'
 import { ArrowUpRight, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { client } from '@/lib/auth/auth-client'
+import { useRouter } from 'next/navigation'
 
 import { motion } from 'framer-motion'
 
 export default function CTA() {
   const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
   return (
     <section className='py-12 md:py-32 px-4 sm:px-6 bg-transparent overflow-hidden'>
@@ -70,16 +72,9 @@ export default function CTA() {
                 disabled={loading}
                 size="lg"
                 className='rounded-full px-12 h-16 text-lg font-bold bg-white hover:bg-slate-100 text-brand-navy shadow-lg transition-all hover:scale-105 active:scale-95'
-                onClick={async () => {
+                onClick={() => {
                   setLoading(true)
-                  try {
-                    await client.signIn.social({
-                      provider: 'google',
-                      callbackURL: '/dashboard',
-                    })
-                  } catch (error) {
-                    setLoading(false)
-                  }
+                  router.push('/login')
                 }}
               >
                 {loading ? (

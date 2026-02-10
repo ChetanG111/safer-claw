@@ -13,6 +13,7 @@ export const user = pgTable('user', {
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
   role: text('role').default('user').notNull(),
+  isOnboarded: boolean('is_onboarded').default(false).notNull(),
 })
 
 export const session = pgTable(
@@ -194,6 +195,33 @@ export const userRelations = relations(user, ({ many }) => ({
   sessions: many(session),
   accounts: many(account),
   notifications: many(notification),
+  agents: many(agent),
+}))
+
+export const agent = pgTable('agent', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: text('user_id')
+    .references(() => user.id, { onDelete: 'cascade' })
+    .notNull(),
+  type: text('type').notNull(), // 'support', 'sales', 'ops', 'custom'
+  name: text('name').notNull(),
+  description: text('description'),
+  status: text('status').default('configuring').notNull(), // 'configuring', 'active', 'inactive'
+  config: text('config'), // JSON string for specific agent configuration
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at')
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+})
+
+export const agentRelations = relations(agent, ({ one }) => ({
+  user: one(user, {
+    fields: [agent.userId],
+    references: [user.id],
+  }),
 }))
 
 export const sessionRelations = relations(session, ({ one }) => ({

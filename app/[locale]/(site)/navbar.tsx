@@ -10,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 import { motion } from 'framer-motion'
 
-export default function Navbar({ showLinks = true }: { showLinks?: boolean }) {
+export default function Navbar({ showLinks = true, isOnboarded = false }: { showLinks?: boolean, isOnboarded?: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { data: session } = useSession()
   const user = session?.user
@@ -55,6 +55,17 @@ export default function Navbar({ showLinks = true }: { showLinks?: boolean }) {
                   >
                     Pricing
                   </Link>
+                  {user && !isOnboarded && (
+                    <Button
+                      size="sm"
+                      className='rounded-full px-6 font-bold bg-brand-navy text-white hover:bg-brand-navy/90'
+                      render={
+                        <Link href='/dashboard'>
+                          Deploy
+                        </Link>
+                      }
+                    />
+                  )}
                   <Link
                     href='/#faq'
                     className='text-sm font-semibold text-slate-500 transition-colors hover:text-brand-navy'
@@ -69,7 +80,7 @@ export default function Navbar({ showLinks = true }: { showLinks?: boolean }) {
                   </Link>
                 </>
               )}
-              {user && (
+              {user && isOnboarded && (
                 <Link
                   href='/dashboard'
                   className='text-sm font-semibold text-slate-500 transition-colors hover:text-brand-navy'
@@ -151,7 +162,22 @@ export default function Navbar({ showLinks = true }: { showLinks?: boolean }) {
                 </>
               )}
 
-              {user && (
+              {user && !isOnboarded && (
+                <div className='pt-2'>
+                  <Button
+                    className='w-full rounded-full h-12 font-bold bg-brand-navy text-white hover:bg-brand-navy/90'
+                    render={
+                      <Link
+                        href='/dashboard'
+                        onClick={toggleMenu}
+                      >
+                        Deploy
+                      </Link>
+                    }
+                  />
+                </div>
+              )}
+              {user && isOnboarded && (
                 <Link
                   href='/dashboard'
                   className='block rounded-xl px-4 py-3 text-base font-semibold text-slate-600 hover:bg-slate-50 hover:text-brand-navy transition-all'
