@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { AdminSidebar } from '@/components/admin/admin-sidebar'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,6 +14,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { FeedbackWidget } from '@/components/feedback/feedback-widget'
+import { StampBackground } from '@/components/branding/stamp-background'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   let session = await auth.api.getSession({
@@ -65,19 +67,20 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <SidebarProvider>
       <AdminSidebar user={localizedUser} />
-      <SidebarInset>
-        <header className='sticky top-0 z-40 flex h-14 shrink-0 items-center justify-between border-b border-[#E4E4E7] bg-[#F4F4F5] px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12'>
+      <SidebarInset className='bg-white'>
+        <StampBackground />
+        <header className='sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between border-b border-slate-200/50 bg-white/70 backdrop-blur-xl px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12'>
           <div className='flex items-center gap-2'>
             <SidebarTrigger className='-ml-1' />
             <Separator orientation='vertical' className='mr-2 h-4' />
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className='hidden md:block'>
-                  <BreadcrumbLink href='/admin'>Admin</BreadcrumbLink>
+                  <BreadcrumbLink href='/admin' className='font-semibold text-slate-500 hover:text-brand-navy'>Admin</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className='hidden md:block' />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Dashboard</BreadcrumbPage>
+                  <BreadcrumbPage className='font-bold text-brand-navy'>Dashboard</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
@@ -85,20 +88,15 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
           <div className='flex items-center gap-4'>
             <div className='hidden items-center gap-3 sm:flex'>
-              <span className='text-sm font-medium text-muted-foreground'>
+              <span className='text-sm font-semibold text-slate-700'>
                 {localizedUser.name}
               </span>
-              <div className='h-8 w-8 overflow-hidden rounded-full font-medium text-xs bg-muted flex items-center justify-center'>
-                {localizedUser.image ? (
-                  <img
-                    src={localizedUser.image}
-                    alt={localizedUser.name}
-                    className='h-full w-full object-cover'
-                  />
-                ) : (
-                  localizedUser.name.charAt(0).toUpperCase()
-                )}
-              </div>
+              <Avatar className='h-9 w-9 border-2 border-slate-100'>
+                <AvatarImage src={localizedUser.image || ''} alt={localizedUser.name} />
+                <AvatarFallback className='bg-slate-100 text-slate-600 font-bold'>
+                  {localizedUser.name.charAt(0).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
             </div>
           </div>
         </header>

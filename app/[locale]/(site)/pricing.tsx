@@ -73,50 +73,44 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
   }
 
   return (
-    <section id='pricing' className='py-12 md:py-24 bg-[#F4F4F5]'>
+    <section id='pricing' className='py-12 md:py-24 bg-transparent'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
         <div className='mx-auto max-w-3xl'>
-          <h2
-            className='text-center text-sm font-medium text-muted-foreground mb-8'
-            style={{ fontFamily: 'var(--font-geist-mono)' }}
-          >
+          <h2 className='text-center text-sm font-bold tracking-widest text-brand-navy mb-8 font-mono'>
             {t('PRICING')}
           </h2>{' '}
           <div className='text-center mb-16'>
-            <h2 className='text-4xl font-semibold tracking-tight mb-4'>
+            <h2 className='text-4xl md:text-5xl font-bold tracking-tight mb-4 text-brand-navy'>
               Built for builders who play to win
             </h2>
-            <p className='text-lg text-muted-foreground'>
+            <p className='text-lg md:text-xl text-slate-600'>
               Launch faster, sell sooner, and grow without fighting setup pain
             </p>
           </div>
           <div className='flex justify-center'>
             {/* Premium */}
-            <div className='flex flex-col p-6 max-w-sm w-full relative border border-primary rounded-2xl bg-card shadow-lg shadow-primary/5'>
-              <div className='mb-6'>
+            <div className='flex flex-col p-8 max-w-md w-full relative border border-slate-200 rounded-3xl bg-white shadow-2xl shadow-slate-200/50 transition-transform hover:scale-[1.02]'>
+              <div className='mb-8'>
                 <div className='flex items-start justify-between mb-4'>
-                  <h3 className='text-2xl font-semibold'>Premium</h3>
-                  <Badge className='bg-white border border-[#DBDAD6] text-[#878787] rounded-full px-3 py-3 font-medium flex items-center gap-1.5'>
-                    <Flame className='h-3.5 w-3.5' />
+                  <h3 className='text-3xl font-bold text-brand-navy'>Premium</h3>
+                  <Badge className='bg-emerald-50 border border-emerald-100 text-emerald-700 rounded-full px-4 py-1.5 font-semibold flex items-center gap-1.5'>
+                    <Flame className='h-3.5 w-3.5 fill-emerald-500' />
                     Most popular
                   </Badge>
                 </div>
-                <div className='mb-4'>
-                  <div className='flex items-baseline gap-2'>
-                    <span className='text-sm text-muted-foreground line-through font-mono'>
+                <div className='mb-6'>
+                  <div className='flex items-baseline gap-3'>
+                    <span className='text-lg text-slate-400 line-through font-mono'>
                       $29
                     </span>
-                    <span className='text-4xl font-semibold font-mono'>{displayPrice}</span>
+                    <span className='text-5xl font-bold font-mono text-brand-navy'>{displayPrice}</span>
                   </div>
                 </div>
-                <p className='text-sm text-muted-foreground mb-4'>
+                <p className='text-slate-600 mb-6 leading-relaxed'>
                   For founders & builders ready to ship real products and make money.
                 </p>
-                <p
-                  className='text-xs font-medium text-foreground uppercase'
-                  style={{ fontFamily: 'var(--font-geist-mono)' }}
-                >
-                  INCLUDING
+                <p className='text-xs font-bold text-brand-navy uppercase tracking-widest border-b border-slate-100 pb-4 font-mono'>
+                  EVERYTHING INCLUDED
                 </p>
               </div>
               <ul className='space-y-3 mb-8 flex-1'>
@@ -132,7 +126,7 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
               </ul>
               <div className='flex flex-col gap-2'>
                 <Button
-                  className='w-full h-12! text-sm font-medium'
+                  className='w-full rounded-2xl h-14 text-lg font-bold bg-brand-navy hover:bg-brand-navy/90 text-white shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]'
                   size='lg'
                   disabled={loadingPlan === 'pro'}
                   onClick={() => handleCheckout('pro')} // Consider using a constant or type from paymentConfig
@@ -140,12 +134,12 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
                   {loadingPlan === 'pro' ? (
                     <Loader2 className='mr-2 h-4 w-4 animate-spin' />
                   ) : (
-                    'Launch'
+                    'Deploy'
                   )}
                   {!loadingPlan && <ArrowUpRight className='ml-2 h-4 w-4' />}
                 </Button>
                 <p className='text-sm text-center text-muted-foreground'>
-                  Start your project today.
+                  Deploy your first agent today.
                 </p>
               </div>
             </div>

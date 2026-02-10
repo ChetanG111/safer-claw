@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth/auth'
 import { AppHeader } from '@/components/app-header'
 import { FeedbackWidget } from '@/components/feedback/feedback-widget'
+import { StampBackground } from '@/components/branding/stamp-background'
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
   const session = await auth.api.getSession({
@@ -29,9 +30,10 @@ export default async function MainLayout({ children }: { children: React.ReactNo
   }
 
   return (
-    <div className='relative flex min-h-screen flex-col'>
+    <div className='relative flex min-h-screen flex-col bg-white'>
+      <StampBackground />
       <AppHeader user={user} />
-      <main className='flex-1'>{children}</main>
+      <main className='flex-1 relative z-10'>{children}</main>
       <FeedbackWidget />
     </div>
   )

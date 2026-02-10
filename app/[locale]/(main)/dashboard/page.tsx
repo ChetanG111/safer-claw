@@ -1,51 +1,56 @@
 import Link from 'next/link'
-import { CreditCard, Settings, User } from 'lucide-react'
+import { CreditCard, Settings, User, ArrowUpRight } from 'lucide-react'
 
 export default function DashboardPage() {
   return (
-    <div className='container mx-auto py-8 px-4 max-w-4xl'>
-      <h1 className='text-3xl font-bold tracking-tight mb-2'>Dashboard</h1>
-      <p className='text-muted-foreground mb-8'>Welcome to your dashboard</p>
+    <div className='container mx-auto py-12 px-4 max-w-5xl'>
+      <div className='mb-12'>
+        <h1 className='text-4xl font-bold tracking-tight text-brand-navy mb-3'>Dashboard</h1>
+        <p className='text-lg text-slate-500'>Welcome back! Here's an overview of your AI operators.</p>
+      </div>
 
-      <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
-        {/* Billing Demo Card */}
+      <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
+        {/* Billing Card */}
         <Link
           href='/dashboard/billing'
-          className='group rounded-lg border p-6 hover:border-primary hover:bg-muted/50 transition-colors'
+          className='group relative flex flex-col p-8 rounded-3xl border border-slate-200 bg-white/50 backdrop-blur-sm shadow-sm transition-all hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1'
         >
-          <div className='flex items-center gap-3 mb-3'>
-            <div className='p-2 rounded-lg bg-primary/10 text-primary'>
-              <CreditCard className='h-5 w-5' />
+          <div className='flex items-start justify-between mb-8'>
+            <div className='p-3 rounded-2xl bg-slate-50 text-brand-navy border border-slate-100 group-hover:bg-brand-navy group-hover:text-white transition-colors'>
+              <CreditCard className='h-6 w-6' />
             </div>
-            <h2 className='text-lg font-semibold group-hover:text-primary transition-colors'>
-              Billing Demo
-            </h2>
+            <ArrowUpRight className='h-5 w-5 text-slate-300 group-hover:text-brand-navy transition-colors' />
           </div>
-          <p className='text-sm text-muted-foreground'>
-            Explore the billing system integration with better-auth payment plugins.
+          <h2 className='text-xl font-bold text-brand-navy mb-2'>
+            Billing
+          </h2>
+          <p className='text-sm text-slate-500 leading-relaxed'>
+            Manage your subscription and view payment history.
           </p>
         </Link>
 
-        {/* Profile Card (placeholder) */}
-        <div className='rounded-lg border p-6 opacity-60'>
-          <div className='flex items-center gap-3 mb-3'>
-            <div className='p-2 rounded-lg bg-muted'>
-              <User className='h-5 w-5' />
+        {/* Profile Card */}
+        <div className='group relative flex flex-col p-8 rounded-3xl border border-slate-200 bg-white/50 backdrop-blur-sm shadow-sm opacity-60 grayscale'>
+          <div className='flex items-start justify-between mb-8'>
+            <div className='p-3 rounded-2xl bg-slate-50 text-brand-navy border border-slate-100'>
+              <User className='h-6 w-6' />
             </div>
-            <h2 className='text-lg font-semibold'>Profile</h2>
           </div>
-          <p className='text-sm text-muted-foreground'>Manage your account settings.</p>
+          <h2 className='text-xl font-bold text-brand-navy mb-2'>Profile</h2>
+          <p className='text-sm text-slate-500 leading-relaxed'>Manage your personal account settings.</p>
+          <span className='absolute top-4 right-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono bg-slate-50 px-2 py-1 rounded-full'>Coming Soon</span>
         </div>
 
-        {/* Settings Card (placeholder) */}
-        <div className='rounded-lg border p-6 opacity-60'>
-          <div className='flex items-center gap-3 mb-3'>
-            <div className='p-2 rounded-lg bg-muted'>
-              <Settings className='h-5 w-5' />
+        {/* Settings Card */}
+        <div className='group relative flex flex-col p-8 rounded-3xl border border-slate-200 bg-white/50 backdrop-blur-sm shadow-sm opacity-60 grayscale'>
+          <div className='flex items-start justify-between mb-8'>
+            <div className='p-3 rounded-2xl bg-slate-50 text-brand-navy border border-slate-100'>
+              <Settings className='h-6 w-6' />
             </div>
-            <h2 className='text-lg font-semibold'>Settings</h2>
           </div>
-          <p className='text-sm text-muted-foreground'>Configure your preferences.</p>
+          <h2 className='text-xl font-bold text-brand-navy mb-2'>Settings</h2>
+          <p className='text-sm text-slate-500 leading-relaxed'>Configure your application preferences.</p>
+          <span className='absolute top-4 right-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono bg-slate-50 px-2 py-1 rounded-full'>Coming Soon</span>
         </div>
       </div>
     </div>

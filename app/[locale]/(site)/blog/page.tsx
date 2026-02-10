@@ -17,11 +17,12 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   const posts = await getAllMDX('blog')
 
   return (
-    <div className='container mx-auto max-w-4xl py-24'>
-      <div className='mb-12 text-center'>
-        <h1 className='text-4xl font-bold tracking-tight lg:text-5xl'>Blog</h1>
-        <p className='mt-4 text-lg text-muted-foreground'>
-          Latest updates and stories from our team.
+    <div className='container mx-auto max-w-5xl py-32 px-4'>
+      <div className='mb-20 text-center'>
+        <h2 className='text-sm font-bold tracking-widest text-brand-navy mb-4 font-mono uppercase'>LATEST UPDATES</h2>
+        <h1 className='text-4xl font-bold tracking-tight lg:text-6xl text-brand-navy'>Blog</h1>
+        <p className='mt-6 text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed'>
+          Deep dives into security, AI workflows, and the future of safe operators.
         </p>
       </div>
       <div className='grid gap-8 md:grid-cols-2 lg:grid-cols-3'>
@@ -29,11 +30,11 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className='group flex flex-col overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-all hover:shadow-md'
+            className='group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white/50 backdrop-blur-sm shadow-sm transition-all hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1'
           >
-            <div className='aspect-video w-full bg-muted object-cover transition-colors group-hover:bg-muted/80' />
-            <div className='flex flex-1 flex-col p-6'>
-              <div className='flex items-center justify-between gap-4 text-xs text-muted-foreground'>
+            <div className='aspect-video w-full bg-slate-100 object-cover transition-colors group-hover:bg-slate-200 opacity-80 group-hover:opacity-100' />
+            <div className='flex flex-1 flex-col p-8'>
+              <div className='flex items-center justify-between gap-4 text-xs font-bold font-mono text-slate-400 uppercase tracking-widest'>
                 <time dateTime={post.meta.date}>
                   {new Date(post.meta.date).toLocaleDateString(locale, {
                     year: 'numeric',
@@ -42,10 +43,10 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                   })}
                 </time>
               </div>
-              <h2 className='mt-4 text-xl font-bold tracking-tight transition-colors group-hover:text-primary'>
+              <h2 className='mt-4 text-xl font-bold tracking-tight text-brand-navy transition-colors group-hover:text-emerald-600'>
                 {post.meta.title}
               </h2>
-              <p className='mt-4 line-clamp-3 text-sm text-muted-foreground'>
+              <p className='mt-4 line-clamp-3 text-sm text-slate-500 leading-relaxed font-medium'>
                 {post.meta.description}
               </p>
             </div>

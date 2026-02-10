@@ -193,7 +193,20 @@ export class DodoPaymentsAdapter implements PaymentAdapter {
         case 'subscription.failed':
         case 'subscription.on_hold':
         case 'subscription.plan_changed': {
-          const sub = event.data as any
+          const sub = event.data as {
+            subscription_id: string
+            product_id: string
+            status: string
+            payment_frequency_interval: string
+            recurring_pre_tax_amount: number
+            currency: string
+            previous_billing_date?: string
+            next_billing_date?: string
+            cancel_at_next_billing_date?: boolean
+            cancelled_at?: string
+            customer?: { customer_id: string }
+            metadata?: { userId?: string }
+          }
           if (!sub.subscription_id) return { processed: false, error: 'Invalid subscription data' }
 
           const plan = this.mapProductToPlan(sub.product_id)

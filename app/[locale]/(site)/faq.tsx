@@ -6,7 +6,6 @@ import {
   AccordionTrigger,
   AccordionPanel,
 } from '@/components/ui/accordion'
-import Link from 'next/link'
 
 export default function FAQ() {
   const faqs = [
@@ -42,49 +41,37 @@ export default function FAQ() {
   ]
 
   return (
-    <section id='faq' className='py-12 md:py-24 border-t border-b border-[#E4E4E7] bg-[#F4F4F5]'>
+    <section id='faq' className='py-12 md:py-24 bg-transparent'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
-        <h2
-          className='text-center text-sm font-medium text-muted-foreground mb-8'
-          style={{ fontFamily: 'var(--font-geist-mono)' }}
-        >
-          FAQ
+        <h2 className='text-center text-sm font-bold tracking-widest text-brand-navy mb-8 font-mono'>
+          QUESTIONS
         </h2>
-        <div className='flex flex-col items-center gap-8 max-w-2xl mx-auto'>
-          {/* Header Section */}
-          <div className='text-center'>
-            <h2 className='text-3xl font-semibold tracking-tight mb-4'>
-              Frequently Asked Questions
-            </h2>
-            <p className='text-base text-muted-foreground'>
-              Have another question? Contact us on{' '}
-              <Link
-                href='https://x.com/kyronhq'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='text-foreground underline underline-offset-4 hover:text-primary transition-colors'
-              >
-                Twitter
-              </Link>
-              .
-            </p>
-          </div>
+        <div className='text-center mb-16'>
+          <h2 className='text-4xl md:text-5xl font-bold tracking-tight mb-4 text-brand-navy'>
+            Common Questions
+          </h2>
+          <p className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto'>
+            Everything you need to know about Safer-Claw.
+          </p>
+        </div>
 
-          {/* FAQ Items */}
-          <div className='w-full'>
-            <Accordion className='space-y-0'>
-              {faqs.map((faq, index) => (
-                <AccordionItem key={index} className='border-b border-[#E4E4E7] last:border-b-0'>
-                  <AccordionTrigger className='text-left py-4 text-base font-medium hover:no-underline'>
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionPanel className='text-muted-foreground text-sm pb-4'>
-                    {faq.answer}
-                  </AccordionPanel>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
+        <div className='mx-auto max-w-3xl'>
+          <Accordion type='single' collapsible className='w-full space-y-4'>
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className='border border-slate-200 rounded-2xl px-6 bg-white/50 backdrop-blur-sm transition-all hover:bg-white/80 overflow-hidden'
+              >
+                <AccordionTrigger className='text-left py-6 text-lg font-bold text-brand-navy hover:no-underline'>
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionPanel className='text-slate-600 text-base pb-6 leading-relaxed'>
+                  {faq.answer}
+                </AccordionPanel>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
     </section>

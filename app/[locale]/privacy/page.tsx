@@ -16,10 +16,10 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
   return (
     <GridLayout>
       <Navbar />
-      <main className='min-h-screen pt-14'>
+      <main className='min-h-screen pt-20 bg-white'>
         <div className='mx-auto max-w-4xl px-4 py-16 sm:px-6'>
-          <h1 className='mb-4 text-4xl font-semibold tracking-tight'>Privacy Policy</h1>
-          <p className='mb-12 text-sm text-muted-foreground'>Last updated: 17 jan 2026</p>
+          <h1 className='mb-4 text-4xl md:text-5xl font-bold tracking-tight text-brand-navy'>Privacy Policy</h1>
+          <p className='mb-12 text-sm font-semibold text-slate-400 font-mono text-uppercase tracking-widest'>LAST UPDATED: 17 JAN 2026</p>
 
           <div className='prose prose-sm max-w-none space-y-8 text-muted-foreground'>
             <p>we value your privacy. here's how we handle your info.</p>

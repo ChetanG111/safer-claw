@@ -5,12 +5,14 @@ interface GridLayoutProps {
   className?: string
 }
 
+import { StampBackground } from '@/components/branding/stamp-background'
+
 export const GridLayout = ({ children, className = '' }: GridLayoutProps) => {
   return (
-    <>
-      {/* Content Wrapper */}
-      <div className={`relative ${className}`}>{children}</div>
-    </>
+    <div className={`relative min-h-screen ${className}`}>
+      <StampBackground />
+      <div className='relative z-10'>{children}</div>
+    </div>
   )
 }
 

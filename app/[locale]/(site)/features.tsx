@@ -37,31 +37,27 @@ export default function Features() {
   const stack = []
 
   return (
-    <section id='features' className='py-12 md:py-24 bg-[#F4F4F5]'>
+    <section id='features' className='py-12 md:py-24 bg-transparent'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
-        <h2
-          className='text-center text-sm font-medium text-muted-foreground mb-8'
-          style={{ fontFamily: 'var(--font-geist-mono)' }}
-        >
+        <h2 className='text-center text-sm font-bold tracking-widest text-brand-navy mb-8 font-mono'>
           CAPABILITIES
         </h2>
         <div className='text-center mb-16'>
-          <h2 className='text-4xl font-semibold tracking-tight mb-4'>
+          <h2 className='text-4xl md:text-5xl font-bold tracking-tight mb-4 text-brand-navy'>
             Your Digital Employee, Ready to Work
           </h2>
-          <p className='text-lg text-muted-foreground'>
+          <p className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto'>
             Powerful features designed for operators, solo founders, and small teams.
           </p>
         </div>
 
-        <div className='border border-[#E4E4E7] rounded-none overflow-hidden bg-transparent'>
+        <div className='border border-slate-200 rounded-3xl overflow-hidden bg-white/50 backdrop-blur-sm shadow-sm'>
           <div className='grid grid-cols-1 md:grid-cols-3 auto-rows-fr h-full'>
             {[...features, ...stack].map((item, index) => (
               <div
                 key={index}
-                className={`p-6 bg-transparent flex flex-col items-center text-center md:items-start md:text-left border-b last:border-b-0 border-[#E4E4E7] md:border-b-0 ${
-                  index % 3 !== 2 ? 'md:border-r md:border-[#E4E4E7]' : ''
-                } ${index < 3 ? 'md:border-b md:border-[#E4E4E7]' : ''}`}
+                className={`p-10 flex flex-col items-center text-center md:items-start md:text-left border-b last:border-b-0 border-slate-100 md:border-b-0 ${index % 3 !== 2 ? 'md:border-r md:border-slate-100' : ''
+                  } ${index < 3 ? 'md:border-b md:border-slate-100' : ''} hover:bg-white/80 transition-colors`}
               >
                 {item.logo && !item.logos && (
                   <div className='mb-3 flex items-center justify-center md:justify-start gap-2'>
@@ -75,9 +71,8 @@ export default function Features() {
                         key={logoIndex}
                         src={logo}
                         alt={item.title}
-                        className={`h-10 w-10 object-contain ${
-                          logo.includes('prisma') ? 'brightness-0' : ''
-                        }`}
+                        className={`h-10 w-10 object-contain ${logo.includes('prisma') ? 'brightness-0' : ''
+                          }`}
                       />
                     ))}
                   </div>
