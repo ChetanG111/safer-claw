@@ -7,6 +7,8 @@ import {
   AccordionPanel,
 } from '@/components/ui/accordion'
 
+import { motion } from 'framer-motion'
+
 export default function FAQ() {
   const faqs = [
     {
@@ -40,39 +42,87 @@ export default function FAQ() {
     },
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  } as const
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 260,
+        damping: 20,
+      },
+    },
+  } as const
+
   return (
-    <section id='faq' className='py-12 md:py-24 bg-transparent'>
+    <section id='faq' className='py-12 md:py-24 bg-transparent overflow-hidden'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
-        <h2 className='text-center text-sm font-bold tracking-widest text-brand-navy mb-8 font-mono'>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className='text-center text-sm font-bold tracking-widest text-brand-navy mb-8 font-mono'
+        >
           QUESTIONS
-        </h2>
+        </motion.h2>
         <div className='text-center mb-16'>
-          <h2 className='text-4xl md:text-5xl font-bold tracking-tight mb-4 text-brand-navy'>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className='text-4xl md:text-5xl font-bold tracking-tight mb-4 text-brand-navy'
+          >
             Common Questions
-          </h2>
-          <p className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto'>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto'
+          >
             Everything you need to know about Safer-Claw.
-          </p>
+          </motion.p>
         </div>
 
-        <div className='mx-auto max-w-3xl'>
+        <motion.div
+          variants={containerVariants}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, margin: '-100px' }}
+          className='mx-auto max-w-3xl'
+        >
           <Accordion type='single' collapsible className='w-full space-y-4'>
             {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className='border border-slate-200 rounded-2xl px-6 bg-white/50 backdrop-blur-sm transition-all hover:bg-white/80 overflow-hidden'
-              >
-                <AccordionTrigger className='text-left py-6 text-lg font-bold text-brand-navy hover:no-underline'>
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionPanel className='text-slate-600 text-base pb-6 leading-relaxed'>
-                  {faq.answer}
-                </AccordionPanel>
-              </AccordionItem>
+              <motion.div key={index} variants={itemVariants}>
+                <AccordionItem
+                  value={`item-${index}`}
+                  className='border border-slate-200 rounded-2xl px-6 bg-white/50 backdrop-blur-sm transition-all hover:bg-white/80 overflow-hidden'
+                >
+                  <AccordionTrigger className='text-left py-6 text-lg font-bold text-brand-navy hover:no-underline'>
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionPanel className='text-slate-600 text-base pb-6 leading-relaxed'>
+                    {faq.answer}
+                  </AccordionPanel>
+                </AccordionItem>
+              </motion.div>
             ))}
           </Accordion>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

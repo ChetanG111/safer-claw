@@ -1,5 +1,7 @@
 'use client'
 
+import { motion } from 'framer-motion'
+
 export default function Features() {
   const features = [
     {
@@ -34,55 +36,84 @@ export default function Features() {
     },
   ]
 
-  const stack = []
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 200,
+        damping: 15,
+      },
+    },
+  }
 
   return (
-    <section id='features' className='py-12 md:py-24 bg-transparent'>
+    <section id='features' className='py-12 md:py-24 bg-transparent overflow-hidden'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
-        <h2 className='text-center text-sm font-bold tracking-widest text-brand-navy mb-8 font-mono'>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className='text-center text-sm font-bold tracking-widest text-brand-navy mb-8 font-mono'
+        >
           CAPABILITIES
-        </h2>
+        </motion.h2>
         <div className='text-center mb-16'>
-          <h2 className='text-4xl md:text-5xl font-bold tracking-tight mb-4 text-brand-navy'>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className='text-4xl md:text-5xl font-bold tracking-tight mb-4 text-brand-navy'
+          >
             Your Digital Employee, Ready to Work
-          </h2>
-          <p className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto'>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto'
+          >
             Powerful features designed for operators, solo founders, and small teams.
-          </p>
+          </motion.p>
         </div>
 
-        <div className='border border-slate-200 rounded-3xl overflow-hidden bg-white/50 backdrop-blur-sm shadow-sm'>
+        <motion.div
+          variants={containerVariants}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true, margin: '-100px' }}
+          className='border border-slate-200 rounded-3xl overflow-hidden bg-white/50 backdrop-blur-sm shadow-sm'
+        >
           <div className='grid grid-cols-1 md:grid-cols-3 auto-rows-fr h-full'>
-            {[...features, ...stack].map((item, index) => (
-              <div
+            {features.map((item, index) => (
+              <motion.div
                 key={index}
+                variants={itemVariants}
                 className={`p-10 flex flex-col items-center text-center md:items-start md:text-left border-b last:border-b-0 border-slate-100 md:border-b-0 ${index % 3 !== 2 ? 'md:border-r md:border-slate-100' : ''
-                  } ${index < 3 ? 'md:border-b md:border-slate-100' : ''} hover:bg-white/80 transition-colors`}
+                  } ${index < 3 ? 'md:border-b md:border-slate-100' : ''} hover:bg-white/80 transition-colors group cursor-default`}
               >
-                {item.logo && !item.logos && (
-                  <div className='mb-3 flex items-center justify-center md:justify-start gap-2'>
-                    <img src={item.logo} alt={item.title} className='h-10 w-10 object-contain' />
-                  </div>
-                )}
-                {item.logos && (
-                  <div className='mb-3 flex items-center justify-center md:justify-start gap-2 flex-wrap'>
-                    {item.logos.map((logo, logoIndex) => (
-                      <img
-                        key={logoIndex}
-                        src={logo}
-                        alt={item.title}
-                        className={`h-10 w-10 object-contain ${logo.includes('prisma') ? 'brightness-0' : ''
-                          }`}
-                      />
-                    ))}
-                  </div>
-                )}
-                <h3 className='text-lg font-semibold mb-2'>{item.title}</h3>
+                <h3 className='text-lg font-semibold mb-2 group-hover:text-brand-navy transition-colors'>{item.title}</h3>
                 <p className='text-sm text-muted-foreground'>{item.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -16,6 +16,8 @@ interface PricingProps {
   activeProvider?: PaymentProvider
 }
 
+import { motion } from 'framer-motion'
+
 export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
   const t = useTranslations()
   const router = useRouter()
@@ -73,23 +75,52 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
   }
 
   return (
-    <section id='pricing' className='py-12 md:py-24 bg-transparent'>
+    <section id='pricing' className='py-12 md:py-24 bg-transparent overflow-hidden'>
       <div className='mx-auto max-w-6xl px-4 sm:px-6'>
         <div className='mx-auto max-w-3xl'>
-          <h2 className='text-center text-sm font-bold tracking-widest text-brand-navy mb-8 font-mono'>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className='text-center text-sm font-bold tracking-widest text-brand-navy mb-8 font-mono'
+          >
             {t('PRICING')}
-          </h2>{' '}
+          </motion.h2>
           <div className='text-center mb-16'>
-            <h2 className='text-4xl md:text-5xl font-bold tracking-tight mb-4 text-brand-navy'>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className='text-4xl md:text-5xl font-bold tracking-tight mb-4 text-brand-navy'
+            >
               Built for builders who play to win
-            </h2>
-            <p className='text-lg md:text-xl text-slate-600'>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className='text-lg md:text-xl text-slate-600'
+            >
               Launch faster, sell sooner, and grow without fighting setup pain
-            </p>
+            </motion.p>
           </div>
           <div className='flex justify-center'>
             {/* Premium */}
-            <div className='flex flex-col p-8 max-w-md w-full relative border border-slate-200 rounded-3xl bg-white shadow-2xl shadow-slate-200/50 transition-transform hover:scale-[1.02]'>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+                delay: 0.3,
+              }}
+              className='flex flex-col p-8 max-w-md w-full relative border border-slate-200 rounded-3xl bg-white shadow-2xl shadow-slate-200/50 transition-transform hover:scale-[1.02] active:scale-[0.98]'
+            >
               <div className='mb-8'>
                 <div className='flex items-start justify-between mb-4'>
                   <h3 className='text-3xl font-bold text-brand-navy'>Premium</h3>
@@ -115,13 +146,20 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
               </div>
               <ul className='space-y-3 mb-8 flex-1'>
                 {premiumFeatures.map((feature, index) => (
-                  <li key={index} className='flex items-center gap-2 text-sm'>
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 + index * 0.05 }}
+                    className='flex items-center gap-2 text-sm'
+                  >
                     <HugeiconsIcon
                       icon={CheckmarkCircle01Icon}
                       className='h-4 w-4 text-muted-foreground shrink-0'
                     />
                     <span className='text-muted-foreground'>{feature.text}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
               <div className='flex flex-col gap-2'>
@@ -129,7 +167,7 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
                   className='w-full rounded-2xl h-14 text-lg font-bold bg-brand-navy hover:bg-brand-navy/90 text-white shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]'
                   size='lg'
                   disabled={loadingPlan === 'pro'}
-                  onClick={() => handleCheckout('pro')} // Consider using a constant or type from paymentConfig
+                  onClick={() => handleCheckout('pro')}
                 >
                   {loadingPlan === 'pro' ? (
                     <Loader2 className='mr-2 h-4 w-4 animate-spin' />
@@ -142,7 +180,7 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
                   Deploy your first agent today.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

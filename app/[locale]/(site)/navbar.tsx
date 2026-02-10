@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button'
 import { useSession } from '@/lib/auth/auth-client'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
+import { motion } from 'framer-motion'
+
 export default function Navbar({ showLinks = true }: { showLinks?: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { data: session } = useSession()
@@ -19,7 +21,12 @@ export default function Navbar({ showLinks = true }: { showLinks?: boolean }) {
 
   return (
     <>
-      <nav className='fixed inset-x-0 top-0 z-50 border-b border-slate-200/50 bg-white/70 backdrop-blur-xl'>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+        className='fixed inset-x-0 top-0 z-50 border-b border-slate-200/50 bg-white/70 backdrop-blur-xl'
+      >
         <div className='mx-auto max-w-7xl flex h-16 items-center justify-between gap-8 px-4 sm:px-6'>
           <div className='flex items-center gap-3'>
             <Link href='/' className='flex items-center gap-2 group'>
@@ -172,7 +179,7 @@ export default function Navbar({ showLinks = true }: { showLinks?: boolean }) {
             </div>
           </div>
         )}
-      </nav>
+      </motion.nav>
     </>
   )
 }
