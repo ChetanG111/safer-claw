@@ -10,12 +10,21 @@ import { Flame, ArrowUpRight, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useSession } from '@/lib/auth/auth-client'
+import { getPriceConfig, type PaymentProvider } from '@/config/payments'
 
-export default function Pricing() {
+interface PricingProps {
+  activeProvider?: PaymentProvider
+}
+
+export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
   const t = useTranslations()
   const router = useRouter()
   const { data: session } = useSession()
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null)
+
+  const proPrices = getPriceConfig('pro', activeProvider)
+  const proPrice = proPrices.find((p) => p.interval === 'month') || proPrices[0]
+  const displayPrice = proPrice ? `$${proPrice.amount / 100}` : '-'
 
   const premiumFeatures = [
     { text: 'Full Next.js boilerplate', included: true },
@@ -97,7 +106,7 @@ export default function Pricing() {
                     <span className='text-sm text-muted-foreground line-through font-mono'>
                       $29
                     </span>
-                    <span className='text-4xl font-semibold font-mono'>$19</span> {/* TODO: Use paymentConfig.plans.pro.prices to derive this dynamically */}
+                    <span className='text-4xl font-semibold font-mono'>{displayPrice}</span>
                   </div>
                 </div>
                 <p className='text-sm text-muted-foreground mb-4'>

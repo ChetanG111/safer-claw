@@ -79,10 +79,6 @@ export class DodoPaymentsAdapter implements PaymentAdapter {
     }
 
     // If we have a customer ID, attach it.
-    if (customerId) {
-      // Dodo creates a customer based on email automatically if not provided.
-    }
-
     if (email) {
       params.customer = {
         email: email,

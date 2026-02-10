@@ -70,6 +70,8 @@ export async function POST(req: Request) {
       } else if (provider === 'lemonsqueezy') {
         // Lemon Squeezy event name is in meta.event_name
         type = parsedBody.meta?.event_name
+      } else if (provider === 'dodopayments') {
+        type = parsedBody.type
       }
 
       if (!type) {
