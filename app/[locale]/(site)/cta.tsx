@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { ArrowUpRight, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { client } from '@/lib/auth/auth-client'
 import { useRouter } from 'next/navigation'
 
 import { motion } from 'framer-motion'
@@ -27,8 +26,14 @@ export default function CTA() {
           className='relative bg-brand-navy rounded-[3rem] p-12 md:p-20 text-center overflow-hidden shadow-2xl'
         >
           {/* Decorative background element for the CTA card */}
-          <div aria-hidden="true" className='absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-emerald-500/10 blur-[100px] rounded-full' />
-          <div aria-hidden="true" className='absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/10 blur-[100px] rounded-full' />
+          <div
+            aria-hidden='true'
+            className='absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-emerald-500/10 blur-[100px] rounded-full'
+          />
+          <div
+            aria-hidden='true'
+            className='absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/10 blur-[100px] rounded-full'
+          />
 
           <div className='relative z-10'>
             <motion.h2
@@ -58,7 +63,8 @@ export default function CTA() {
               transition={{ delay: 0.4 }}
               className='text-lg md:text-xl text-slate-400 mb-12 max-w-2xl mx-auto'
             >
-              Secure your spot and be the first to deploy your safe AI operator directly in your chat tools.
+              Secure your spot and be the first to deploy your safe AI operator directly in your
+              chat tools.
             </motion.p>
 
             <motion.div
@@ -70,7 +76,7 @@ export default function CTA() {
             >
               <Button
                 disabled={loading}
-                size="lg"
+                size='lg'
                 className='rounded-full px-12 h-16 text-lg font-bold bg-white hover:bg-slate-100 text-brand-navy shadow-lg transition-all hover:scale-105 active:scale-95'
                 onClick={() => {
                   setLoading(true)

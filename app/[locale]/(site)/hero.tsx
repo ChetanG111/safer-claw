@@ -1,20 +1,23 @@
 'use client'
 
 import { useState } from 'react'
-import { Link } from '@/i18n/navigation'
-import { client } from '@/lib/auth/auth-client'
 
 import { Button } from '@/components/ui/button'
 import { ArrowUpRight, Loader2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 import { useRouter } from 'next/navigation'
-import { User } from 'better-auth'
+import type { User } from 'better-auth'
 
-export default function Hero({ user, isOnboarded = false }: { user: User | null, isOnboarded?: boolean }) {
+export default function Hero({
+  user,
+  isOnboarded = false,
+}: {
+  user: User | null
+  isOnboarded?: boolean
+}) {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -71,10 +74,7 @@ export default function Hero({ user, isOnboarded = false }: { user: User | null,
                   viewBox='0 0 100 40'
                   preserveAspectRatio='none'
                 >
-                  <path
-                    d='M2 15 Q 50 10, 98 15 L 96 35 Q 50 38, 4 34 Z'
-                    fill='currentColor'
-                  />
+                  <path d='M2 15 Q 50 10, 98 15 L 96 35 Q 50 38, 4 34 Z' fill='currentColor' />
                 </svg>
               </motion.div>
             </span>
@@ -86,7 +86,8 @@ export default function Hero({ user, isOnboarded = false }: { user: User | null,
             variants={itemVariants}
             className='mx-auto mt-8 max-w-2xl text-balance text-center text-lg text-slate-600 sm:text-xl md:text-2xl font-medium leading-relaxed'
           >
-            A secure AI assistant that automates tasks and acts as a digital employee directly inside your chat tools.
+            A secure AI assistant that automates tasks and acts as a digital employee directly
+            inside your chat tools.
           </motion.p>
 
           <motion.div
@@ -95,7 +96,7 @@ export default function Hero({ user, isOnboarded = false }: { user: User | null,
           >
             <Button
               disabled={loading}
-              size="lg"
+              size='lg'
               className='rounded-full px-10 h-14 text-lg font-semibold bg-brand-navy hover:bg-brand-navy/90 text-white shadow-xl transition-all hover:scale-105 active:scale-95'
               onClick={async () => {
                 setLoading(true)
@@ -124,7 +125,7 @@ export default function Hero({ user, isOnboarded = false }: { user: User | null,
             </Button>
           </motion.div>
         </div>
-      </motion.div >
-    </main >
+      </motion.div>
+    </main>
   )
 }

@@ -16,11 +16,13 @@ export default async function NotFound() {
   const messages = await getMessages({ locale: 'en' })
 
   return (
-    <html lang="en">
-      <body className={`${fontSans.variable} ${fontMono.variable} ${fontHeading.variable} font-sans antialiased`}>
+    <html lang='en'>
+      <body
+        className={`${fontSans.variable} ${fontMono.variable} ${fontHeading.variable} font-sans antialiased`}
+      >
         <ThemeProvider>
           <QueryProvider>
-            <NextIntlClientProvider locale="en" messages={messages}>
+            <NextIntlClientProvider locale='en' messages={messages}>
               <NotFoundContent />
             </NextIntlClientProvider>
           </QueryProvider>

@@ -10,7 +10,13 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 import { motion } from 'framer-motion'
 
-export default function Navbar({ showLinks = true, isOnboarded = false }: { showLinks?: boolean, isOnboarded?: boolean }) {
+export default function Navbar({
+  showLinks = true,
+  isOnboarded = false,
+}: {
+  showLinks?: boolean
+  isOnboarded?: boolean
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { data: session } = useSession()
   const user = session?.user
@@ -31,7 +37,11 @@ export default function Navbar({ showLinks = true, isOnboarded = false }: { show
           <div className='flex items-center gap-3'>
             <Link href='/' className='flex items-center gap-2 group'>
               <div className='h-8 w-8 bg-brand-navy rounded-lg flex items-center justify-center transition-transform group-hover:scale-110'>
-                <img src='/image.png' alt='Safer-Claw Logo' className='h-5 w-5 object-contain invert' />
+                <img
+                  src='/image.png'
+                  alt='Safer-Claw Logo'
+                  className='h-5 w-5 object-contain invert'
+                />
               </div>
               <span className='text-xl font-bold tracking-tight text-brand-navy font-heading'>
                 safer-claw
@@ -57,13 +67,9 @@ export default function Navbar({ showLinks = true, isOnboarded = false }: { show
                   </Link>
                   {user && !isOnboarded && (
                     <Button
-                      size="sm"
+                      size='sm'
                       className='rounded-full px-6 font-bold bg-brand-navy text-white hover:bg-brand-navy/90'
-                      render={
-                        <Link href='/dashboard'>
-                          Deploy
-                        </Link>
-                      }
+                      render={<Link href='/dashboard'>Deploy</Link>}
                     />
                   )}
                   <Link
@@ -94,7 +100,9 @@ export default function Navbar({ showLinks = true, isOnboarded = false }: { show
           <div className='flex items-center gap-4'>
             {user ? (
               <div className='flex items-center gap-3'>
-                <span className='hidden sm:block text-sm font-semibold text-slate-700'>{user.name}</span>
+                <span className='hidden sm:block text-sm font-semibold text-slate-700'>
+                  {user.name}
+                </span>
                 <Avatar className='h-9 w-9 border-2 border-slate-100'>
                   <AvatarImage src={user.image || ''} alt={user.name} />
                   <AvatarFallback className='bg-slate-100 text-slate-600 font-bold'>
@@ -104,13 +112,9 @@ export default function Navbar({ showLinks = true, isOnboarded = false }: { show
               </div>
             ) : (
               <Button
-                size="sm"
+                size='sm'
                 className='hidden md:flex rounded-full px-6 font-bold bg-brand-navy text-white hover:bg-brand-navy/90 shadow-lg shadow-slate-200'
-                render={
-                  <Link href='/#cta'>
-                    Launch
-                  </Link>
-                }
+                render={<Link href='/#cta'>Launch</Link>}
               />
             )}
 
@@ -167,10 +171,7 @@ export default function Navbar({ showLinks = true, isOnboarded = false }: { show
                   <Button
                     className='w-full rounded-full h-12 font-bold bg-brand-navy text-white hover:bg-brand-navy/90'
                     render={
-                      <Link
-                        href='/dashboard'
-                        onClick={toggleMenu}
-                      >
+                      <Link href='/dashboard' onClick={toggleMenu}>
                         Deploy
                       </Link>
                     }
@@ -192,10 +193,7 @@ export default function Navbar({ showLinks = true, isOnboarded = false }: { show
                   <Button
                     className='w-full rounded-full h-12 font-bold bg-brand-navy text-white hover:bg-brand-navy/90'
                     render={
-                      <Link
-                        href='/#cta'
-                        onClick={toggleMenu}
-                      >
+                      <Link href='/#cta' onClick={toggleMenu}>
                         Launch Now
                       </Link>
                     }

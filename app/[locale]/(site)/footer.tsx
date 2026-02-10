@@ -87,7 +87,11 @@ export default function Footer() {
           <div className='flex flex-col items-center justify-center text-center gap-8'>
             <div className='flex items-center justify-center gap-3 group cursor-pointer'>
               <div className='h-10 w-10 bg-brand-navy rounded-xl flex items-center justify-center transition-transform group-hover:scale-110'>
-                <img src='/image.png' alt='Safer-Claw Logo' className='h-6 w-6 object-contain invert' />
+                <img
+                  src='/image.png'
+                  alt='Safer-Claw Logo'
+                  className='h-6 w-6 object-contain invert'
+                />
               </div>
               <span className='text-2xl font-bold tracking-tight text-brand-navy font-heading'>
                 safer-claw
@@ -104,10 +108,16 @@ export default function Footer() {
               </p>
 
               <div className='flex items-center gap-6'>
-                <Link href='https://x.com/saferclaw' className='text-slate-400 hover:text-brand-navy transition-colors'>
+                <Link
+                  href='https://x.com/saferclaw'
+                  className='text-slate-400 hover:text-brand-navy transition-colors'
+                >
                   <FaXTwitter className='h-5 w-5' />
                 </Link>
-                <Link href='https://github.com/ChetanG111/safer-claw' className='text-slate-400 hover:text-brand-navy transition-colors'>
+                <Link
+                  href='https://github.com/ChetanG111/safer-claw'
+                  className='text-slate-400 hover:text-brand-navy transition-colors'
+                >
                   <FaGithub className='h-5 w-5' />
                 </Link>
               </div>

@@ -376,8 +376,8 @@ export default function LoginPage({
                 className={cn(
                   'transition-colors focus:border-gray-400 focus:ring-2 focus:ring-gray-100',
                   showEmailValidationError &&
-                  emailErrors.length > 0 &&
-                  'border-red-500 focus:border-red-500 focus:ring-red-100 focus-visible:ring-red-500'
+                    emailErrors.length > 0 &&
+                    'border-red-500 focus:border-red-500 focus:ring-red-100 focus-visible:ring-red-500'
                 )}
               />
               {showEmailValidationError && emailErrors.length > 0 && (
@@ -415,8 +415,8 @@ export default function LoginPage({
                   className={cn(
                     'pr-10 transition-colors focus:border-gray-400 focus:ring-2 focus:ring-gray-100',
                     showValidationError &&
-                    passwordErrors.length > 0 &&
-                    'border-red-500 focus:border-red-500 focus:ring-red-100 focus-visible:ring-red-500'
+                      passwordErrors.length > 0 &&
+                      'border-red-500 focus:border-red-500 focus:ring-red-100 focus-visible:ring-red-500'
                   )}
                 />
                 <button
@@ -466,7 +466,9 @@ export default function LoginPage({
               <div className='w-full border-t border-gray-200' />
             </div>
             <div className='relative flex justify-center text-sm'>
-              <span className='bg-white px-4 font-[340] text-muted-foreground'>Or continue with</span>
+              <span className='bg-white px-4 font-[340] text-muted-foreground'>
+                Or continue with
+              </span>
             </div>
           </div>
         )}
@@ -542,7 +544,7 @@ export default function LoginPage({
                 className={cn(
                   'transition-colors focus:border-gray-400 focus:ring-2 focus:ring-gray-100',
                   resetStatus.type === 'error' &&
-                  'border-red-500 focus:border-red-500 focus:ring-red-100 focus-visible:ring-red-500'
+                    'border-red-500 focus:border-red-500 focus:ring-red-100 focus-visible:ring-red-500'
                 )}
               />
               {resetStatus.type === 'error' && (

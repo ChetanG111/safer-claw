@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { Check, Bot, Zap, ArrowRight, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -32,7 +31,7 @@ export default function DashboardPage() {
     setLoading(true)
 
     try {
-      // Updated to pass model and connection data if backend supports it, 
+      // Updated to pass model and connection data if backend supports it,
       // for now simplified to just checkout flow
       const response = await fetch('/api/onboarding/checkout', {
         method: 'POST',
@@ -44,8 +43,8 @@ export default function DashboardPage() {
           agentName: 'OpenClaw Agent',
           config: {
             model: selectedModel,
-            connection: selectedConnection
-          }
+            connection: selectedConnection,
+          },
         }),
       })
 
@@ -59,7 +58,6 @@ export default function DashboardPage() {
       } else {
         throw new Error('No checkout URL returned')
       }
-
     } catch (error) {
       console.error('Onboarding error:', error)
       alert('Something went wrong. Please try again.')
@@ -71,13 +69,19 @@ export default function DashboardPage() {
     <div className='container max-w-4xl mx-auto py-12 px-4 md:py-20'>
       <AnimatePresence mode='wait'>
         {step === 'config' ? (
-          <BounceSequence key='config' className='flex flex-col items-center text-center max-w-2xl mx-auto'>
+          <BounceSequence
+            key='config'
+            className='flex flex-col items-center text-center max-w-2xl mx-auto'
+          >
             <div className='w-16 h-16 bg-brand-navy rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-brand-navy/20'>
               <Bot className='w-8 h-8 text-white' />
             </div>
 
             <h1 className='text-3xl md:text-5xl font-bold text-brand-navy mb-4 tracking-tight'>
-              Deploy <span className='text-transparent bg-clip-text bg-gradient-to-r from-brand-navy to-purple-600'>OpenClaw</span>
+              Deploy{' '}
+              <span className='text-transparent bg-clip-text bg-gradient-to-r from-brand-navy to-purple-600'>
+                OpenClaw
+              </span>
             </h1>
 
             <p className='text-lg text-slate-500 mb-10'>
@@ -87,7 +91,9 @@ export default function DashboardPage() {
             <div className='w-full space-y-8 mb-12 text-left'>
               {/* Model Selection */}
               <div>
-                <label className='text-sm font-semibold text-slate-900 uppercase tracking-widest mb-4 block pl-1'>Select Model</label>
+                <div className='text-sm font-semibold text-slate-900 uppercase tracking-widest mb-4 block pl-1'>
+                  Select Model
+                </div>
                 <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
                   {MODELS.map((model) => (
                     <div
@@ -100,7 +106,14 @@ export default function DashboardPage() {
                           : 'border-slate-100 hover:border-brand-navy/30 hover:bg-slate-50'
                       )}
                     >
-                      <span className={cn('font-medium text-sm text-center', selectedModel === model.id ? 'text-brand-navy' : 'text-slate-600')}>{model.name}</span>
+                      <span
+                        className={cn(
+                          'font-medium text-sm text-center',
+                          selectedModel === model.id ? 'text-brand-navy' : 'text-slate-600'
+                        )}
+                      >
+                        {model.name}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -108,7 +121,9 @@ export default function DashboardPage() {
 
               {/* Connection Selection */}
               <div>
-                <label className='text-sm font-semibold text-slate-900 uppercase tracking-widest mb-4 block pl-1'>Primary Connection</label>
+                <div className='text-sm font-semibold text-slate-900 uppercase tracking-widest mb-4 block pl-1'>
+                  Primary Connection
+                </div>
                 <div className='flex gap-3 justify-center'>
                   {CONNECTIONS.map((conn) => (
                     <div
@@ -166,8 +181,13 @@ export default function DashboardPage() {
                     <Check className='w-3 h-3 text-blue-600' />
                   </div>
                   <div>
-                    <span className='font-semibold text-blue-800 block text-sm'>Included in Plan</span>
-                    <span className='text-blue-700 text-sm'>Includes <strong>$10/mo</strong> in AI credits to use with Claude, GPT-4, and Gemini.</span>
+                    <span className='font-semibold text-blue-800 block text-sm'>
+                      Included in Plan
+                    </span>
+                    <span className='text-blue-700 text-sm'>
+                      Includes <strong>$10/mo</strong> in AI credits to use with Claude, GPT-4, and
+                      Gemini.
+                    </span>
                   </div>
                 </div>
 

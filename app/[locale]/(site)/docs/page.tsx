@@ -20,8 +20,12 @@ export default async function DocsPage({ params }: { params: Promise<{ locale: s
   return (
     <div className='container mx-auto max-w-5xl py-32 px-4'>
       <div className='mb-20 text-center'>
-        <h2 className='text-sm font-bold tracking-widest text-brand-navy mb-4 font-mono uppercase'>KNOWLEDGE BASE</h2>
-        <h1 className='text-4xl font-bold tracking-tight lg:text-6xl text-brand-navy'>Documentation</h1>
+        <h2 className='text-sm font-bold tracking-widest text-brand-navy mb-4 font-mono uppercase'>
+          KNOWLEDGE BASE
+        </h2>
+        <h1 className='text-4xl font-bold tracking-tight lg:text-6xl text-brand-navy'>
+          Documentation
+        </h1>
         <p className='mt-6 text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed'>
           Simple guides and deep dives into building safe AI workflows with Safer-Claw.
         </p>
@@ -42,7 +46,9 @@ export default async function DocsPage({ params }: { params: Promise<{ locale: s
             <h2 className='text-xl font-bold tracking-tight text-brand-navy group-hover:text-emerald-600 transition-colors'>
               {doc.meta.title}
             </h2>
-            <p className='mt-4 text-sm font-medium text-slate-500 leading-relaxed'>{doc.meta.description}</p>
+            <p className='mt-4 text-sm font-medium text-slate-500 leading-relaxed'>
+              {doc.meta.description}
+            </p>
           </Link>
         ))}
       </div>

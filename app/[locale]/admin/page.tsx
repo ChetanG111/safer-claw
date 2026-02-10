@@ -42,9 +42,14 @@ export default function AdminDashboardPage() {
     <div className='flex flex-1 flex-col gap-6 p-2'>
       <BounceSequence className='grid gap-6 md:grid-cols-2 lg:grid-cols-4'>
         {stats.map((stat) => (
-          <Card key={stat.title} className='border-slate-200 bg-white/50 backdrop-blur-sm shadow-sm transition-all hover:shadow-md'>
+          <Card
+            key={stat.title}
+            className='border-slate-200 bg-white/50 backdrop-blur-sm shadow-sm transition-all hover:shadow-md'
+          >
             <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-              <CardTitle className='text-xs font-bold uppercase tracking-widest text-slate-400 font-mono'>{stat.title}</CardTitle>
+              <CardTitle className='text-xs font-bold uppercase tracking-widest text-slate-400 font-mono'>
+                {stat.title}
+              </CardTitle>
               <div className={`p-2 rounded-xl ${stat.bg} ${stat.color}`}>
                 <stat.icon className='h-4 w-4' />
               </div>
@@ -60,12 +65,18 @@ export default function AdminDashboardPage() {
         ))}
       </BounceSequence>
 
-      <BounceSequence className='grid gap-6 md:grid-cols-2 lg:grid-cols-7' initialDelay={0.2} staggerDelay={0.1}>
+      <BounceSequence
+        className='grid gap-6 md:grid-cols-2 lg:grid-cols-7'
+        initialDelay={0.2}
+        staggerDelay={0.1}
+      >
         <Card className='col-span-4 border-slate-200 bg-white/50 backdrop-blur-sm shadow-sm'>
           <CardHeader className='flex flex-row items-start justify-between'>
             <div>
               <CardTitle className='text-xl font-bold text-brand-navy'>Overview</CardTitle>
-              <CardDescription className='text-slate-500'>Recent signups and revenue trends for the last 30 days.</CardDescription>
+              <CardDescription className='text-slate-500'>
+                Recent signups and revenue trends for the last 30 days.
+              </CardDescription>
             </div>
             <ArrowUpRight className='h-5 w-5 text-slate-300' />
           </CardHeader>
@@ -73,7 +84,9 @@ export default function AdminDashboardPage() {
             <div className='h-[350px] flex items-center justify-center border-2 border-dashed border-slate-100 rounded-3xl m-4'>
               <div className='text-center'>
                 <ActivityIcon className='h-8 w-8 text-slate-200 mx-auto mb-2' />
-                <span className='text-sm font-bold text-slate-400 uppercase tracking-widest font-mono'>Analytics Engine Ready</span>
+                <span className='text-sm font-bold text-slate-400 uppercase tracking-widest font-mono'>
+                  Analytics Engine Ready
+                </span>
               </div>
             </div>
           </CardContent>
@@ -81,15 +94,37 @@ export default function AdminDashboardPage() {
         <Card className='col-span-3 border-slate-200 bg-white/50 backdrop-blur-sm shadow-sm'>
           <CardHeader>
             <CardTitle className='text-xl font-bold text-brand-navy'>Recent Sales</CardTitle>
-            <CardDescription className='text-slate-500 font-medium'>You made <span className='text-brand-navy font-bold'>265</span> sales this month.</CardDescription>
+            <CardDescription className='text-slate-500 font-medium'>
+              You made <span className='text-brand-navy font-bold'>265</span> sales this month.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <div className='space-y-6'>
               {[
-                { name: 'Olivia Martin', email: 'olivia.martin@email.com', amount: '+$1,999.00', status: 'success' },
-                { name: 'Jackson Lee', email: 'jackson.lee@email.com', amount: '+$39.00', status: 'success' },
-                { name: 'Isabella Nguyen', email: 'isabella.nguyen@email.com', amount: '+$299.00', status: 'success' },
-                { name: 'William Chen', email: 'will@email.com', amount: '+$99.00', status: 'success' },
+                {
+                  name: 'Olivia Martin',
+                  email: 'olivia.martin@email.com',
+                  amount: '+$1,999.00',
+                  status: 'success',
+                },
+                {
+                  name: 'Jackson Lee',
+                  email: 'jackson.lee@email.com',
+                  amount: '+$39.00',
+                  status: 'success',
+                },
+                {
+                  name: 'Isabella Nguyen',
+                  email: 'isabella.nguyen@email.com',
+                  amount: '+$299.00',
+                  status: 'success',
+                },
+                {
+                  name: 'William Chen',
+                  email: 'will@email.com',
+                  amount: '+$99.00',
+                  status: 'success',
+                },
               ].map((sale, i) => (
                 <div key={i} className='flex items-center group cursor-pointer'>
                   <div className='h-10 w-10 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 group-hover:bg-slate-100 transition-colors'>

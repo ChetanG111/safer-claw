@@ -86,11 +86,7 @@ export class LemonSqueezyAdapter implements PaymentAdapter {
       },
     }
 
-    const { data, error } = await createCheckout(
-      storeId,
-      Number.parseInt(price.productId),
-      newCheckout
-    )
+    const { data, error } = await createCheckout(storeId, Number(price.productId), newCheckout)
 
     if (error || !data) {
       console.error('Lemon Squeezy checkout creation error:', error)

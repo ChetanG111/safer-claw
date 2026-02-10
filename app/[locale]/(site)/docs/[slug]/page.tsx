@@ -53,7 +53,9 @@ export default async function DocPage({ params }: { params: Promise<{ slug: stri
           </div>
 
           <div>
-            <h3 className='text-xs font-bold font-mono text-brand-navy uppercase tracking-widest mb-4'>Documents</h3>
+            <h3 className='text-xs font-bold font-mono text-brand-navy uppercase tracking-widest mb-4'>
+              Documents
+            </h3>
             <div className='space-y-1'>
               {allDocs.map((item) => (
                 <Link
@@ -84,16 +86,22 @@ export default async function DocPage({ params }: { params: Promise<{ slug: stri
         </Link>
 
         <div className='mb-12 border-b border-slate-100 pb-12'>
-          <h1 className='text-4xl md:text-5xl font-bold tracking-tight text-brand-navy leading-tight'>{doc.meta.title}</h1>
-          <p className='mt-6 text-xl text-slate-500 font-medium leading-relaxed'>{doc.meta.description}</p>
+          <h1 className='text-4xl md:text-5xl font-bold tracking-tight text-brand-navy leading-tight'>
+            {doc.meta.title}
+          </h1>
+          <p className='mt-6 text-xl text-slate-500 font-medium leading-relaxed'>
+            {doc.meta.description}
+          </p>
         </div>
 
-        <div className='prose prose-slate prose-lg max-w-none text-slate-600 font-medium leading-relaxed
+        <div
+          className='prose prose-slate prose-lg max-w-none text-slate-600 font-medium leading-relaxed
           prose-headings:text-brand-navy prose-headings:font-bold prose-headings:tracking-tight
           prose-a:text-emerald-600 prose-a:no-underline hover:prose-a:underline
           prose-strong:text-brand-navy prose-strong:font-bold
           prose-code:text-emerald-700 prose-code:bg-emerald-50 prose-code:px-1 prose-code:rounded
-          prose-img:rounded-3xl prose-img:shadow-xl prose-img:border prose-img:border-slate-100'>
+          prose-img:rounded-3xl prose-img:shadow-xl prose-img:border prose-img:border-slate-100'
+        >
           <MDXRemote source={doc.content} />
         </div>
       </article>

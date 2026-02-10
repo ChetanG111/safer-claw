@@ -76,7 +76,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className='hidden md:block'>
-                  <BreadcrumbLink href='/admin' className='font-semibold text-slate-500 hover:text-brand-navy'>Admin</BreadcrumbLink>
+                  <BreadcrumbLink
+                    href='/admin'
+                    className='font-semibold text-slate-500 hover:text-brand-navy'
+                  >
+                    Admin
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className='hidden md:block' />
                 <BreadcrumbItem>
@@ -88,9 +93,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
           <div className='flex items-center gap-4'>
             <div className='hidden items-center gap-3 sm:flex'>
-              <span className='text-sm font-semibold text-slate-700'>
-                {localizedUser.name}
-              </span>
+              <span className='text-sm font-semibold text-slate-700'>{localizedUser.name}</span>
               <Avatar className='h-9 w-9 border-2 border-slate-100'>
                 <AvatarImage src={localizedUser.image || ''} alt={localizedUser.name} />
                 <AvatarFallback className='bg-slate-100 text-slate-600 font-bold'>

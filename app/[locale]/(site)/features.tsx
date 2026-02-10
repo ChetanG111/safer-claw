@@ -105,10 +105,13 @@ export default function Features() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className={`p-10 flex flex-col items-center text-center md:items-start md:text-left border-b last:border-b-0 border-slate-100 md:border-b-0 ${index % 3 !== 2 ? 'md:border-r md:border-slate-100' : ''
-                  } ${index < 3 ? 'md:border-b md:border-slate-100' : ''} hover:bg-white/80 transition-colors group cursor-default`}
+                className={`p-10 flex flex-col items-center text-center md:items-start md:text-left border-b last:border-b-0 border-slate-100 md:border-b-0 ${
+                  index % 3 !== 2 ? 'md:border-r md:border-slate-100' : ''
+                } ${index < 3 ? 'md:border-b md:border-slate-100' : ''} hover:bg-white/80 transition-colors group cursor-default`}
               >
-                <h3 className='text-lg font-semibold mb-2 group-hover:text-brand-navy transition-colors'>{item.title}</h3>
+                <h3 className='text-lg font-semibold mb-2 group-hover:text-brand-navy transition-colors'>
+                  {item.title}
+                </h3>
                 <p className='text-sm text-muted-foreground'>{item.description}</p>
               </motion.div>
             ))}

@@ -33,7 +33,8 @@
       "!**/public/fallback-*.js",
       "!**/apps/docs/.source",
       "!**/venv",
-      "!**/.venv"
+      "!**/.venv",
+      "!**/kanban.html"
     ]
   },
   "formatter": {

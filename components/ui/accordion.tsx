@@ -5,7 +5,10 @@ import { Plus, Minus } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
-function Accordion({ className, ...props }: AccordionPrimitive.Root.Props & { collapsible?: boolean }) {
+function Accordion({
+  className,
+  ...props
+}: AccordionPrimitive.Root.Props & { collapsible?: boolean }) {
   const { collapsible, ...rest } = props
   return <AccordionPrimitive.Root data-slot='accordion' className={className} {...rest} />
 }

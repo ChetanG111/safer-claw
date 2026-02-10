@@ -131,10 +131,10 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
                 </div>
                 <div className='mb-6'>
                   <div className='flex items-baseline gap-3'>
-                    <span className='text-lg text-slate-400 line-through font-mono'>
-                      $29
+                    <span className='text-lg text-slate-400 line-through font-mono'>$29</span>
+                    <span className='text-5xl font-bold font-mono text-brand-navy'>
+                      {displayPrice}
                     </span>
-                    <span className='text-5xl font-bold font-mono text-brand-navy'>{displayPrice}</span>
                   </div>
                 </div>
                 <p className='text-slate-600 mb-6 leading-relaxed'>

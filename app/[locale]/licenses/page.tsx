@@ -18,8 +18,12 @@ export default async function LicensesPage({ params }: { params: Promise<{ local
       <Navbar />
       <main className='min-h-screen pt-20 bg-white'>
         <div className='mx-auto max-w-4xl px-4 py-16 sm:px-6'>
-          <h1 className='mb-4 text-4xl md:text-5xl font-bold tracking-tight text-brand-navy'>Licenses</h1>
-          <p className='mb-12 text-sm font-semibold text-slate-400 font-mono text-uppercase tracking-widest'>LAST UPDATED: 17 JAN 2026</p>
+          <h1 className='mb-4 text-4xl md:text-5xl font-bold tracking-tight text-brand-navy'>
+            Licenses
+          </h1>
+          <p className='mb-12 text-sm font-semibold text-slate-400 font-mono text-uppercase tracking-widest'>
+            LAST UPDATED: 17 JAN 2026
+          </p>
 
           <div className='prose prose-sm max-w-none space-y-8 text-muted-foreground'>
             <section>

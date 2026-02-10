@@ -37,11 +37,17 @@ export function AdminSidebar({ user }: { user: any }) {
           <SidebarMenuItem>
             <SidebarMenuButton size='lg' render={<Link href='/' />} className='hover:bg-slate-50'>
               <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-brand-navy text-white transition-transform group-hover:scale-110'>
-                <img src='/image.png' alt='Safer-Claw Logo' className='h-5 w-5 object-contain invert' />
+                <img
+                  src='/image.png'
+                  alt='Safer-Claw Logo'
+                  className='h-5 w-5 object-contain invert'
+                />
               </div>
               <div className='grid flex-1 text-left text-sm leading-tight ml-2'>
                 <span className='truncate font-bold text-brand-navy'>safer-claw</span>
-                <span className='truncate text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono'>Admin</span>
+                <span className='truncate text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono'>
+                  Admin
+                </span>
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -49,17 +55,27 @@ export function AdminSidebar({ user }: { user: any }) {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className='px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono mb-2'>Platform</SidebarGroupLabel>
+          <SidebarGroupLabel className='px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono mb-2'>
+            Platform
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu className='space-y-1 px-2'>
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip='Dashboard' render={<Link href='/admin' />} className='rounded-xl hover:bg-slate-50 transition-colors'>
+                <SidebarMenuButton
+                  tooltip='Dashboard'
+                  render={<Link href='/admin' />}
+                  className='rounded-xl hover:bg-slate-50 transition-colors'
+                >
                   <LayoutDashboardIcon className='h-4 w-4 text-slate-500' />
                   <span className='font-semibold text-slate-600'>Dashboard</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton tooltip='Users' render={<Link href='/admin/users' />} className='rounded-xl hover:bg-slate-50 transition-colors'>
+                <SidebarMenuButton
+                  tooltip='Users'
+                  render={<Link href='/admin/users' />}
+                  className='rounded-xl hover:bg-slate-50 transition-colors'
+                >
                   <UsersIcon className='h-4 w-4 text-slate-500' />
                   <span className='font-semibold text-slate-600'>Users</span>
                 </SidebarMenuButton>
@@ -89,7 +105,9 @@ export function AdminSidebar({ user }: { user: any }) {
                 >
                   <Avatar className='h-8 w-8 rounded-lg'>
                     <AvatarImage src={user.image || ''} alt={user.name} />
-                    <AvatarFallback className='rounded-lg bg-slate-200 text-slate-600 font-bold'>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
+                    <AvatarFallback className='rounded-lg bg-slate-200 text-slate-600 font-bold'>
+                      {user.name.charAt(0).toUpperCase()}
+                    </AvatarFallback>
                   </Avatar>
                   <div className='grid flex-1 text-left text-sm leading-tight ml-2'>
                     <span className='truncate font-bold text-brand-navy'>{user.name}</span>
