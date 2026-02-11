@@ -63,7 +63,13 @@ function SelectPopup({
         sideOffset={sideOffset}
       >
         <SelectPrimitive.Popup
-          className='origin-(--transform-origin) transition-[scale,opacity] has-data-[side=none]:scale-100 has-data-starting-style:scale-98 has-data-starting-style:opacity-0 has-data-[side=none]:transition-none'
+          className={cn(
+            'origin-(--transform-origin) z-50',
+            'transition-[scale,opacity,transform] duration-200 ease-out',
+            'data-starting-style:scale-95 data-starting-style:opacity-0 data-starting-style:translate-y-1',
+            'data-ending-style:scale-95 data-ending-style:opacity-0 data-ending-style:translate-y-1',
+            className
+          )}
           data-slot='select-popup'
           {...props}
         >
@@ -73,12 +79,9 @@ function SelectPopup({
           >
             <ChevronUpIcon className='relative size-4.5 sm:size-4' />
           </SelectPrimitive.ScrollUpArrow>
-          <span className='relative block h-full rounded-lg border bg-popover bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-lg)-1px)] before:shadow-lg dark:not-in-data-[slot=group]:bg-clip-border'>
+          <span className='relative block h-full rounded-2xl border bg-popover/95 backdrop-blur-md bg-clip-padding shadow-2xl dark:not-in-data-[slot=group]:bg-clip-border'>
             <SelectPrimitive.List
-              className={cn(
-                'max-h-(--available-height) min-w-(--anchor-width) overflow-y-auto p-1',
-                className
-              )}
+              className='max-h-(--available-height) min-w-(--anchor-width) overflow-y-auto p-2'
               data-slot='select-list'
             >
               {children}
@@ -100,30 +103,42 @@ function SelectItem({ className, children, ...props }: SelectPrimitive.Item.Prop
   return (
     <SelectPrimitive.Item
       className={cn(
-        "grid min-h-8 in-data-[side=none]:min-w-[calc(var(--anchor-width)+1.25rem)] cursor-default grid-cols-[1rem_1fr] items-center gap-2 rounded-sm py-1 ps-2 pe-4 text-base outline-none data-disabled:pointer-events-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:opacity-64 sm:min-h-7 sm:text-sm [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        'group flex cursor-pointer items-center justify-between gap-4 rounded-xl py-3 ps-4 pe-3 text-base outline-none sm:text-sm',
+        'transition-[background-color,color,opacity,transform] duration-200 ease-out',
+        'data-highlighted:bg-accent/80 data-highlighted:text-accent-foreground data-highlighted:scale-[1.01] data-highlighted:delay-0',
+        'data-disabled:pointer-events-none data-disabled:opacity-50',
+        'data-starting-style:opacity-0 data-starting-style:-translate-x-2',
+        // Staggered entry delays
+        'in-data-[slot=select-list]:nth-child(1):delay-[50ms]',
+        'in-data-[slot=select-list]:nth-child(2):delay-[100ms]',
+        'in-data-[slot=select-list]:nth-child(3):delay-[150ms]',
+        'in-data-[slot=select-list]:nth-child(4):delay-[200ms]',
+        'in-data-[slot=select-list]:nth-child(5):delay-[250ms]',
+        '[&_svg:not([class*="size-"])]:size-4.5 sm:[&_svg:not([class*="size-"])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0',
         className
       )}
       data-slot='select-item'
       {...props}
     >
-      <SelectPrimitive.ItemIndicator className='col-start-1'>
+      <SelectPrimitive.ItemText className='flex-1 truncate'>
+        {children}
+      </SelectPrimitive.ItemText>
+      <SelectPrimitive.ItemIndicator className='flex shrink-0 items-center justify-center'>
         <svg
           fill='none'
-          height='24'
+          height='16'
           stroke='currentColor'
           strokeLinecap='round'
           strokeLinejoin='round'
-          strokeWidth='2'
+          strokeWidth='3'
           viewBox='0 0 24 24'
-          width='24'
-          xmlns='http://www.w3.org/1500/svg'
+          width='16'
+          xmlns='http://www.w3.org/2000/svg'
+          className='size-3.5 text-primary'
         >
           <path d='M5.252 12.7 10.2 18.63 18.748 5.37' />
         </svg>
       </SelectPrimitive.ItemIndicator>
-      <SelectPrimitive.ItemText className='col-start-2 min-w-0'>
-        {children}
-      </SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
   )
 }

@@ -57,9 +57,8 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
     )?.id || 'account'
 
     return (
-        <div className='relative min-h-screen bg-background overflow-x-hidden'>
-            <StampBackground />
-            <div className='relative z-10'>
+        <div className='w-full'>
+            <div className='relative'>
                 {/* Mobile Header */}
                 <div className='sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-lg md:hidden'>
                     <div className='flex h-14 items-center gap-4 px-4'>
@@ -74,7 +73,7 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
                     </div>
 
                     {/* Mobile Tabs */}
-                    <div className='overflow-x-auto scrollbar-hide'>
+                    <div className='overflow-x-auto overflow-y-hidden scrollbar-hide'>
                         <div className='flex gap-2 px-4 pb-3 min-w-max'>
                             {SETTINGS_SECTIONS.map((section) => {
                                 const Icon = section.icon

@@ -3,10 +3,10 @@
 export const StampBackground = () => {
   return (
     <div
-      className='absolute inset-0 z-0 overflow-hidden pointer-events-none bg-background'
+      className='fixed inset-0 z-0 overflow-hidden pointer-events-none bg-background'
     >
       <svg
-        className='absolute inset-0 h-full w-full opacity-[0.25]'
+        className='block absolute inset-0 h-full w-full opacity-[0.25]'
         xmlns='http://www.w3.org/2000/svg'
       >
         <defs>
