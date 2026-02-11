@@ -18,16 +18,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing defined fields' }, { status: 400 })
     }
 
+    const { agentType, agentName } = await req.json()
+
+    if (typeof agentType !== 'string' || agentType.length === 0 || agentType.length > 50) {
+        return NextResponse.json({ error: 'Invalid agent type' }, { status: 400 })
+    }
+
+    if (typeof agentName !== 'string' || agentName.length === 0 || agentName.length > 100) {
+        return NextResponse.json({ error: 'Invalid agent name' }, { status: 400 })
+    }
+
     // 1. Create the agent record (status: configuring)
     const [newAgent] = await db
-      .insert(agent)
-      .values({
-        userId: session.user.id,
-        type: (agentType as string).substring(0, 50),
-        name: (agentName as string).substring(0, 100),
-        status: 'configuring',
-      })
-      .returning()
+        .insert(agent)
+        .values({
+            userId: session.user.id,
+            type: agentType,
+            name: agentName,
+            status: 'configuring',
 
     // 2. Create Checkout Session
     // We'll use a fixed plan for now, e.g., 'pro' or whatever is default in onboarding

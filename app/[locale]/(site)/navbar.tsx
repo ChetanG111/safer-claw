@@ -99,10 +99,10 @@ export default function Navbar({
 
           <div className='flex items-center gap-4'>
             {user ? (
-              <Link
-                href='/settings/account'
-                className='flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer'
-              >
+                            <Link
+                              href='/settings/account'
+                              className='flex items-center gap-3'
+                            >
                 <span className='hidden sm:block text-sm font-semibold text-slate-700'>
                   {user.name}
                 </span>

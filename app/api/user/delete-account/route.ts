@@ -22,9 +22,9 @@ export async function DELETE(request: Request) {
         // Delete user account
         await db.delete(user).where(eq(user.id, userId))
 
-        return NextResponse.json({ success: true })
-    } catch (error) {
-        console.error('Error deleting account:', error)
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
-    }
-}
+                return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/`, { status: 302 })
+            } catch (error) {
+                console.error('Error deleting account:', error)
+                return NextResponse.json({ error: 'Internal server error' }, { status: 500 })      
+            }
+        }

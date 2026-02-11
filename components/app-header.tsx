@@ -58,20 +58,35 @@ export function AppHeader({ user }: AppHeaderProps) {
 
           {user && <div className='hidden h-6 w-px bg-slate-200 md:block' />}
 
-          {user && (
-            <Link
-              href='/settings/account'
-              className='hidden items-center gap-3 sm:flex hover:opacity-80 transition-opacity cursor-pointer'
-            >
-              <span className='text-sm font-semibold text-slate-700'>{user.name}</span>
-              <Avatar className='h-9 w-9 border-2 border-slate-100'>
-                <AvatarImage src={user.image || ''} alt={user.name} referrerPolicy='no-referrer' />
-                <AvatarFallback className='bg-slate-100 text-slate-600 font-bold'>
-                  {user.name.charAt(0).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-            </Link>
-          )}
+                    {user && (
+
+                      <Link
+
+                        href='/settings/account'
+
+                        className='hidden items-center gap-3 sm:flex'
+
+                      >
+
+                        <span className='text-sm font-semibold text-slate-700'>{user.name}</span>    
+
+                         <Avatar className='h-9 w-9 border-2 border-slate-100'>
+
+                          <AvatarImage src={user.image || ''} alt={user.name} referrerPolicy='no-refe
+
+          rrer' />
+
+                          <AvatarFallback className='bg-slate-100 text-slate-600 font-bold'>
+
+                            {user.name.charAt(0).toUpperCase()}
+
+                          </AvatarFallback>
+
+                        </Avatar>
+
+                      </Link>
+
+                    )}
         </div>
       </div>
     </motion.nav>

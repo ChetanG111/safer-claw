@@ -20,11 +20,13 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { useRouter } from 'next/navigation'
+import { useToast } from '@/hooks/use-toast'
 
 export default function AccountPage() {
     const { data: session } = useSession()
     const user = session?.user
     const router = useRouter()
+    const { toast } = useToast()
 
     const [displayName, setDisplayName] = useState(user?.name || '')
     const [isSaving, setIsSaving] = useState(false)
@@ -45,11 +47,22 @@ export default function AccountPage() {
                 throw new Error('Failed to update profile')
             }
 
+            }
+
+            toast({
+                title: 'Profile updated!',
+                description: 'Your display name has been successfully updated.',
+            })
+
             // Reload session to get updated data
             window.location.reload()
         } catch (error) {
             console.error('Error updating profile:', error)
-            alert('Failed to update display name. Please try again.')
+            toast({
+                title: 'Error',
+                description: 'Failed to update display name. Please try again.',
+                variant: 'destructive',
+            })
         } finally {
             setIsSaving(false)
         }
@@ -66,12 +79,15 @@ export default function AccountPage() {
                 throw new Error('Failed to delete account')
             }
 
-            // Redirect to home page
-            router.push('/')
+            // Server will handle redirection
         } catch (error) {
             console.error('Error deleting account:', error)
-            alert('Failed to delete account. Please try again.')
-            setIsDeleting(false)
+            toast({
+                title: 'Error',
+                description: 'Failed to delete account. Please try again.',
+                variant: 'destructive',
+            })
+            setIsDeleting(false) // Only reset deleting state if client-side error
         }
     }
 

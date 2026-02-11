@@ -29,6 +29,7 @@ export const metadata: Metadata = {
 
 import { fontSans, fontMono, fontHeading } from '@/config/fonts'
 import { ThemeProvider } from '@/components/branding/theme-provider'
+import { NavigationFeedback } from '@/components/feedback/navigation-feedback'
 
 export default async function RootLayout({ children, params }: Props) {
   const { locale } = await params
@@ -40,6 +41,7 @@ export default async function RootLayout({ children, params }: Props) {
         className={`${fontSans.variable} ${fontMono.variable} ${fontHeading.variable} font-sans antialiased`}
       >
         <ThemeProvider>
+          <NavigationFeedback />
           <NextIntlClientProvider messages={messages}>
             <QueryProvider>
               <ToastProvider>{children}</ToastProvider>

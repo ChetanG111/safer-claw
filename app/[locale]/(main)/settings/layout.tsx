@@ -2,13 +2,13 @@
 
 import { Link } from '@/i18n/navigation'
 import { usePathname, useRouter } from 'next/navigation'
-import { User, CreditCard, HelpCircle, LogOut, ChevronLeft } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { User, CreditCard, HelpCircle, ChevronLeft } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { BounceSequence } from '@/components/animation/bounce-sequence'
 import { motion } from 'framer-motion'
-import { signOut } from '@/lib/auth/auth-client'
-import { Button } from '@/components/ui/button'
 import { useState } from 'react'
+import { LogoutButton } from '@/components/auth/logout-button'
 import { StampBackground } from '@/components/branding/stamp-background'
 
 const SETTINGS_SECTIONS = [
@@ -38,18 +38,7 @@ const SETTINGS_SECTIONS = [
 export default function SettingsLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname()
     const router = useRouter()
-    const [isLoggingOut, setIsLoggingOut] = useState(false)
-
-    const handleLogout = async () => {
-        setIsLoggingOut(true)
-        try {
-            await signOut()
-            router.push('/')
-        } catch (error) {
-            console.error('Logout error:', error)
-            setIsLoggingOut(false)
-        }
-    }
+    const t = useTranslations('Settings')
 
     // Get active section from pathname
     const activeSection = SETTINGS_SECTIONS.find((section) =>
@@ -68,7 +57,7 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
                         >
                             <ChevronLeft className='h-5 w-5' />
                         </button>
-                        <h1 className='flex-1 text-center text-lg font-bold'>Settings</h1>
+                        <h1 className='flex-1 text-center text-lg font-bold'>{t('settings.title')}</h1>
                         <div className='w-9' /> {/* Spacer for centering */}
                     </div>
 
@@ -148,15 +137,10 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
 
                                 {/* Log Out Button */}
                                 <div className='pt-4 border-t border-border'>
-                                    <Button
-                                        onClick={handleLogout}
-                                        disabled={isLoggingOut}
+                                    <LogoutButton
                                         variant='ghost'
                                         className='w-full justify-start gap-3 text-muted-foreground hover:text-destructive'
-                                    >
-                                        <LogOut className='h-5 w-5' />
-                                        {isLoggingOut ? 'Logging out...' : 'Log Out'}
-                                    </Button>
+                                    />
                                 </div>
                             </div>
                         </motion.aside>
@@ -171,16 +155,12 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
                 </div>
 
                 {/* Mobile Log Out Button */}
-                <div className='md:hidden fixed bottom-0 inset-x-0 border-t border-border bg-background/95 backdrop-blur-lg p-4 safe-area-bottom'>
-                    <Button
-                        onClick={handleLogout}
-                        disabled={isLoggingOut}
+                <div className='md:hidden fixed bottom-0 inset-x-0 border-t border-border bg-background/95 backdrop-blur-lg p-4'>
+                    <LogoutButton
                         variant='ghost'
                         className='w-full justify-center gap-3 text-muted-foreground hover:text-destructive'
-                    >
-                        <LogOut className='h-5 w-5' />
-                        {isLoggingOut ? 'Logging out...' : 'Log Out'}
-                    </Button>
+                        isMobile={true}
+                    />
                 </div>
             </div>
         </div>

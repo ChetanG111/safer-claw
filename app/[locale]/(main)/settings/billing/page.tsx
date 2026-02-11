@@ -73,7 +73,7 @@ export default function BillingPage() {
     }
 
     const handleUpgrade = () => {
-        window.location.href = '/dashboard'
+        window.location.href = '/pricing'
     }
 
     if (isLoading) {

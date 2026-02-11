@@ -10,7 +10,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogPanel,
 } from '@/components/ui/dialog'
 import { Textarea } from '@/components/ui/textarea'
 import {
@@ -25,6 +24,7 @@ import { MessageSquarePlus, Bug, Lightbulb, MessageCircle } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 import { submitFeedback } from '@/app/actions/operations'
 import { useFormStatus } from 'react-dom'
+import { useTranslations } from 'next-intl'
 
 function SubmitButton() {
   const { pending } = useFormStatus()
@@ -38,13 +38,14 @@ function SubmitButton() {
 export function FeedbackWidget() {
   const [open, setOpen] = useState(false)
   const { toast } = useToast()
+  const t = useTranslations('Feedback')
 
   async function action(formData: FormData) {
     const result = await submitFeedback(null, formData)
     if (result.success) {
       setOpen(false)
       toast({
-        title: 'Thank you for your feedback! 🎉',
+        title: t('thankYouTitle'),
         description: result.message,
       })
     } else {
@@ -75,14 +76,14 @@ export function FeedbackWidget() {
               <MessageSquarePlus className='h-6 w-6' />
             </div>
             <div className='flex flex-col gap-1'>
-              <DialogTitle className='text-2xl font-bold tracking-tight'>Send Feedback</DialogTitle>
+              <DialogTitle className='text-2xl font-bold'>Send Feedback</DialogTitle>
               <DialogDescription className='text-muted-foreground'>
                 Help us improve! We read every message.
               </DialogDescription>
             </div>
           </div>
         </DialogHeader>
-        <DialogPanel>
+        <div>
           <form action={action} className='grid gap-6 py-4'>
             <div className='grid gap-2.5'>
               <Label htmlFor='type' className='text-xs font-bold uppercase tracking-wider text-muted-foreground/80'>
@@ -130,7 +131,7 @@ export function FeedbackWidget() {
                 required
               />
               <p className='text-[11px] font-medium text-muted-foreground/70'>
-                We typically respond within 24 hours.
+                {t('responseTime')}
               </p>
             </div>
             <DialogFooter variant='bare' className='pt-2'>
@@ -142,7 +143,7 @@ export function FeedbackWidget() {
               </div>
             </DialogFooter>
           </form>
-        </DialogPanel>
+        </div>
       </DialogContent>
     </Dialog>
   )

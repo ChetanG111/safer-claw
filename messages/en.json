@@ -4,5 +4,14 @@
     "title": "Blog",
     "meta_title": "Blog - Safer-Claw",
     "meta_description": "Read our latest news and updates."
+  },
+  "Settings": {
+    "title": "Settings",
+    "loggingOut": "Logging out...",
+    "logOut": "Log Out"
+  },
+  "Feedback": {
+    "thankYouTitle": "Thank you for your feedback! 🎉",
+    "responseTime": "We typically respond within 24 hours."
   }
 }
