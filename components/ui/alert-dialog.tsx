@@ -114,6 +114,30 @@ function AlertDialogClose(props: AlertDialogPrimitive.Close.Props) {
   return <AlertDialogPrimitive.Close data-slot='alert-dialog-close' {...props} />
 }
 
+function AlertDialogAction({ className, ...props }: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Close>) {
+  return (
+    <AlertDialogPrimitive.Close
+      className={cn(
+        'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function AlertDialogCancel({ className, ...props }: React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Close>) {
+  return (
+    <AlertDialogPrimitive.Close
+      className={cn(
+        'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 export {
   AlertDialog,
   AlertDialogPortal,
@@ -127,5 +151,7 @@ export {
   AlertDialogTitle,
   AlertDialogDescription,
   AlertDialogClose,
+  AlertDialogAction,
+  AlertDialogCancel,
   AlertDialogViewport,
 }

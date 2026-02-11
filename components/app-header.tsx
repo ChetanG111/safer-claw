@@ -49,7 +49,7 @@ export function AppHeader({ user }: AppHeaderProps) {
               asChild
               className='rounded-full hover:bg-slate-100 transition-colors'
             >
-              <Link href='/dashboard/settings'>
+              <Link href='/settings/account'>
                 <Settings className='h-5 w-5 text-slate-500' />
               </Link>
             </Button>
@@ -59,7 +59,10 @@ export function AppHeader({ user }: AppHeaderProps) {
           {user && <div className='hidden h-6 w-px bg-slate-200 md:block' />}
 
           {user && (
-            <div className='hidden items-center gap-3 sm:flex'>
+            <Link
+              href='/settings/account'
+              className='hidden items-center gap-3 sm:flex hover:opacity-80 transition-opacity cursor-pointer'
+            >
               <span className='text-sm font-semibold text-slate-700'>{user.name}</span>
               <Avatar className='h-9 w-9 border-2 border-slate-100'>
                 <AvatarImage src={user.image || ''} alt={user.name} referrerPolicy='no-referrer' />
@@ -67,7 +70,7 @@ export function AppHeader({ user }: AppHeaderProps) {
                   {user.name.charAt(0).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
-            </div>
+            </Link>
           )}
         </div>
       </div>

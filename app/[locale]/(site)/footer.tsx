@@ -45,6 +45,14 @@ export default function Footer() {
                   Support Center
                 </Link>
               </li>
+              <li>
+                <Link
+                  href='/settings/account'
+                  className='text-sm font-semibold text-slate-500 transition-colors hover:text-brand-navy'
+                >
+                  Settings
+                </Link>
+              </li>
             </ul>
           </div>
 

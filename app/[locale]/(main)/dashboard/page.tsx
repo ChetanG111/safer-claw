@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 import { BounceSequence } from '@/components/animation/bounce-sequence'
+import { AnimatePresence } from 'framer-motion'
 
 const MODELS = [
   { id: 'kimi-2.5', name: 'Kimi K2.5' },

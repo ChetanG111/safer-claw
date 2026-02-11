@@ -99,17 +99,20 @@ export default function Navbar({
 
           <div className='flex items-center gap-4'>
             {user ? (
-              <div className='flex items-center gap-3'>
+              <Link
+                href='/settings/account'
+                className='flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer'
+              >
                 <span className='hidden sm:block text-sm font-semibold text-slate-700'>
                   {user.name}
                 </span>
                 <Avatar className='h-9 w-9 border-2 border-slate-100'>
-                  <AvatarImage src={user.image || ''} alt={user.name} />
+                  <AvatarImage src={user.image || ''} alt={user.name} referrerPolicy='no-referrer' />
                   <AvatarFallback className='bg-slate-100 text-slate-600 font-bold'>
                     {user.name.charAt(0).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
-              </div>
+              </Link>
             ) : (
               <Button
                 size='sm'
