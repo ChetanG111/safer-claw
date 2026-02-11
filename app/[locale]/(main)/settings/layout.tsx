@@ -57,7 +57,7 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
                         >
                             <ChevronLeft className='h-5 w-5' />
                         </button>
-                        <h1 className='flex-1 text-center text-lg font-bold'>{t('settings.title')}</h1>
+                        <h1 className='flex-1 text-center text-lg font-bold'>{t('title')}</h1>
                         <div className='w-9' /> {/* Spacer for centering */}
                     </div>
 
@@ -99,7 +99,7 @@ export default function SettingsLayout({ children }: { children: React.ReactNode
                         >
                             <div className='sticky top-24 space-y-6'>
                                 <div>
-                                    <h1 className='text-2xl font-bold mb-6'>Settings</h1>
+                                    <h1 className='text-2xl font-bold mb-6'>{t('title')}</h1>
 
                                     <nav className='space-y-1'>
                                         {SETTINGS_SECTIONS.map((section) => {

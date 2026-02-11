@@ -6,9 +6,6 @@ import FAQ from './(site)/faq'
 import CTA from './(site)/cta'
 import Footer from './(site)/footer'
 import { GridLayout, SectionDivider } from './(site)/grid-layout'
-import { db } from '@/database'
-import { user } from '@/database/schema'
-import { eq } from 'drizzle-orm'
 import { getActivePaymentProvider } from '@/lib/payments/service'
 import { headers } from 'next/headers'
 import { auth } from '@/lib/auth/auth'
@@ -21,16 +18,8 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     headers: await headers(),
   })
 
-  let isOnboarded = false
-  if (session?.user) {
-    const dbUser = await db.query.user.findFirst({
-      where: eq(user.id, session.user.id),
-      columns: {
-        isOnboarded: true,
-      },
-    })
-    isOnboarded = !!dbUser?.isOnboarded
-  }
+  // @ts-ignore - isOnboarded is added via Better Auth additionalFields
+  const isOnboarded = !!session?.user?.isOnboarded
 
   return (
     <GridLayout>

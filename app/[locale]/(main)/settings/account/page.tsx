@@ -47,8 +47,6 @@ export default function AccountPage() {
                 throw new Error('Failed to update profile')
             }
 
-            }
-
             toast({
                 title: 'Profile updated!',
                 description: 'Your display name has been successfully updated.',
