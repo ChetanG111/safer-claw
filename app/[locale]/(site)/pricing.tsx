@@ -29,16 +29,14 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
   const displayPrice = proPrice ? `$${proPrice.amount / 100}` : '-'
 
   const premiumFeatures = [
-    { text: 'Full Next.js boilerplate', included: true },
-    { text: 'Auth, payments & UI prewired', included: true },
-    { text: 'One-click deploys', included: true },
-    { text: 'Role-based access & invite system', included: true },
-    { text: 'Advanced SEO & Blog', included: true },
-    { text: 'Analytics hooks ready for Posthog', included: true },
-    { text: 'Pro UI kit', included: true },
-    { text: 'Private Discord Community', included: true },
-    { text: 'Lifetime updates', included: true },
-    { text: 'Priority support', included: true },
+    { text: 'One-Click OpenClaw Deploy', included: true },
+    { text: 'Secure Sandbox Environment', included: true },
+    { text: 'Built-in AI Guardrails', included: true },
+    { text: 'Telegram & WhatsApp Integration', included: true },
+    { text: 'Zero Maintenance Infrastructure', included: true },
+    { text: 'Role-Based Access Control', included: true },
+    { text: '24/7 Managed Operations', included: true },
+    { text: 'Priority Support & Community', included: true },
   ]
 
   const handleCheckout = async (plan: 'pro') => {
@@ -95,7 +93,7 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
               transition={{ duration: 0.5, delay: 0.1 }}
               className='text-4xl md:text-5xl font-bold tracking-tight mb-4 text-brand-navy'
             >
-              Built for builders who play to win
+              Simple, Safe, Powerful.
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -104,7 +102,7 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
               transition={{ duration: 0.5, delay: 0.2 }}
               className='text-lg md:text-xl text-slate-600'
             >
-              Launch faster, sell sooner, and grow without fighting setup pain
+              One simple plan to unlock the full potential of OpenClaw safely.
             </motion.p>
           </div>
           <div className='flex justify-center'>
@@ -119,26 +117,29 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
                 damping: 20,
                 delay: 0.3,
               }}
-              className='flex flex-col p-8 max-w-md w-full relative border border-slate-200 rounded-3xl bg-white shadow-2xl shadow-slate-200/50 transition-transform hover:scale-[1.02] active:scale-[0.98]'
+              className='flex flex-col p-8 max-w-md w-full relative border border-slate-200 rounded-3xl bg-white shadow-2xl shadow-slate-200/50'
             >
               <div className='mb-8'>
                 <div className='flex items-start justify-between mb-4'>
                   <h3 className='text-3xl font-bold text-brand-navy'>Premium</h3>
-                  <Badge className='bg-emerald-50 border border-emerald-100 text-emerald-700 rounded-full px-4 py-1.5 font-semibold flex items-center gap-1.5'>
-                    <Flame className='h-3.5 w-3.5 fill-emerald-500' />
-                    Most popular
+                  <Badge className='bg-brand-navy/5 border border-brand-navy/10 text-brand-navy rounded-full px-4 py-1.5 font-semibold flex items-center gap-1.5'>
+                    <Flame className='h-3.5 w-3.5 fill-brand-navy' />
+                    Full Access
                   </Badge>
                 </div>
                 <div className='mb-6'>
                   <div className='flex items-baseline gap-3'>
                     <span className='text-lg text-slate-400 line-through font-mono'>$29</span>
-                    <span className='text-5xl font-bold font-mono text-brand-navy'>
-                      {displayPrice}
-                    </span>
+                    <div className='flex items-baseline'>
+                      <span className='text-5xl font-bold font-mono text-brand-navy'>
+                        {displayPrice}
+                      </span>
+                      <span className='text-xl font-bold font-mono text-slate-400'>/mo</span>
+                    </div>
                   </div>
                 </div>
                 <p className='text-slate-600 mb-6 leading-relaxed'>
-                  For founders & builders ready to ship real products and make money.
+                  For anyone ready to explore the future of AI without the technical headache.
                 </p>
                 <p className='text-xs font-bold text-brand-navy uppercase tracking-widest border-b border-slate-100 pb-4 font-mono'>
                   EVERYTHING INCLUDED
@@ -164,7 +165,7 @@ export default function Pricing({ activeProvider = 'stripe' }: PricingProps) {
               </ul>
               <div className='flex flex-col gap-2'>
                 <Button
-                  className='w-full rounded-2xl h-14 text-lg font-bold bg-brand-navy hover:bg-brand-navy/90 text-white shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]'
+                  className='w-full rounded-2xl h-16 text-xl font-bold bg-brand-navy hover:bg-brand-navy/90 text-white shadow-xl'
                   size='lg'
                   disabled={loadingPlan === 'pro'}
                   onClick={() => handleCheckout('pro')}

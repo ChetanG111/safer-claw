@@ -107,7 +107,7 @@ export default function Footer() {
             </div>
 
             <p className='text-base font-medium text-slate-500 max-w-md'>
-              The safest way to deploy and manage AI operators for your business workflows.
+              The safest way for anyone to deploy and manage OpenClaw AI agents with one-click simplicity.
             </p>
 
             <div className='flex flex-col items-center gap-6 w-full'>

@@ -6,8 +6,8 @@ import { GridLayout } from '../(site)/grid-layout'
 import { BounceSequence } from '@/components/animation/bounce-sequence'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Terms of Service',
-  description: 'Terms of Service for Safer-Claw platform',
+  title: 'Terms of Service - Safer-Claw: Deploy OpenClaw Without Code',
+  description: 'Understand the terms for using Safer-Claw, the platform that helps non-technical users deploy OpenClaw AI agents with ease.',
   canonical: '/terms',
 })
 
@@ -25,11 +25,13 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           <p className='mb-12 text-sm font-semibold text-slate-400 font-mono text-uppercase tracking-widest'>
             LAST UPDATED: 17 JAN 2026
           </p>
+          <p className='mb-12 text-lg text-slate-600 leading-relaxed'>
+            By using Safer-Claw to deploy your OpenClaw agents, you agree to these terms. Please read them carefully.
+          </p>
 
           <div className='prose prose-sm max-w-none space-y-8 text-muted-foreground'>
             <p>
-              welcome to safer-claw. by accessing or using our platform, you agree to these terms.
-              if you don't agree, please don't use safer-claw.
+              Welcome to Safer-Claw. By accessing or using our platform to deploy OpenClaw for your specific needs, you agree to comply with and be bound by these Terms of Service. If you do not agree to these terms, please do not use Safer-Claw.
             </p>
 
             <section>
@@ -46,10 +48,10 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
                 you're responsible for keeping your account secure. if you suspect unauthorized
                 access, contact us immediately at{' '}
                 <a
-                  href='mailto:support@safer-claw.com'
+                  href='mailto:chetangonuguntla0@gmail.com'
                   className='font-medium text-foreground underline underline-offset-4'
                 >
-                  support@safer-claw.com
+                  chetangonuguntla0@gmail.com
                 </a>
                 .
               </p>

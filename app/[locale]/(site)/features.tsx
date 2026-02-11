@@ -5,34 +5,34 @@ import { motion } from 'framer-motion'
 export default function Features() {
   const features = [
     {
-      title: 'One-Click Launch',
+      title: 'One-Click OpenClaw',
       description:
-        'Deploy OpenClaw instantly. No complex setup, no servers to manage—just click and your agent is ready to work.',
+        'Deploy the most advanced AI agents instantly. No complex setup, no servers—just one click and you are ready to explore.',
     },
     {
-      title: 'Safe & Secure',
+      title: 'Sandbox Safety',
       description:
-        'Your agent runs in an isolated environment. Your data and workflows remain completely safe.',
+        'Every agent runs in its own isolated container. Your personal data is never at risk, even in the most ambitious workflows.',
     },
     {
-      title: 'Chat Integration',
+      title: 'Built-in Guardrails',
       description:
-        'Connect directly to Telegram or WhatsApp. Talk to your agent where you already work.',
+        'Safe execution is built into the core. Our smart guardrails prevent common AI pitfalls so you can deploy with confidence.',
     },
     {
-      title: 'Workflow Automation',
+      title: 'For Humans, Not Devs',
       description:
-        'Run complex workflows and automate repetitive tasks. It acts like a digital employee.',
+        'Zero terminal commands. Zero configuration files. We have hidden all the complexity behind a beautiful, simple interface.',
     },
     {
-      title: 'Zero Maintenance',
+      title: 'Instant Chat Control',
       description:
-        'We handle all the infrastructure, updates, and security patches. You focus on the results.',
+        'Control your agents directly via Telegram or WhatsApp. No new apps to learn—just talk to your AI anywhere.',
     },
     {
-      title: 'Controlled Access',
+      title: 'Scalable & Managed',
       description:
-        'Secure permissions and access control. You decide exactly what your agent can and cannot do.',
+        'We handle 100% of the infrastructure and security updates. Focus on using your agent, not maintaining it.',
     },
   ]
 
@@ -80,7 +80,7 @@ export default function Features() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className='text-4xl md:text-5xl font-bold tracking-tight mb-4 text-brand-navy'
           >
-            Your Digital Employee, Ready to Work
+            The Safest Way to Use OpenClaw
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -89,7 +89,7 @@ export default function Features() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className='text-lg md:text-xl text-slate-600 max-w-2xl mx-auto'
           >
-            Powerful features designed for operators, solo founders, and small teams.
+            Built for anyone who wants the power of AI agents without the technical risk or setup headache.
           </motion.p>
         </div>
 
@@ -105,9 +105,8 @@ export default function Features() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className={`p-10 flex flex-col items-center text-center md:items-start md:text-left border-b last:border-b-0 border-slate-100 md:border-b-0 ${
-                  index % 3 !== 2 ? 'md:border-r md:border-slate-100' : ''
-                } ${index < 3 ? 'md:border-b md:border-slate-100' : ''} hover:bg-white/80 transition-colors group cursor-default`}
+                className={`p-10 flex flex-col items-center text-center md:items-start md:text-left border-b last:border-b-0 border-slate-100 md:border-b-0 ${index % 3 !== 2 ? 'md:border-r md:border-slate-100' : ''
+                  } ${index < 3 ? 'md:border-b md:border-slate-100' : ''} hover:bg-white/80 transition-colors group cursor-default`}
               >
                 <h3 className='text-lg font-semibold mb-2 group-hover:text-brand-navy transition-colors'>
                   {item.title}

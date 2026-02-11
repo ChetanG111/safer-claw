@@ -174,7 +174,7 @@ export default function DashboardPage() {
 
                 <div className='flex items-baseline mb-8'>
                   <span className='text-5xl font-extrabold text-brand-navy'>$19</span>
-                  <span className='text-slate-500 ml-2'>/month</span>
+                  <span className='text-slate-500 ml-1'>/mo</span>
                 </div>
 
                 <div className='p-4 bg-blue-50 border border-blue-100 rounded-xl mb-8 flex items-start'>

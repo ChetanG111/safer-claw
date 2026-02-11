@@ -53,7 +53,7 @@ export default function CTA() {
               transition={{ delay: 0.3 }}
               className='text-4xl md:text-6xl font-bold tracking-tight mb-6 text-white'
             >
-              Ready to hire your first <br className='hidden md:block' /> digital employee?
+              Ready to unleash the <br className='hidden md:block' /> power of OpenClaw safely?
             </motion.h2>
 
             <motion.p
@@ -63,8 +63,7 @@ export default function CTA() {
               transition={{ delay: 0.4 }}
               className='text-lg md:text-xl text-slate-400 mb-12 max-w-2xl mx-auto'
             >
-              Secure your spot and be the first to deploy your safe AI operator directly in your
-              chat tools.
+              Join the new generation of non-technical users exploring the future of autonomous AI in just one click.
             </motion.p>
 
             <motion.div

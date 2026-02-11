@@ -5,8 +5,8 @@ import Footer from '../(site)/footer'
 import { GridLayout } from '../(site)/grid-layout'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Licenses',
-  description: 'License information for Safer-Claw platform',
+  title: 'Licenses - Safer-Claw: Simple Deployment for OpenClaw',
+  description: 'Understand the licensing terms for Safer-Claw, empowering non-technical users to deploy OpenClaw agents effortlessly.',
   canonical: '/licenses',
 })
 
@@ -24,14 +24,15 @@ export default async function LicensesPage({ params }: { params: Promise<{ local
           <p className='mb-12 text-sm font-semibold text-slate-400 font-mono text-uppercase tracking-widest'>
             LAST UPDATED: 17 JAN 2026
           </p>
+          <p className='mb-12 text-lg text-slate-600 leading-relaxed'>
+            These terms govern your use of Safer-Claw to deploy your OpenClaw agents. By using our platform, you agree to these licensing provisions.
+          </p>
 
           <div className='prose prose-sm max-w-none space-y-8 text-muted-foreground'>
             <section>
-              <h2 className='mb-4 text-xl font-semibold text-foreground'>1. safer-claw codebase</h2>
+              <h2 className='mb-4 text-xl font-semibold text-foreground'>1. Safer-Claw Platform and Tools</h2>
               <p>
-                the safer-claw boilerplate and related source code are licensed for commercial and
-                personal projects with a valid purchase or access key. redistribution or resale
-                without permission is prohibited.
+                The Safer-Claw platform, including its tools and related source code, is licensed for users who wish to deploy OpenClaw agents for commercial and personal projects. Redistribution or resale of the platform itself without explicit permission is prohibited.
               </p>
             </section>
 

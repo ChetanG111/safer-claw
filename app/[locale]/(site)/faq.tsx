@@ -14,17 +14,17 @@ export default function FAQ() {
     {
       question: 'What is Safer-Claw?',
       answer:
-        'Safer-Claw is a lightweight SaaS that lets you deploy your own safe OpenClaw agent and connect it directly to Telegram or WhatsApp in one click.',
+        'Safer-Claw is the easiest way for anyone to use OpenClaw safely. We provide a secure, one-click hosting layer for autonomous agents with built-in guardrails and chat integration.',
     },
     {
       question: 'Is it secure?',
       answer:
-        "Yes. Security and control are our core promises. You get a secure environment where you control the agent's permissions and data access.",
+        "Yes. Security and control are our core promises. Every agent runs in an isolated container sandbox, ensuring your data and system remain completely safe while the agent works.",
     },
     {
       question: 'Do I need coding skills?',
       answer:
-        'No. Safer-Claw is built for non-technical users. You can set up your agent and workflows without writing a single line of code.',
+        'Absolutely not. Safer-Claw is designed for non-technical humans. If you can click a button, you can deploy and manage a world-class AI agent.',
     },
     {
       question: 'What platforms does it support?',

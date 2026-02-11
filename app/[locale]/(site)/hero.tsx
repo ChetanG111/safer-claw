@@ -55,39 +55,37 @@ export default function Hero({
         initial='hidden'
         animate='visible'
       >
-        <div className='mx-auto max-w-4xl text-center'>
+        <div className='mx-auto max-w-5xl text-center'>
           <motion.h1
             variants={itemVariants}
-            className='mx-auto max-w-4xl text-balance text-center font-bold text-5xl leading-[1.1] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl text-brand-navy'
+            className='mx-auto max-w-5xl text-balance text-center font-bold text-4xl leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-brand-navy'
           >
-            Your{' '}
-            <span className='relative inline-block px-2'>
-              <span className='relative z-10 text-brand-navy'>safe</span>
-              <motion.div
+            The{' '}
+            <span className='relative inline-block px-1'>
+              <motion.span
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ delay: 0.8, duration: 0.6, ease: 'circOut' }}
-                className='absolute inset-0 -inset-x-2 -inset-y-1 -z-10 translate-y-1 origin-left'
-              >
-                <svg
-                  className='w-full h-full text-emerald-400/30'
-                  viewBox='0 0 100 40'
-                  preserveAspectRatio='none'
-                >
-                  <path d='M2 15 Q 50 10, 98 15 L 96 35 Q 50 38, 4 34 Z' fill='currentColor' />
-                </svg>
-              </motion.div>
-            </span>
-            <br />
-            AI operator inside your inbox
+                transition={{
+                  delay: 1,
+                  duration: 0.6,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className='absolute inset-x-0 top-[10%] bottom-[5%] z-[-1] bg-[#BDF7E2]'
+                style={{
+                  clipPath: 'polygon(4% 22%, 25% 14%, 55% 12%, 96% 18%, 98% 50%, 95% 82%, 55% 90%, 25% 88%, 2% 80%, 5% 50%)',
+                  transformOrigin: 'left',
+                }}
+              />
+              safe
+            </span>{' '}
+            AI powerhouse for everyone, one click away
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className='mx-auto mt-8 max-w-2xl text-balance text-center text-lg text-slate-600 sm:text-xl md:text-2xl font-medium leading-relaxed'
+            className='mx-auto mt-8 max-w-3xl text-balance text-center text-base text-slate-500 sm:text-lg font-medium leading-relaxed'
           >
-            A secure AI assistant that automates tasks and acts as a digital employee directly
-            inside your chat tools.
+            Deploy secure OpenClaw agents in one click with built-in sandbox guardrails—no coding required.
           </motion.p>
 
           <motion.div
@@ -97,7 +95,7 @@ export default function Hero({
             <Button
               disabled={loading}
               size='lg'
-              className='rounded-full px-10 h-14 text-lg font-semibold bg-brand-navy hover:bg-brand-navy/90 text-white shadow-xl transition-all hover:scale-105 active:scale-95'
+              className='rounded-full px-12 h-18 text-xl font-semibold bg-brand-navy hover:bg-brand-navy/90 text-white shadow-xl transition-all hover:scale-105 active:scale-95'
               onClick={async () => {
                 setLoading(true)
                 try {
@@ -118,7 +116,7 @@ export default function Hero({
                 </>
               ) : (
                 <>
-                  {user && isOnboarded ? 'Go to Dashboard' : 'Deploy Now'}
+                  {user && isOnboarded ? 'Go to Dashboard' : 'Deploy Your First Agent'}
                   <ArrowUpRight className='h-6 w-6 ml-2' />
                 </>
               )}
@@ -126,6 +124,6 @@ export default function Hero({
           </motion.div>
         </div>
       </motion.div>
-    </main>
+    </main >
   )
 }

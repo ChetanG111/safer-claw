@@ -6,8 +6,8 @@ import { GridLayout } from '../(site)/grid-layout'
 import { BounceSequence } from '@/components/animation/bounce-sequence'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Privacy Policy',
-  description: 'Privacy Policy for Safer-Claw platform',
+  title: 'Privacy Policy - Safer-Claw: AI Agent Deployment Platform',
+  description: 'Understand how Safer-Claw, the AI agent deployment platform, handles your data and ensures your privacy.',
   canonical: '/privacy',
 })
 
@@ -25,9 +25,12 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           <p className='mb-12 text-sm font-semibold text-slate-400 font-mono text-uppercase tracking-widest'>
             LAST UPDATED: 17 JAN 2026
           </p>
+          <p className='mb-12 text-lg text-slate-600 leading-relaxed'>
+            Your trust is paramount. Learn how Safer-Claw protects your data as you deploy and manage your AI agents.
+          </p>
 
           <div className='prose prose-sm max-w-none space-y-8 text-muted-foreground'>
-            <p>we value your privacy. here's how we handle your info.</p>
+            <p>At Safer-Claw, your privacy is a top priority as you leverage our platform to deploy powerful AI agents. This policy outlines how we collect, use, and protect your information.</p>
 
             <section>
               <h2 className='mb-4 text-xl font-semibold text-foreground'>1. data we collect</h2>
@@ -75,10 +78,10 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
               <p>
                 you can request deletion or correction of your data anytime at{' '}
                 <a
-                  href='mailto:support@safer-claw.com'
+                  href='mailto:chetangonuguntla0@gmail.com'
                   className='font-medium text-foreground underline underline-offset-4'
                 >
-                  support@safer-claw.com
+                  chetangonuguntla0@gmail.com
                 </a>
                 .
               </p>
